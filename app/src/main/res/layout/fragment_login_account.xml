@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin">
+
+
+            <EditText
+                android:id="@+id/et_login_phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_height"
+                android:background="@null"
+                android:drawablePadding="6dp"
+                android:hint="@string/edit_phone"
+                android:inputType="number"
+                android:paddingStart="6dp"
+                android:textSize="@dimen/dimens_14sp" />
+
+            <include layout="@layout/split_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.wuyou.worker.view.widget.PasswordToggleEditText
+                    android:id="@+id/et_login_psw"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edit_height"
+                    android:layout_weight="1"
+                    android:inputType="textPassword"
+                    android:background="@null"
+                    android:longClickable="false"
+                    android:drawablePadding="6dp"
+                    android:hint="@string/edit_psw"
+                    android:paddingStart="6dp"
+                    android:textSize="@dimen/dimens_14sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/shadow_line" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/button_margin"
+            android:layout_marginStart="@dimen/button_margin"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_selector"
+            android:text="@string/login_now"
+            android:textColor="#fff"
+            android:textSize="@dimen/dimens_16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_forget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="忘记密码"
+                android:textColor="@color/main_blue"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/main_blue" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_new_regist"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_height"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="@dimen/button_margin"
+        android:layout_marginStart="@dimen/button_margin"
+        android:background="@drawable/regis_bac"
+        android:text="@string/new_regist"
+        android:textColor="@color/main_blue"
+        android:textSize="@dimen/dimens_16sp" />
+
+</LinearLayout>

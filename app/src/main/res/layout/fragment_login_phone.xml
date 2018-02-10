@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/tint_bg"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/login_phone"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edit_height"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="6dp"
+                android:hint="@string/edit_phone"
+                android:inputType="phone"
+                android:paddingStart="6dp"
+                android:textSize="@dimen/dimens_14sp" />
+
+            <include
+                android:id="@+id/login_send_verify"
+                layout="@layout/send_verify"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+
+        <include layout="@layout/split_line" />
+
+        <EditText
+            android:id="@+id/login_verify"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_height"
+            android:background="@null"
+            android:drawablePadding="6dp"
+            android:hint="@string/edit_verify"
+            android:inputType="number"
+            android:paddingStart="6dp"
+            android:textSize="@dimen/dimens_14sp" />
+
+    </LinearLayout>
+
+    <include layout="@layout/shadow_line" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/button_margin"
+        android:layout_marginStart="@dimen/button_margin"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_selector"
+        android:text="@string/login_now"
+        android:textColor="#fff"
+        android:textSize="@dimen/dimens_16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="首次登录需您所在的商家为您开通账户"
+            android:textColor="@color/main_gray"
+            android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_gray"
+            android:text="前往商家版 >"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

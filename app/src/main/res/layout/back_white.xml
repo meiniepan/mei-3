@@ -1,0 +1,10 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/back"
+    android:layout_width="50dp"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@mipmap/back_white"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

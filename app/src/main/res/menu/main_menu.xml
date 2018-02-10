@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/i_music"
+        android:checked="true"
+        android:icon="@drawable/home_order_selector"
+        android:title="@string/main_order" />
+
+
+    <item
+        android:id="@+id/i_friends"
+        android:icon="@drawable/home_wallet_selector"
+        android:title="@string/main_wallet" />
+
+    <item
+        android:id="@+id/i_favor2"
+        android:icon="@drawable/home_store_selector"
+        android:title="@string/main_mine" />
+</menu>
