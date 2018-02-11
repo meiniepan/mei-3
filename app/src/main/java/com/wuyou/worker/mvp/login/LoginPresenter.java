@@ -29,12 +29,12 @@ public class LoginPresenter extends LoginContract.Presenter {
                 .subscribe(new BaseSubscriber<BaseResponse<UserInfo>>() {
                     @Override
                     public void onSuccess(BaseResponse<UserInfo> userInfoBaseResponse) {
-                        mView.loginSuccess();
+                        if (isAttach()) mView.loginSuccess();
                     }
 
                     @Override
                     protected void onFail(ApiException e) {
-                        mView.showError(e.getDisplayMessage(), e.getCode());
+                        if (isAttach()) mView.showError(e.getDisplayMessage(), e.getCode());
                     }
                 });
     }
@@ -51,12 +51,12 @@ public class LoginPresenter extends LoginContract.Presenter {
                 .subscribe(new BaseSubscriber<BaseResponse<UserInfo>>() {
                     @Override
                     public void onSuccess(BaseResponse<UserInfo> userInfoBaseResponse) {
-                        mView.loginSuccess();
+                        if (isAttach()) mView.loginSuccess();
                     }
 
                     @Override
                     protected void onFail(ApiException e) {
-                        mView.showError(e.getDisplayMessage(), e.getCode());
+                        if (isAttach()) mView.showError(e.getDisplayMessage(), e.getCode());
                     }
                 });
     }
@@ -70,12 +70,12 @@ public class LoginPresenter extends LoginContract.Presenter {
                 .subscribe(new BaseSubscriber<BaseResponse<UserInfo>>() {
                     @Override
                     public void onSuccess(BaseResponse<UserInfo> userInfoBaseResponse) {
-                        mView.getVerifySuccess();
+                        if (isAttach()) mView.getVerifySuccess();
                     }
 
                     @Override
                     protected void onFail(ApiException e) {
-                        mView.showError(e.getDisplayMessage(), e.getCode());
+                        if (isAttach()) mView.showError(e.getDisplayMessage(), e.getCode());
                     }
                 });
     }

@@ -29,12 +29,12 @@ public class OrderPresenter extends OrderContract.Presenter {
                     public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
                         if (userInfoBaseResponse.data.list.size() > 0)
                             lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
-                        mView.getSuccess(userInfoBaseResponse.data);
+                        if (isAttach()) mView.getSuccess(userInfoBaseResponse.data);
                     }
 
                     @Override
                     protected void onFail(ApiException e) {
-                        mView.showError(e.getDisplayMessage(), e.getCode());
+                        if (isAttach()) mView.showError(e.getDisplayMessage(), e.getCode());
                     }
                 });
     }
@@ -50,12 +50,12 @@ public class OrderPresenter extends OrderContract.Presenter {
                     public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
                         if (userInfoBaseResponse.data.list.size() > 0)
                             lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
-                        mView.getSuccess(userInfoBaseResponse.data);
+                        if (isAttach()) mView.getSuccess(userInfoBaseResponse.data);
                     }
 
                     @Override
                     protected void onFail(ApiException e) {
-                        mView.showError(e.getDisplayMessage(), e.getCode());
+                        if (isAttach()) mView.showError(e.getDisplayMessage(), e.getCode());
                     }
                 });
     }
@@ -71,7 +71,7 @@ public class OrderPresenter extends OrderContract.Presenter {
                     public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
                         if (userInfoBaseResponse.data.list.size() > 0)
                             lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
-                        mView.getMore(userInfoBaseResponse.data);
+                        if (isAttach()) mView.getMore(userInfoBaseResponse.data);
                     }
 
                     @Override
@@ -92,7 +92,7 @@ public class OrderPresenter extends OrderContract.Presenter {
                     public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
                         if (userInfoBaseResponse.data.list.size() > 0)
                             lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
-                        mView.getMore(userInfoBaseResponse.data);
+                        if (isAttach()) mView.getMore(userInfoBaseResponse.data);
                     }
 
                     @Override

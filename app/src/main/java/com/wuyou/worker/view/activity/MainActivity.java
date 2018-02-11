@@ -39,7 +39,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
-
         fragments.add(orderFragment);
         fragments.add(new WalletFragment());
         fragments.add(new StoreFragment());
@@ -49,18 +48,8 @@ public class MainActivity extends BaseActivity {
         bottomView.setIconVisibility(true);
         bottomView.enableShiftingMode(false);
         bottomView.enableItemShiftingMode(false);
-        bottomView.setTextTintList(0, getResources().getColorStateList(R.color.main_blue));
         bottomView.setIconSize(DensityUtils.dip2px(getCtx(), 20), DensityUtils.dip2px(getCtx(), 20));
         bottomView.setIconsMarginTop(DensityUtils.dip2px(getCtx(), -8));
-        bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int pos = bottomView.getMenuItemPosition(item);
-                bottomView.setItemTextColor(getResources().getColorStateList(R.color.common_dark));
-                bottomView.setTextTintList(pos, getResources().getColorStateList(R.color.main_blue));
-                return true;
-            }
-        });
     }
 
     @Override
