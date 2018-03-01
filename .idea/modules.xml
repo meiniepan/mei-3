@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/face/face.iml" filepath="$PROJECT_DIR$/face/face.iml" />
       <module fileurl="file://$PROJECT_DIR$/wuyou-android-worker.iml" filepath="$PROJECT_DIR$/wuyou-android-worker.iml" />
     </modules>
   </component>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.wuyou.worker">
 
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
@@ -13,6 +14,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <application
+        tools:replace="android:icon,android:theme,android:allowBackup,android:name"
         android:name=".CarefreeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,5 +48,5 @@
         <activity android:name=".mvp.order.ChoseServerAllianceActivity" />
         <activity android:name=".mvp.circle.AddAllianceMerchantActivity" />
     </application>
+    </manifest>
 
-</manifest>

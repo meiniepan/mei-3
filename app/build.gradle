@@ -30,7 +30,7 @@ allprojects {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.github.ngreedy:tribe_lib:2.7.9'
     compile 'com.jakewharton:butterknife:8.8.1'
@@ -42,4 +42,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
     compile 'com.youth.banner:banner:1.4.9'
     compile 'org.greenrobot:greendao:3.2.2'
+    implementation project(':face')
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
