@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.wuyou.worker"
         minSdkVersion 17
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -42,6 +42,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
     compile 'com.youth.banner:banner:1.4.9'
     compile 'org.greenrobot:greendao:3.2.2'
-    implementation project(':face')
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation project(':IMKit')
 }

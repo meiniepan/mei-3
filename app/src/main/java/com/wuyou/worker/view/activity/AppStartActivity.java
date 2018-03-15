@@ -22,6 +22,7 @@ public class AppStartActivity extends BaseActivity {
             } else {
                 Intent view = new Intent(getCtx(), LoginActivity.class);
                 startActivity(view);
+                finish();
             }
 
         }, 1000);

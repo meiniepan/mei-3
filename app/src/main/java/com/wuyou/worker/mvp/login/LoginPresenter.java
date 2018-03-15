@@ -5,6 +5,7 @@ import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
 import com.wuyou.worker.CarefreeApplication;
+import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.UserApis;
@@ -17,14 +18,25 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class LoginPresenter extends LoginContract.Presenter {
+    private String token;
+
     @Override
     void doLogin(String phone, String captcha) {
         CarefreeRetrofit.getInstance().createApi(UserApis.class)
                 .doLogin(QueryMapBuilder.getIns().put("mobile", phone).put("captcha", captcha).buildPost())
                 .subscribeOn(Schedulers.io())
-                .flatMap(userInfoBaseResponse -> CarefreeRetrofit.getInstance().createApi(UserApis.class)
-                        .getUserInfo(userInfoBaseResponse.data.getUid(), QueryMapBuilder.getIns().buildGet()))
-                .doOnNext(userInfoBaseResponse -> CarefreeApplication.getInstance().setUserInfo(userInfoBaseResponse.data))
+                .flatMap(userInfoBaseResponse -> {
+                    token = userInfoBaseResponse.data.getToken();
+                    CarefreeDaoSession.getInstance().setUserInfo(userInfoBaseResponse.data);
+                    return CarefreeRetrofit.getInstance().createApi(UserApis.class)
+                            .getUserInfo(userInfoBaseResponse.data.getUid(), QueryMapBuilder.getIns().buildGet());
+                })
+                .doOnNext(userInfoBaseResponse -> {
+                    UserInfo data = userInfoBaseResponse.data;
+                    data.setMid(CarefreeDaoSession.getInstance().getUserInfo().getMid());
+                    data.setToken(token);
+                    CarefreeDaoSession.getInstance().updateUserInfo(data);
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<UserInfo>>() {
                     @Override
@@ -44,9 +56,18 @@ public class LoginPresenter extends LoginContract.Presenter {
         CarefreeRetrofit.getInstance().createApi(UserApis.class)
                 .doLogin(QueryMapBuilder.getIns().put("username", userName).put("password", psw).buildPost())
                 .subscribeOn(Schedulers.io())
-                .flatMap(userInfoBaseResponse -> CarefreeRetrofit.getInstance().createApi(UserApis.class)
-                        .getUserInfo(userInfoBaseResponse.data.getUid(), QueryMapBuilder.getIns().buildGet()))
-                .doOnNext(userInfoBaseResponse -> CarefreeApplication.getInstance().setUserInfo(userInfoBaseResponse.data))
+                .flatMap(userInfoBaseResponse -> {
+                    token = userInfoBaseResponse.data.getToken();
+                    CarefreeDaoSession.getInstance().setUserInfo(userInfoBaseResponse.data);
+                    return CarefreeRetrofit.getInstance().createApi(UserApis.class)
+                            .getUserInfo(userInfoBaseResponse.data.getUid(), QueryMapBuilder.getIns().buildGet());
+                })
+                .doOnNext(userInfoBaseResponse -> {
+                    UserInfo data = userInfoBaseResponse.data;
+                    data.setMid(CarefreeDaoSession.getInstance().getUserInfo().getMid());
+                    data.setToken(token);
+                    CarefreeDaoSession.getInstance().updateUserInfo(data);
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<UserInfo>>() {
                     @Override

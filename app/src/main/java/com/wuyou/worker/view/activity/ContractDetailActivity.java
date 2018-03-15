@@ -53,6 +53,7 @@ public class ContractDetailActivity extends BaseActivity {
     }
 
     private void initData() {
+        showLoadingDialog();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
                 .getContractDetail(id, QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())

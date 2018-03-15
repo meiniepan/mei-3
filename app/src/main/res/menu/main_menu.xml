@@ -5,13 +5,14 @@
         android:checked="true"
         android:icon="@drawable/home_order_selector"
         android:title="@string/main_order" />
-
-
     <item
         android:id="@+id/i_friends"
         android:icon="@drawable/home_wallet_selector"
         android:title="@string/main_wallet" />
-
+    <item
+        android:id="@+id/i_favor"
+        android:icon="@drawable/home_message_selector"
+        android:title="@string/message" />
     <item
         android:id="@+id/i_favor2"
         android:icon="@drawable/home_store_selector"

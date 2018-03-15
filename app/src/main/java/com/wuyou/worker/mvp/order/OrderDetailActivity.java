@@ -71,6 +71,7 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     private void initData() {
+        showLoadingDialog();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
                 .getOrdersDetail( orderId, QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())

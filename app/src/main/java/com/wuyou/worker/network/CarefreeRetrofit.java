@@ -30,7 +30,7 @@ public class CarefreeRetrofit {
 
     private CarefreeRetrofit() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.interceptors().add(new HttpInterceptor());
+        builder.interceptors().add(new CarefreeHttpInterceptor());
         builder.interceptors().add(new LogInterceptor());
         builder.connectTimeout(10, TimeUnit.SECONDS);
         builder.readTimeout(20, TimeUnit.SECONDS);
