@@ -21,7 +21,7 @@ public class MyOrderFragment extends BaseFragment {
     TabLayout mTabLayout;
     @BindView(R.id.vp_pager)
     ViewPager mViewPager;
-    String[] mTitle = {"待出发", "进行中", "已完成"};
+    String[] mTitle = {"待出发", "进行中", "待评价", "已完成"};
     OrderBeforeFragment orderBeforeFragment = new OrderBeforeFragment();
 
 
@@ -54,7 +54,10 @@ public class MyOrderFragment extends BaseFragment {
                 else if (position == 1)
                     fragment = new OrderIngFragment();
                 else if (position == 2)
+                    fragment = new OrderCommentFragment();
+                else if (position == 3) {
                     fragment = new OrderAfterFragment();
+                }
                 return fragment;
             }
 

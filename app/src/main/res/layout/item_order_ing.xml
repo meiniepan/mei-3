@@ -12,17 +12,25 @@
         android:layout_height="40dp"
         android:gravity="center_vertical"
         android:paddingEnd="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin">
+        android:paddingStart="@dimen/activity_horizontal_margin_end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单编号：" />
 
         <TextView
             android:id="@+id/tv_create_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="2018-01-11 08:00"
-            android:textColor="@color/main_gray"
-
-            />
+            android:text="2302041241414124"
+            android:textColor="@color/main_gray" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进行中"
+            android:textColor="@color/common_orange"/>
     </LinearLayout>
 
     <include layout="@layout/split_line" />
@@ -38,7 +46,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin_end"
             android:paddingStart="@dimen/activity_horizontal_margin">
 
             <TextView
@@ -46,8 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/text_margin"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="空调维修"
-                android:textSize="@dimen/dimens_16sp" />
+                android:textColor="@color/common_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,8 +66,8 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="16dp"
+                    android:layout_height="18dp"
                     android:background="@mipmap/icon_card_location_list" />
 
                 <TextView
@@ -67,9 +77,9 @@
                     android:layout_marginStart="@dimen/small_text_margin"
                     android:layout_weight="1"
                     android:text="常营-万象新四区 8-2-202"
-                    android:textColor="@color/main_gray" />
+                    android:textSize="@dimen/dimens_16sp" />
 
-
+                <include layout="@layout/layout_next" />
             </LinearLayout>
 
             <LinearLayout
@@ -91,76 +101,42 @@
                     android:layout_marginStart="@dimen/small_text_margin"
                     android:layout_weight="1"
                     android:text="今天 17:00-18:00"
-                    android:textColor="@color/main_blue" />
+                    android:textSize="@dimen/dimens_16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
-
-
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:gravity="center_vertical">
-
-            <include layout="@layout/layout_next" />
-        </LinearLayout>
-
     </LinearLayout>
 
     <include layout="@layout/split_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center_vertical">
+        android:layout_height="44dp"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <android.support.v4.widget.Space
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分单时间:" />
+
+        <TextView
+            android:id="@+id/tv_deliver_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
             android:layout_weight="1"
-            android:gravity="center">
+            android:text="2017-02-03 08:00" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="订单金额:" />
-
-            <TextView
-                android:id="@+id/tv_sum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="60.00"
-                android:textColor="@color/red" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="元" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical|right">
-
-            <Button
-                android:id="@+id/btn_divide_bill"
-                android:layout_width="80dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:background="@drawable/login_selector"
-                android:text="完成"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-
+        <Button
+            android:id="@+id/btn_divide_bill"
+            android:layout_width="84dp"
+            android:layout_height="30dp"
+            android:background="@drawable/login_selector"
+            android:text="确认完成"
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

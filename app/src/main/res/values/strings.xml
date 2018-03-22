@@ -44,4 +44,6 @@
     <string name="input_pwd_again">再次输入密码</string>
     <string name="reset_pwd">设置新密码</string>
     <string name="reset_pwd_success">设置密码成功</string>
+    <string name="wait_go">待出发</string>
+    <string name="finished">已完成</string>
 </resources>

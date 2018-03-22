@@ -2,26 +2,108 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/tint_bg"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        android:background="@color/white">
+        android:layout_height="176dp"
+        android:background="@mipmap/money_bg">
 
-        <ImageView
-            android:layout_width="@dimen/title_height"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/title_height"
-            android:background="@mipmap/wallet_black"
-            android:layout_alignParentRight="true"
-            />
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="钱包"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:id="@+id/textView" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="钱包"
-            android:textSize="22sp" />
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:text="总资产( 元 )"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:textColor="@color/white"
+            android:id="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:text="12321321321"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
     </RelativeLayout>
+    <include layout="@layout/split_area"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/icon_assets_recharge"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="充值"/>
+        <include layout="@layout/layout_next"/>
+    </LinearLayout>
+    <include layout="@layout/split_line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/icon_assets_withdraw"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="提现"/>
+        <include layout="@layout/layout_next"/>
+    </LinearLayout>
+    <include layout="@layout/split_line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/icon_assets_details"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="账户明细"/>
+        <include layout="@layout/layout_next"/>
+    </LinearLayout>
+    <include layout="@layout/split_line"/>
 </LinearLayout>

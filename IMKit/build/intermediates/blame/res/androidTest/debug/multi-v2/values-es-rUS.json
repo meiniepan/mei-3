@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "F:\\wuyou-android-worker\\IMKit\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-es-rUS\\values-es-rUS.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\values-es-rUS\\values-es-rUS.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "D:\\androidWorkSpace\\wuyou-android-worker\\IMKit\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-es-rUS\\values-es-rUS.xml",
             "map": [
                 {

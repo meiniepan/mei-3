@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="common_dark">#dd000000</color>
-    <color name="common_gray">#40000000</color>
-    <color name="main_gray">#66000000</color>
+    <color name="common_dark">#333333</color>
+    <color name="common_gray">#666666</color>
+    <color name="main_gray">#666666</color>
 
     <color name="main_tab">#707070</color>
     <color name="custom_color_shallow">#80d0dc</color>
@@ -17,4 +17,8 @@
     <color name="divide_gray">#15000000</color>
     <color name="main_blue">#3e81ff</color>
     <color name="store_home_title_bac">#777c91</color>
+
+    <color name="common_orange">#ff904b</color>
+    <color name="common_orange_press">#b26434</color>
+    <color name="common_orange_negative">#c9d2e4</color>
 </resources>
