@@ -33,7 +33,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
     View mRoot;
     protected P mPresenter;
     protected Toolbar mToolbar;
-    private int color = R.color.white;
+    private int color = R.color.night_blue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

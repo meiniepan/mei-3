@@ -7,6 +7,7 @@
     <color name="common_dark">#333333</color>
     <color name="common_gray">#666666</color>
     <color name="main_gray">#666666</color>
+    <color name="common_red">#FF4B4B</color>
 
     <color name="main_tab">#707070</color>
     <color name="custom_color_shallow">#80d0dc</color>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/main_blue">
+
+        <include layout="@layout/back_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="订单详情"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <include layout="@layout/split_area" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin_end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单总金额"
+            android:textSize="@dimen/dimens_16sp" />
+
+        <TextView
+            android:id="@+id/finish_order_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="1000.00"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <include layout="@layout/shadow_line" />
+
+    <include layout="@layout/split_area" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin_end">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="增加服务费用"
+            android:textSize="@dimen/dimens_16sp" />
+
+        <RadioButton
+            android:id="@+id/finish_order_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/finish_order_fee_area"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="@dimen/common_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin_end">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="增加金额"
+            android:textSize="@dimen/dimens_16sp" />
+
+        <EditText
+            android:id="@+id/finish_order_extra_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="元"/>
+    </LinearLayout>
+
+    <include layout="@layout/shadow_line" />
+    <include layout="@layout/split_area" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_marginStart="@dimen/activity_horizontal_margin_end"
+        android:lineSpacingMultiplier="1.2"
+        android:text="注:如果产生其他服务，需要增加服务费，请打开“按钮”并填写具体金额，等待客户支付。"
+        android:textColor="@color/common_red"
+        android:textSize="12sp" />
+
+    <Button
+        android:layout_marginTop="100dp"
+        android:text="@string/yes"
+        android:onClick="finishOrder"
+        style="@style/button_style"/>
+</LinearLayout>

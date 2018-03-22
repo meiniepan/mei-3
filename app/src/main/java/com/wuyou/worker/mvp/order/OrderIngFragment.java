@@ -19,6 +19,10 @@ import com.wuyou.worker.view.widget.recyclerHelper.BaseQuickAdapter;
 import com.wuyou.worker.view.widget.recyclerHelper.NewRefreshRecyclerView;
 import com.wuyou.worker.view.widget.recyclerHelper.OnRefreshListener;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +56,7 @@ public class OrderIngFragment extends BaseFragment<OrderContract.View, OrderCont
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         adapter = new OrderIngRvAdapter(scrollListener, this, R.layout.item_order_ing, data);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
@@ -128,5 +133,10 @@ public class OrderIngFragment extends BaseFragment<OrderContract.View, OrderCont
 
     private void fetchDatas() {
         mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getUid(), "2");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onOrderFinished(int pos) {
+        adapter.remove(pos);
     }
 }

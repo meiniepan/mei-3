@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">12dp</dimen>
     <dimen name="activity_horizontal_margin_end">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="title_size">16sp</dimen>
+    <dimen name="title_size">18sp</dimen>
     <dimen name="title_height">50dp</dimen>
     <dimen name="common_height">50dp</dimen>
     <dimen name="item_common_height">100dp</dimen>
@@ -17,7 +17,7 @@
     <dimen name="dimens_16sp">16sp</dimen>
     <dimen name="edit_height">45dp</dimen>
     <dimen name="button_height">48dp</dimen>
-    <dimen name="button_margin">20dp</dimen>
+    <dimen name="button_margin">16dp</dimen>
     <dimen name="common_margin">20dp</dimen>
     <dimen name="dimens_18sp">18sp</dimen>
     <dimen name="dimens_27sp">27sp</dimen>

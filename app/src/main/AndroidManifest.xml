@@ -63,6 +63,8 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.FinishOrderActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.wuyou.worker.FileProvider"

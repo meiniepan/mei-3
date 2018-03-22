@@ -9,16 +9,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        android:background="@color/white">
+        android:background="@color/main_blue">
 
-        <include layout="@layout/back_black" />
+        <include layout="@layout/back_white" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="合约详情"
-            android:textSize="22sp" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
     </RelativeLayout>
 
     <include layout="@layout/split_area" />
