@@ -88,7 +88,7 @@ public class OrderDetailActivity extends BaseActivity {
         tvAcceptTime.setText(TribeDateUtils.dateFormat(new Date(data.accept_at * 1000)));
         tvCategory.setText(data.category);
         tvServerTime.setText(data.service_time);
-        tvAddress.setText(data.address.city_name + data.address.district + data.address.area);
+        tvAddress.setText(data.address.city_name + data.address.district + data.address.area+data.address.address);
         tvPhone.setText(data.phone);
         tvCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
         tvId.setText(data.order_no);

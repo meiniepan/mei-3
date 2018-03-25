@@ -12,8 +12,12 @@ public class AddressEntity implements Parcelable {
     public String city_name;
     public String district;
     public String area;
+    public String address;
     public String lng;
     public String lat;
+
+    public AddressEntity() {
+    }
 
     @Override
     public int describeContents() {
@@ -26,11 +30,9 @@ public class AddressEntity implements Parcelable {
         dest.writeString(this.city_name);
         dest.writeString(this.district);
         dest.writeString(this.area);
+        dest.writeString(this.address);
         dest.writeString(this.lng);
         dest.writeString(this.lat);
-    }
-
-    public AddressEntity() {
     }
 
     protected AddressEntity(Parcel in) {
@@ -38,11 +40,12 @@ public class AddressEntity implements Parcelable {
         this.city_name = in.readString();
         this.district = in.readString();
         this.area = in.readString();
+        this.address = in.readString();
         this.lng = in.readString();
         this.lat = in.readString();
     }
 
-    public static final Parcelable.Creator<AddressEntity> CREATOR = new Parcelable.Creator<AddressEntity>() {
+    public static final Creator<AddressEntity> CREATOR = new Creator<AddressEntity>() {
         @Override
         public AddressEntity createFromParcel(Parcel source) {
             return new AddressEntity(source);
