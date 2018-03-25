@@ -13,28 +13,38 @@ public class UserInfo {
     @Id
     private long mid;
     @Property(nameInDb = "USERNAME")
-    private String name;
+    private String worker_name;
     @Property(nameInDb = "PHONE")
     private String phone;
     @Property(nameInDb = "UID")
-    private String uid;
+    private String worker_id;
     @Property(nameInDb = "HEAD")
-    private String head_image;
+    private String avatar;
     @Property(nameInDb = "TOKEN")
     private String token;
     @Property(nameInDb = "PWD")
     private String password;
+    @Property(nameInDb = "RC_ID")
+    private String rc_id;
+    @Property(nameInDb = "RC_TOKEN")
+    private String rc_token;
+    @Property(nameInDb = "AMOUNT")
+    private String amount;
 
-    @Generated(hash = 1397380642)
-    public UserInfo(long mid, String name, String phone, String uid,
-                    String head_image, String token, String password) {
+    @Generated(hash = 1712130219)
+    public UserInfo(long mid, String worker_name, String phone, String worker_id,
+                    String avatar, String token, String password, String rc_id,
+                    String rc_token, String amount) {
         this.mid = mid;
-        this.name = name;
+        this.worker_name = worker_name;
         this.phone = phone;
-        this.uid = uid;
-        this.head_image = head_image;
+        this.worker_id = worker_id;
+        this.avatar = avatar;
         this.token = token;
         this.password = password;
+        this.rc_id = rc_id;
+        this.rc_token = rc_token;
+        this.amount = amount;
     }
 
     @Generated(hash = 1279772520)
@@ -49,28 +59,28 @@ public class UserInfo {
         this.token = token;
     }
 
-    public String getUid() {
-        return uid;
+    public String getWorker_id() {
+        return worker_id;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setWorker_id(String worker_id) {
+        this.worker_id = worker_id;
     }
 
     public String getName() {
-        return name;
+        return worker_name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.worker_name = name;
     }
 
-    public String getHead_image() {
-        return head_image;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setHead_image(String head_image) {
-        this.head_image = head_image;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPhone() {
@@ -96,5 +106,37 @@ public class UserInfo {
     public void setMid(long mid) {
 
         this.mid = mid;
+    }
+
+    public String getWorker_name() {
+        return this.worker_name;
+    }
+
+    public void setWorker_name(String worker_name) {
+        this.worker_name = worker_name;
+    }
+
+    public String getRc_id() {
+        return this.rc_id;
+    }
+
+    public void setRc_id(String rc_id) {
+        this.rc_id = rc_id;
+    }
+
+    public String getRc_token() {
+        return this.rc_token;
+    }
+
+    public void setRc_token(String rc_token) {
+        this.rc_token = rc_token;
+    }
+
+    public String getAmount() {
+        return this.amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 }

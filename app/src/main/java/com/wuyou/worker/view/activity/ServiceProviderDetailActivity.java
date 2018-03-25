@@ -75,7 +75,7 @@ public class ServiceProviderDetailActivity extends BaseActivity {
 
     private void initData() {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getMerchantDetail(CarefreeApplication.getInstance().getUserInfo().getUid(), id, QueryMapBuilder.getIns().buildGet())
+                .getMerchantDetail(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), id, QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<MerchantDetailEntity>>() {

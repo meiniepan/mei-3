@@ -2,6 +2,7 @@ package com.wuyou.worker.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -50,6 +51,24 @@ import java.util.regex.Pattern;
  * Created by hjn on 2016/11/10.
  */
 public class CommonUtil {
+    public static String getCurProcessName(Context context) {
+
+        int pid = android.os.Process.myPid();
+
+        ActivityManager activityManager = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
+                .getRunningAppProcesses()) {
+
+            if (appProcess.pid == pid) {
+
+                return appProcess.processName;
+            }
+        }
+        return null;
+    }
+
     public static boolean checkPhone(String area, String phone, Context context) {
         if (TextUtils.isEmpty(phone)) {
             ToastUtils.ToastMessage(context, "手机号不能为�?!");

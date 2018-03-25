@@ -9,15 +9,15 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_template_icon_group.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout\\notification_template_icon_group.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout\\notification_template_icon_group.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-v21_notification_action_background.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-v21\\notification_action_background.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-v21\\notification_action_background.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -33,7 +33,7 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_template_part_chronometer.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout\\notification_template_part_chronometer.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -64,24 +64,24 @@
         "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout\\notification_template_icon_group.xml"
     },
     {
+        "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
-        "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
-    },
-    {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_template_part_time.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout\\notification_template_part_time.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_notification_bg_low.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable\\notification_bg_low.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable\\notification_bg_low.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_notification_tile_bg.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable\\notification_tile_bg.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable\\notification_tile_bg.xml"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_notification_tile_bg.xml.flat",
@@ -89,7 +89,7 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21_notification_template_icon_group.xml.flat",
@@ -97,15 +97,15 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21_notification_action.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout-v21\\notification_action.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout-v21\\notification_action.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_action_tombstone.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout\\notification_action_tombstone.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout\\notification_action_tombstone.xml"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -113,7 +113,7 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21_notification_action_tombstone.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout-v21\\notification_action_tombstone.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_action_tombstone.xml.flat",
@@ -125,11 +125,11 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_template_custom_big.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout\\notification_template_custom_big.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout\\notification_template_custom_big.xml"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_action.xml.flat",
@@ -145,7 +145,7 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_action.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout\\notification_action.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout\\notification_action.xml"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -157,7 +157,7 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
@@ -165,15 +165,15 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v16_notification_template_custom_big.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout-v16\\notification_template_custom_big.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout-v16\\notification_template_custom_big.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21_notification_template_custom_big.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout-v21\\notification_template_custom_big.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
@@ -181,15 +181,15 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21_notification_template_icon_group.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\layout-v21\\notification_template_icon_group.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-v21_notification_action_background.xml.flat",
@@ -197,7 +197,7 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_notification_bg_low.xml.flat",
@@ -213,15 +213,15 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_notification_icon_background.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable\\notification_icon_background.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable\\notification_icon_background.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
@@ -229,15 +229,15 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_notification_bg.xml.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable\\notification_bg.xml"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable\\notification_bg.xml"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
     },
     {
         "merged": "D:\\androidWorkSpace\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v21_notification_action_tombstone.xml.flat",
@@ -245,6 +245,6 @@
     },
     {
         "merged": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+        "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
     }
 ]

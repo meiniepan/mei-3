@@ -63,7 +63,7 @@ public class ChoseAllianceMerchantFragment extends BaseFragment {
 
     private void getData() {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getDispatchMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getUid(), "launch", QueryMapBuilder.getIns().buildGet())
+                .getDispatchMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "launch", QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<WorkerListEntity>>() {
@@ -90,7 +90,7 @@ public class ChoseAllianceMerchantFragment extends BaseFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                        .dispatchOrder(CarefreeApplication.getInstance().getUserInfo().getUid(),
+                        .dispatchOrder(CarefreeApplication.getInstance().getUserInfo().getWorker_id(),
                                 QueryMapBuilder.getIns().put("order_id", orderId)
                                         .put("receiver_id", serverId)
                                         .put("type", "1")

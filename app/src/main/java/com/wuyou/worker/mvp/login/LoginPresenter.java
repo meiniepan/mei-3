@@ -4,7 +4,6 @@ import com.gs.buluo.common.network.ApiException;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
-import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.network.CarefreeRetrofit;
@@ -29,7 +28,7 @@ public class LoginPresenter extends LoginContract.Presenter {
                     token = userInfoBaseResponse.data.getToken();
                     CarefreeDaoSession.getInstance().setUserInfo(userInfoBaseResponse.data);
                     return CarefreeRetrofit.getInstance().createApi(UserApis.class)
-                            .getUserInfo(userInfoBaseResponse.data.getUid(), QueryMapBuilder.getIns().buildGet());
+                            .getUserInfo(userInfoBaseResponse.data.getWorker_id(), QueryMapBuilder.getIns().buildGet());
                 })
                 .doOnNext(userInfoBaseResponse -> {
                     UserInfo data = userInfoBaseResponse.data;
@@ -60,7 +59,7 @@ public class LoginPresenter extends LoginContract.Presenter {
                     token = userInfoBaseResponse.data.getToken();
                     CarefreeDaoSession.getInstance().setUserInfo(userInfoBaseResponse.data);
                     return CarefreeRetrofit.getInstance().createApi(UserApis.class)
-                            .getUserInfo(userInfoBaseResponse.data.getUid(), QueryMapBuilder.getIns().buildGet());
+                            .getUserInfo(userInfoBaseResponse.data.getWorker_id(), QueryMapBuilder.getIns().buildGet());
                 })
                 .doOnNext(userInfoBaseResponse -> {
                     UserInfo data = userInfoBaseResponse.data;

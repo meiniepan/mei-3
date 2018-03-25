@@ -15,9 +15,7 @@ import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.util.MyRecyclerViewScrollListener;
 import com.wuyou.worker.view.fragment.BaseFragment;
-import com.wuyou.worker.view.widget.recyclerHelper.BaseQuickAdapter;
 import com.wuyou.worker.view.widget.recyclerHelper.NewRefreshRecyclerView;
-import com.wuyou.worker.view.widget.recyclerHelper.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,17 +50,17 @@ public class OrderBeforeFragment extends BaseFragment<OrderContract.View, OrderC
     protected void bindView(Bundle savedInstanceState) {
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         adapter = new OrderBeforeRvAdapter(scrollListener, this, R.layout.item_order_before, data);
-        adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
-            intent.putExtra(Constant.ORDER_ID, adapter.getItem(position).id);
-            intent.putExtra(Constant.DIVIDE_ORDER_FROM, 1);
-            startActivity(intent);
-        });
+//        adapter.setOnItemClickListener((adapter1, view, position) -> {
+//            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+//            intent.putExtra(Constant.ORDER_ID, adapter.getItem(position).order_id);
+//            intent.putExtra(Constant.DIVIDE_ORDER_FROM, 1);
+//            startActivity(intent);
+//        });
         recyclerView.setAdapter(adapter);
 
         recyclerView.getRecyclerView().addOnScrollListener(scrollListener);
         recyclerView.getRecyclerView().setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setOnLoadMoreListener(() -> mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getUid(), "2"), recyclerView.getRecyclerView());
+        adapter.setOnLoadMoreListener(() -> mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "2"), recyclerView.getRecyclerView());
         recyclerView.setRefreshAction(() -> {
             scrollListener.setRefresh();
             adapter.clearData();
@@ -112,7 +110,7 @@ public class OrderBeforeFragment extends BaseFragment<OrderContract.View, OrderC
     }
 
     private void fetchDatas() {
-        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getUid(), "1");
+        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "1");
     }
 
 }

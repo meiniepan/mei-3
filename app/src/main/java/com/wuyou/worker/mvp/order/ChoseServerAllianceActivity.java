@@ -64,7 +64,7 @@ public class ChoseServerAllianceActivity extends BaseActivity {
     private void getData() {
         statusLayout.showProgressView();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getWorkersInfo(CarefreeApplication.getInstance().getUserInfo().getUid(), QueryMapBuilder.getIns().buildGet())
+                .getWorkersInfo(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<WorkerListEntity>>() {
@@ -91,7 +91,7 @@ public class ChoseServerAllianceActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                        .dispatchOrder(CarefreeApplication.getInstance().getUserInfo().getUid(),
+                        .dispatchOrder(CarefreeApplication.getInstance().getUserInfo().getWorker_id(),
                                 QueryMapBuilder.getIns().put("order_id", orderId)
                                         .put("receiver_id", serverId)
                                         .put("type", "1")

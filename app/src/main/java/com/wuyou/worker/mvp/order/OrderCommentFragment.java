@@ -10,7 +10,6 @@ import com.gs.buluo.common.widget.StatusLayout;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
-import com.wuyou.worker.adapter.OrderAfterRvAdapter;
 import com.wuyou.worker.adapter.OrderCommentAdapter;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
@@ -53,12 +52,12 @@ public class OrderCommentFragment extends BaseFragment<OrderContract.View, Order
     @Override
     protected void bindView(Bundle savedInstanceState) {
         adapter = new OrderCommentAdapter(this, R.layout.item_order_comment, data);
-        adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
-            intent.putExtra(Constant.ORDER_ID,adapter.getItem(position).id);
-            intent.putExtra(Constant.DIVIDE_ORDER_FROM,3);
-            startActivity(intent);
-        });
+//        adapter.setOnItemClickListener((adapter1, view, position) -> {
+//            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+//            intent.putExtra(Constant.ORDER_ID,adapter.getItem(position).order_id);
+//            intent.putExtra(Constant.DIVIDE_ORDER_FROM,3);
+//            startActivity(intent);
+//        });
         recyclerView.setAdapter(adapter);
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         recyclerView.getRecyclerView().addOnScrollListener(scrollListener);
@@ -66,7 +65,7 @@ public class OrderCommentFragment extends BaseFragment<OrderContract.View, Order
         adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getUid(), "2");
+                mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "2");
             }
         }, recyclerView.getRecyclerView());
         recyclerView.setRefreshAction(new OnRefreshListener() {
@@ -126,6 +125,6 @@ public class OrderCommentFragment extends BaseFragment<OrderContract.View, Order
     }
 
     private void fetchDatas() {
-        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getUid(), "3");
+        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "3");
     }
 }

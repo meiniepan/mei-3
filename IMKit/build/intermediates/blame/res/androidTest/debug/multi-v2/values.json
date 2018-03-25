@@ -4,23 +4,6 @@
             "outputFile": "F:\\wuyou-android-worker\\IMKit\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.0.aar\\ba092a9fd24a7b6d86bcdbeb7d19ed6a\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,144,215,288,348,414,536,597,663",
-                        "endColumns": "88,70,72,59,65,121,60,65,66",
-                        "endOffsets": "139,210,283,343,409,531,592,658,725"
-                    },
-                    "to": {
-                        "startLines": "398,399,451,574,923,925,926,931,933",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "12583,12672,15725,22236,42889,43065,43187,43449,43644",
-                        "endColumns": "88,70,72,59,65,121,60,65,66",
-                        "endOffsets": "12667,12738,15793,22291,42950,43182,43243,43510,43706"
-                    }
-                },
-                {
                     "source": "F:\\wuyou-android-worker\\IMLib\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,14,15,16,17,18,19,20,21,22,23,24,25,26",
@@ -40,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\1373c71b723ee8cd4912f3e90c0c3705\\res\\values\\values.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\ddc1fc5c544475da0aee0582caec7f77\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,54,55,59,60,61",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -56,6 +39,23 @@
                         "endLines": "396,397,450,452,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,511,512,513,514,570,571,572,573,584,851,918,922,924,930,932,934,935",
                         "endColumns": "68,62,57,73,69,67,71,69,60,60,60,61,63,61,60,67,99,59,65,72,68,56,51,61,71,75,34,34,49,33,34,34,69,70,116,12,109,12,128,71,66",
                         "endOffsets": "12515,12578,15720,15867,17561,17629,17701,17771,17832,17893,17954,18016,18080,18142,18203,18271,18371,18431,18497,18570,18639,18696,18748,18810,19614,19690,19725,19760,22127,22161,22196,22231,22924,39110,42683,42884,43060,43444,43639,43778,43845"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.0.aar\\a34c910db7c7af50ef5b00012523d7c0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,144,215,288,348,414,536,597,663",
+                        "endColumns": "88,70,72,59,65,121,60,65,66",
+                        "endOffsets": "139,210,283,343,409,531,592,658,725"
+                    },
+                    "to": {
+                        "startLines": "398,399,451,574,923,925,926,931,933",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "12583,12672,15725,22236,42889,43065,43187,43449,43644",
+                        "endColumns": "88,70,72,59,65,121,60,65,66",
+                        "endOffsets": "12667,12738,15793,22291,42950,43182,43243,43510,43706"
                     }
                 },
                 {

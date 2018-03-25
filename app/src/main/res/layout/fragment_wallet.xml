@@ -31,11 +31,11 @@
             android:id="@+id/textView2" />
 
         <TextView
+            android:id="@+id/wallet_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="20dp"
-            android:text="12321321321"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -44,6 +44,7 @@
     </RelativeLayout>
     <include layout="@layout/split_area"/>
     <LinearLayout
+        android:id="@+id/wallet_recharge"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
         android:orientation="horizontal"
@@ -65,6 +66,7 @@
     </LinearLayout>
     <include layout="@layout/split_line"/>
     <LinearLayout
+        android:id="@+id/wallet_withdraw"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
         android:orientation="horizontal"
@@ -86,6 +88,7 @@
     </LinearLayout>
     <include layout="@layout/split_line"/>
     <LinearLayout
+        android:id="@+id/wallet_detail"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
         android:orientation="horizontal"

@@ -99,7 +99,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/icon_mine_Introduce"/>
+            android:src="@mipmap/mine_introduce"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -150,6 +150,7 @@
     </LinearLayout>
     <include layout="@layout/split_area"/>
     <LinearLayout
+        android:id="@+id/mine_setting"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:paddingStart="@dimen/activity_horizontal_margin"

@@ -2,10 +2,9 @@ package com.wuyou.worker.view.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.gs.buluo.common.network.BaseResponse;
@@ -23,7 +22,6 @@ import com.wuyou.worker.network.apis.OrderApis;
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -36,7 +34,7 @@ public class FinishOrderActivity extends BaseActivity {
     @BindView(R.id.finish_order_account)
     TextView finishOrderAccount;
     @BindView(R.id.finish_order_extra)
-    RadioButton finishOrderExtra;
+    Switch finishOrderExtra;
     @BindView(R.id.finish_order_extra_fee)
     EditText finishOrderExtraFee;
     @BindView(R.id.finish_order_fee_area)
@@ -62,10 +60,15 @@ public class FinishOrderActivity extends BaseActivity {
     }
 
     public void finishOrder(View view) {
-        //TODO  完成订单时 增加金额
+        if (finishOrderExtra.isChecked() && finishOrderExtraFee.length() == 0) {
+            ToastUtils.ToastMessage(getCtx(), "请填写附加金额");
+            return;
+        }
         showLoadingDialog();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .finish(CarefreeApplication.getInstance().getUserInfo().getUid(), infoEntity.id, QueryMapBuilder.getIns().buildPost())
+                .finish(QueryMapBuilder.getIns().put("worker_id", CarefreeApplication.getInstance().getUserInfo().getWorker_id())
+                        .put("order_id", infoEntity.order_id)
+                        .put("second_payment", finishOrderExtraFee.getText().toString().trim()).buildPost())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse>() {

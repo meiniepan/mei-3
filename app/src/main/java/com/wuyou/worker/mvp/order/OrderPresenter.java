@@ -4,6 +4,7 @@ import com.gs.buluo.common.network.ApiException;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
+import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
@@ -21,7 +22,7 @@ public class OrderPresenter extends OrderContract.Presenter {
     @Override
     void getOrders(String merchant_id, String status) {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getOrders(merchant_id, status, "0", "1", QueryMapBuilder.getIns().buildGet())
+                .getOrders(QueryMapBuilder.getIns().put("worker_id",CarefreeDaoSession.getInstance().getUserId()).put("status", status).put("start_id", 0 + "").put("flag", 1 + "").put("size","10").buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<OrderInfoListEntity>>() {
@@ -63,7 +64,7 @@ public class OrderPresenter extends OrderContract.Presenter {
     @Override
     void loadMore(String merchant_id, String status) {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getOrders(merchant_id, status, lastId, "2", QueryMapBuilder.getIns().buildGet())
+                .getOrders(QueryMapBuilder.getIns().put("merchant_id", merchant_id).put("status", status).put("start_id", lastId).put("flag", "2").put("size","10").buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<OrderInfoListEntity>>() {

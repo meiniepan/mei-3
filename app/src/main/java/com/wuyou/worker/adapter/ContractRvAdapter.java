@@ -47,7 +47,7 @@ public class ContractRvAdapter extends BaseQuickAdapter<ContractEntity, BaseHold
             @Override
             public void onClick(View view) {
                 CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                        .signContract(CarefreeApplication.getInstance().getUserInfo().getUid(),
+                        .signContract(CarefreeApplication.getInstance().getUserInfo().getWorker_id(),
                                 QueryMapBuilder.getIns().put("contract_id", item.id).buildPost())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

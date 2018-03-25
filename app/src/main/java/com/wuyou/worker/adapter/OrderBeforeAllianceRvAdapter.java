@@ -32,23 +32,23 @@ public class OrderBeforeAllianceRvAdapter extends BaseQuickAdapter<OrderInfoEnti
 
     @Override
     protected void convert(BaseHolder helper, OrderInfoEntity item) {
-        String create_time = TribeDateUtils.dateFormat(new Date(item.created_at*1000));
-        helper.setText(R.id.tv_create_time, create_time)
-                .setText(R.id.tv_category, item.category)
-                .setText(R.id.tv_address, item.address)
-                .setText(R.id.tv_sum, item.price);
-        Button dispatch = helper.getView(R.id.btn_divide_bill);
+        String dispatch = TribeDateUtils.dateFormat(new Date(item.dispatched_at * 1000));
+        helper.setText(R.id.tv_create_time, item.order_no)
+                .setText(R.id.tv_category, item.service.service_name)
+                .setText(R.id.tv_address, item.address.city_name + item.address.district + item.address.area)
+                .setText(R.id.tv_deliver_time, dispatch);
+        Button dispatchBt = helper.getView(R.id.btn_divide_bill);
 
         if (item.is_dispatch.equals("0")) {
-            dispatch.setText("分单");
-            dispatch.setOnClickListener(view -> {
+            dispatchBt.setText("分单");
+            dispatchBt.setOnClickListener(view -> {
                 Intent intent = new Intent(activity, ChoseServerAllianceActivity.class);
                 intent.putExtra(Constant.ORDER_ID,item.id);
                 activity.startActivity(intent);
             });
         } else {
-            dispatch.setText("发信息");
-            dispatch.setOnClickListener(view -> {
+            dispatchBt.setText("发信息");
+            dispatchBt.setOnClickListener(view -> {
                 ToastUtils.ToastMessage(activity,"此功能暂未开通！");
             });
         }

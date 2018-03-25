@@ -59,12 +59,12 @@ public class OrderIngFragment extends BaseFragment<OrderContract.View, OrderCont
         if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         adapter = new OrderIngRvAdapter(scrollListener, this, R.layout.item_order_ing, data);
-        adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
-            intent.putExtra(Constant.ORDER_ID, adapter.getItem(position).id);
-            intent.putExtra(Constant.DIVIDE_ORDER_FROM, 2);
-            startActivity(intent);
-        });
+//        adapter.setOnItemClickListener((adapter1, view, position) -> {
+//            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+//            intent.putExtra(Constant.ORDER_ID, adapter.getItem(position).order_id);
+//            intent.putExtra(Constant.DIVIDE_ORDER_FROM, 2);
+//            startActivity(intent);
+//        });
         recyclerView.setAdapter(adapter);
 
         recyclerView.getRecyclerView().addOnScrollListener(scrollListener);
@@ -72,7 +72,7 @@ public class OrderIngFragment extends BaseFragment<OrderContract.View, OrderCont
         adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getUid(), "2");
+                mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "2");
             }
         }, recyclerView.getRecyclerView());
         recyclerView.setRefreshAction(new OnRefreshListener() {
@@ -132,7 +132,7 @@ public class OrderIngFragment extends BaseFragment<OrderContract.View, OrderCont
     }
 
     private void fetchDatas() {
-        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getUid(), "2");
+        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "2");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

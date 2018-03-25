@@ -10,15 +10,14 @@ import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.ToastUtils;
 import com.gs.buluo.common.utils.TribeDateUtils;
-import com.wuyou.worker.CarefreeApplication;
+import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
-import com.wuyou.worker.adapter.OrderBeforeRvAdapter;
-import com.wuyou.worker.adapter.OrderIngRvAdapter;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
 import com.wuyou.worker.view.activity.BaseActivity;
+import com.wuyou.worker.view.activity.FinishOrderActivity;
 import com.wuyou.worker.view.activity.MainActivity;
 
 import java.util.Date;
@@ -73,7 +72,7 @@ public class OrderDetailActivity extends BaseActivity {
     private void initData() {
         showLoadingDialog();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getOrdersDetail( orderId, QueryMapBuilder.getIns().buildGet())
+                .getOrdersDetail(orderId, QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<OrderInfoEntity>>() {
@@ -86,22 +85,21 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     private void initUI(OrderInfoEntity data) {
-        tvAcceptTime.setText(TribeDateUtils.dateFormat(new Date(data.accept_at*1000)));
+        tvAcceptTime.setText(TribeDateUtils.dateFormat(new Date(data.accept_at * 1000)));
         tvCategory.setText(data.category);
         tvServerTime.setText(data.service_time);
-        tvAddress.setText(data.address);
+        tvAddress.setText(data.address.city_name + data.address.district + data.address.area);
         tvPhone.setText(data.phone);
-        tvCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at*1000)));
-        tvId.setText(data.order_num);
-        tvSum.setText(data.price+"元");
+        tvCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
+        tvId.setText(data.order_no);
+        tvSum.setText(data.price + "元");
         tvPayWay.setText(data.pay_type);
         tvIsPayed.setText(data.pay_status);
         if (fromWhere == 1) {
-
             btnDivideBill.setText("出发");
             btnDivideBill.setOnClickListener(view -> {
                 CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                        .confirm(CarefreeApplication.getInstance().getUserInfo().getUid(), orderId, QueryMapBuilder.getIns().buildPost())
+                        .confirm(QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).put("order_id", orderId).buildPost())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new BaseSubscriber<BaseResponse>() {
@@ -114,27 +112,17 @@ public class OrderDetailActivity extends BaseActivity {
                         });
 
             });
-        } else if (fromWhere == 2){
+        } else if (fromWhere == 2) {
             btnDivideBill.setText("完成");
             btnDivideBill.setOnClickListener(view -> {
-                CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                        .finish(CarefreeApplication.getInstance().getUserInfo().getUid(), orderId, QueryMapBuilder.getIns().buildPost())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new BaseSubscriber<BaseResponse>() {
-                            @Override
-                            public void onSuccess(BaseResponse response) {
-                                Intent intent = new Intent(OrderDetailActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-
-                        });
+                Intent intent = new Intent(getCtx(), FinishOrderActivity.class);
+                intent.putExtra(Constant.ORDER_INFO, data);
+                startActivity(intent);
             });
-        }
-        else if (fromWhere == 3){
+        } else if (fromWhere == 3) {
             btnDivideBill.setText("评价");
             btnDivideBill.setOnClickListener(view -> {
-                ToastUtils.ToastMessage(OrderDetailActivity.this,"此功能暂未开通！");
+                ToastUtils.ToastMessage(OrderDetailActivity.this, "此功能暂未开通！");
             });
         }
     }

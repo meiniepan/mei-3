@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/setting"
+            android:textSize="@dimen/title_size" />
+
+        <include
+            android:id="@+id/back"
+            layout="@layout/back_black" />
+    </RelativeLayout>
+
+    <include layout="@layout/split_area" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_item_height"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="推送通知"
+            android:textSize="@dimen/dimens_16sp" />
+
+        <Switch
+            android:id="@+id/mine_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:checked="true" />
+    </RelativeLayout>
+
+    <include layout="@layout/split_area" />
+
+
+    <RelativeLayout
+        android:id="@+id/setting_clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_item_height"
+        android:background="@drawable/layout_selector"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="清除缓存"
+            android:textSize="@dimen/dimens_16sp" />
+
+        <TextView
+            android:id="@+id/setting_cache_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="10dp"
+            android:text="0.00M"
+            android:textSize="@dimen/dimens_16sp" />
+    </RelativeLayout>
+
+    <include layout="@layout/split_line_margin" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_item_height"
+        android:background="@drawable/layout_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:text="@string/about_us"
+        android:textSize="@dimen/dimens_16sp" />
+
+    <include layout="@layout/split_line_margin" />
+
+    <TextView
+        android:id="@+id/setting_update"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_item_height"
+        android:background="@drawable/layout_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:text="@string/check_update"
+        android:textSize="@dimen/dimens_16sp" />
+
+    <include layout="@layout/split_line_margin" />
+
+    <TextView
+        android:id="@+id/setting_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_item_height"
+        android:background="@drawable/layout_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:text="@string/feedback"
+        android:textSize="@dimen/dimens_16sp" />
+
+    <include layout="@layout/split_line_margin" />
+
+    <Button
+        android:id="@+id/exit"
+        style="@style/button_style"
+        android:text="@string/exit_login" />
+
+</LinearLayout>

@@ -43,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="1000.00"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -68,7 +67,7 @@
             android:text="增加服务费用"
             android:textSize="@dimen/dimens_16sp" />
 
-        <RadioButton
+        <Switch
             android:id="@+id/finish_order_extra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -95,6 +94,8 @@
             android:id="@+id/finish_order_extra_fee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/dimens_18sp"
+            android:inputType="numberDecimal"
             android:minWidth="50dp"/>
         <TextView
             android:layout_width="wrap_content"

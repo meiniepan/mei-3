@@ -24,7 +24,7 @@ public class CirclePresenter extends CircleContract.Presenter {
     @Override
     void getSponsorAlliance() {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getDispatchMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getUid(), "launch", QueryMapBuilder.getIns().buildGet())
+                .getDispatchMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "launch", QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<WorkerListEntity>>() {
@@ -43,7 +43,7 @@ public class CirclePresenter extends CircleContract.Presenter {
     @Override
     void getJoinedAlliance() {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getDispatchMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getUid(), "join", QueryMapBuilder.getIns().buildGet())
+                .getDispatchMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "join", QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<WorkerListEntity>>() {
@@ -62,7 +62,7 @@ public class CirclePresenter extends CircleContract.Presenter {
     @Override
     void getPartner() {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getUnionPartner(CarefreeApplication.getInstance().getUserInfo().getUid(), QueryMapBuilder.getIns().buildGet())
+                .getUnionPartner(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<PartnerListEntity>>() {
@@ -81,7 +81,7 @@ public class CirclePresenter extends CircleContract.Presenter {
     @Override
     void getPrepareMerchants() {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getPrepareMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getUid(), "0","1", QueryMapBuilder.getIns().buildGet())
+                .getPrepareMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "0","1", QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<WorkerListEntity>>() {
@@ -102,7 +102,7 @@ public class CirclePresenter extends CircleContract.Presenter {
     @Override
     void loadMore() {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getPrepareMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getUid(), lastId,"2", QueryMapBuilder.getIns().buildGet())
+                .getPrepareMerchantInfo(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), lastId,"2", QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<WorkerListEntity>>() {

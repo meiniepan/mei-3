@@ -44,6 +44,7 @@ public class CarefreeDaoSession {
 
     public void clearUserInfo() {
         getUserInfoDao().deleteAll();
+        uid = null;
     }
 
     public UserInfo getUserInfo() {
@@ -58,7 +59,7 @@ public class CarefreeDaoSession {
         if (TextUtils.isEmpty(uid)) {
             List<UserInfo> userInfos = getUserInfoDao().loadAll();
             if (userInfos == null || userInfos.size() == 0) return null;
-            uid = userInfos.get(0).getUid();
+            uid = userInfos.get(0).getWorker_id();
             return uid;
         } else {
             return uid;
