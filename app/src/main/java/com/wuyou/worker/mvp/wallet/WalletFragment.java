@@ -1,5 +1,6 @@
 package com.wuyou.worker.mvp.wallet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.style.TtsSpan;
 import android.view.LayoutInflater;
@@ -63,12 +64,17 @@ public class WalletFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.wallet_recharge, R.id.wallet_withdraw})
+    @OnClick({R.id.wallet_recharge, R.id.wallet_withdraw,R.id.wallet_detail})
     public void onViewClicked(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.wallet_recharge:
                 break;
             case R.id.wallet_withdraw:
+                break;
+            case R.id.wallet_detail:
+                intent.setClass(mCtx,WalletTransactionActivity.class);
+                startActivity(intent);
                 break;
         }
     }

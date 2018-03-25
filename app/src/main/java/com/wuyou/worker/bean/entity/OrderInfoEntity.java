@@ -26,6 +26,7 @@ public class OrderInfoEntity implements Parcelable {
     public String pay_status;
     public long dispatched_at;
     public int position;
+    public int is_finished;
 
     public OrderInfoEntity() {
     }
@@ -41,6 +42,7 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeString(this.order_id);
         dest.writeString(this.category);
         dest.writeLong(this.created_at);
+        dest.writeParcelable(this.service, flags);
         dest.writeParcelable(this.address, flags);
         dest.writeString(this.price);
         dest.writeString(this.service_time);
@@ -54,6 +56,7 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeString(this.pay_status);
         dest.writeLong(this.dispatched_at);
         dest.writeInt(this.position);
+        dest.writeInt(this.is_finished);
     }
 
     protected OrderInfoEntity(Parcel in) {
@@ -61,6 +64,7 @@ public class OrderInfoEntity implements Parcelable {
         this.order_id = in.readString();
         this.category = in.readString();
         this.created_at = in.readLong();
+        this.service = in.readParcelable(ServiceEntity.class.getClassLoader());
         this.address = in.readParcelable(AddressEntity.class.getClassLoader());
         this.price = in.readString();
         this.service_time = in.readString();
@@ -74,6 +78,7 @@ public class OrderInfoEntity implements Parcelable {
         this.pay_status = in.readString();
         this.dispatched_at = in.readLong();
         this.position = in.readInt();
+        this.is_finished = in.readInt();
     }
 
     public static final Creator<OrderInfoEntity> CREATOR = new Creator<OrderInfoEntity>() {
