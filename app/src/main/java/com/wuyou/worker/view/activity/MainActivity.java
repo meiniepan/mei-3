@@ -59,8 +59,8 @@ public class MainActivity extends BaseActivity {
         bottomView.setIconVisibility(true);
         bottomView.enableShiftingMode(false);
         bottomView.enableItemShiftingMode(false);
-        bottomView.setIconSize(DensityUtils.dip2px(getCtx(), 18), DensityUtils.dip2px(getCtx(), 18));
-        bottomView.setIconsMarginTop(DensityUtils.dip2px(getCtx(), -8));
+        bottomView.setIconSize(DensityUtils.dip2px(getCtx(), 18), DensityUtils.dip2px(getCtx(), 14));
+//        bottomView.setIconsMarginTop(DensityUtils.dip2px(getCtx(), -8));
     }
 
     private void initRC() {
@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity {
                  */
                 @Override
                 public void onTokenIncorrect() {
+                    Log.e("err", "onTokenIncorrect");
                 }
 
                 /**

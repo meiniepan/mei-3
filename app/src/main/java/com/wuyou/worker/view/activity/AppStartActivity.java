@@ -15,6 +15,7 @@ import com.wuyou.worker.mvp.login.LoginActivity;
 public class AppStartActivity extends BaseActivity {
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        setBarColor(R.color.transparent);
         new Handler().postDelayed(() -> {
             if (CarefreeApplication.getInstance().getUserInfo() != null) {
                 startActivity(new Intent(getCtx(), MainActivity.class));

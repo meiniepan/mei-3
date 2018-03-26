@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gs.buluo.common.network.BaseResponse;
@@ -53,8 +52,6 @@ public class ServiceProviderDetailActivity extends BaseActivity {
     TextView tvQualification;
     @BindView(R.id.tv_union_num)
     TextView tvUnionNum;
-    @BindView(R.id.next)
-    RelativeLayout next;
     @BindView(R.id.rv_avatar)
     RecyclerView rvAvatar;
     @BindView(R.id.tv_tag_more)
@@ -105,12 +102,12 @@ public class ServiceProviderDetailActivity extends BaseActivity {
 
     private void initContractList(List<ContractEntity> contracts) {
         rvContract.setLayoutManager(new LinearLayoutManager(getCtx()));
-        ContractRvAdapter adapter = new ContractRvAdapter(this,R.layout.item_service_pro_detail, contracts);
+        ContractRvAdapter adapter = new ContractRvAdapter(this, R.layout.item_service_pro_detail, contracts);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter1, View view, int position) {
                 Intent intent = new Intent(getCtx(), ContractDetailActivity.class);
-                intent.putExtra(Constant.CONTRACT_ID,adapter.getItem(position).id);
+                intent.putExtra(Constant.CONTRACT_ID, adapter.getItem(position).id);
                 startActivity(intent);
             }
         });
@@ -119,7 +116,7 @@ public class ServiceProviderDetailActivity extends BaseActivity {
 
     private void initAvatarList(UnionListEntity unions) {
         rvAvatar.setLayoutManager(new LinearLayoutManager(getCtx()));
-        UnionAvatarRvAdapter adapter = new UnionAvatarRvAdapter(this,R.layout.item_union_avatar, unions.list);
+        UnionAvatarRvAdapter adapter = new UnionAvatarRvAdapter(this, R.layout.item_union_avatar, unions.list);
         rvAvatar.setAdapter(adapter);
     }
 

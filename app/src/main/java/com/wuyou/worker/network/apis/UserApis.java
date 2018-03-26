@@ -32,7 +32,7 @@ public interface UserApis {
             @FieldMap SortedTreeMap<String, String> map);
 
     @FormUrlEncoded
-    @PUT("login/{uid}")
+    @PUT("logout/{uid}")
     Observable<BaseResponse> doLogout(
             @Path("uid") String uid, @FieldMap SortedTreeMap<String, String> map);
 

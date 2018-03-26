@@ -7,15 +7,22 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.gs.buluo.common.network.BaseResponse;
+import com.gs.buluo.common.network.BaseSubscriber;
+import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.DataCleanManager;
 import com.gs.buluo.common.widget.CustomAlertDialog;
 import com.wuyou.worker.CarefreeDaoSession;
-import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
+import com.wuyou.worker.mvp.login.LoginActivity;
+import com.wuyou.worker.network.CarefreeRetrofit;
+import com.wuyou.worker.network.apis.UserApis;
 
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by hjn on 2016/11/7.
@@ -91,9 +98,19 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 //    }
 
     private void logout() {
+//        CarefreeRetrofit.getInstance().createApi(UserApis.class)
+//                .doLogout(CarefreeDaoSession.getInstance().getUserId(), QueryMapBuilder.getIns().buildPost())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new BaseSubscriber<BaseResponse>() {
+//                    @Override
+//                    public void onSuccess(BaseResponse baseResponse) {
+//
+//                    }
+//                });
         CarefreeDaoSession.getInstance().clearUserInfo();
 //        EventBus.getDefault().post(new LoginEvent());
-        Intent intent = new Intent(getCtx(), MainActivity.class);
+        Intent intent = new Intent(getCtx(), LoginActivity.class);
         startActivity(intent);
         finish();
 //        CarefreeRetrofit.getInstance().createApi(UserApis.class).

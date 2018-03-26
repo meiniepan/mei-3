@@ -5,18 +5,19 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/mine_info"
         android:layout_width="match_parent"
         android:layout_height="178dp"
         android:background="@mipmap/money_bg">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="74dp"
             android:layout_height="74dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/white_ring"
-            android:src="@mipmap/default_pic"
-            android:id="@+id/imageView" />
+            android:src="@mipmap/default_pic" />
 
         <TextView
             android:id="@+id/mine_name"
@@ -27,148 +28,182 @@
             android:layout_marginTop="15dp"
             android:text="用户名"
             android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/mine_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="133-4567-8888"
             android:layout_below="@+id/mine_name"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:text="133-4567-8888"
+            android:textColor="@color/white" />
 
         <ImageView
             android:layout_width="8dp"
             android:layout_height="12dp"
-            android:src="@mipmap/icon_next_white"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/icon_next_white" />
     </RelativeLayout>
 
-    <include layout="@layout/split_area"/>
+    <include layout="@layout/split_area" />
+
     <LinearLayout
+        android:id="@+id/mine_order_statistics"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
-        android:layout_height="@dimen/common_height">
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/icon_mine_order"/>
+            android:src="@mipmap/icon_mine_order" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="订单统计"/>
-        <include layout="@layout/layout_next"/>
+            android:layout_weight="1"
+            android:text="订单统计" />
+
+        <include layout="@layout/layout_next" />
     </LinearLayout>
-    <include layout="@layout/split_line"/>
+
+    <include layout="@layout/split_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
-        android:layout_height="@dimen/common_height">
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/icon_mine_certified"/>
+            android:src="@mipmap/icon_mine_certified" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="提交认证"/>
-        <include layout="@layout/layout_next"/>
+            android:layout_weight="1"
+            android:text="提交认证" />
+
+        <include layout="@layout/layout_next" />
     </LinearLayout>
-    <include layout="@layout/split_area"/>
+
+    <include layout="@layout/shadow_line" />
+
+    <include layout="@layout/split_area" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
-        android:layout_height="@dimen/common_height">
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/mine_introduce"/>
+            android:src="@mipmap/mine_introduce" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="无忧社区介绍"/>
-        <include layout="@layout/layout_next"/>
+            android:layout_weight="1"
+            android:text="无忧社区介绍" />
+
+        <include layout="@layout/layout_next" />
     </LinearLayout>
-    <include layout="@layout/split_line"/>
+
+    <include layout="@layout/split_line" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
-        android:layout_height="@dimen/common_height">
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/icon_mine_score"/>
+            android:src="@mipmap/icon_mine_score" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="App评分"/>
-        <include layout="@layout/layout_next"/>
+            android:layout_weight="1"
+            android:text="App评分" />
+
+        <include layout="@layout/layout_next" />
     </LinearLayout>
-    <include layout="@layout/split_line"/>
+
+    <include layout="@layout/split_line" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
-        android:layout_height="@dimen/common_height">
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/icon_mine_feedback"/>
+            android:src="@mipmap/icon_mine_feedback" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="留言反馈"/>
-        <include layout="@layout/layout_next"/>
+            android:layout_weight="1"
+            android:text="留言反馈" />
+
+        <include layout="@layout/layout_next" />
     </LinearLayout>
-    <include layout="@layout/split_area"/>
+
+    <include layout="@layout/shadow_line" />
+
+    <include layout="@layout/split_area" />
+
     <LinearLayout
         android:id="@+id/mine_setting"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
-        android:layout_height="@dimen/common_height">
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/icon_mine_site"/>
+            android:src="@mipmap/icon_mine_site" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="设置"/>
-        <include layout="@layout/layout_next"/>
+            android:layout_weight="1"
+            android:text="设置" />
+
+        <include layout="@layout/layout_next" />
     </LinearLayout>
-    <include layout="@layout/shadow_line"/>
+
+    <include layout="@layout/shadow_line" />
 
 </LinearLayout>

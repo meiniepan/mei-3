@@ -101,6 +101,8 @@
             android:name=".view.activity.SettingActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".mvp.wallet.WalletTransactionActivity" />
+        <activity android:name=".view.activity.WorkerInfoActivity" />
+        <activity android:name=".view.activity.OrderStatisticsActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

@@ -46,4 +46,8 @@
     <string name="reset_pwd_success">设置密码成功</string>
     <string name="wait_go">待出发</string>
     <string name="finished">已完成</string>
+    <string name="nickname">昵称</string>
+    <string name="phone_number">手机号</string>
+    <string name="email">邮箱</string>
+    <string name="sex">性别</string>
 </resources>
