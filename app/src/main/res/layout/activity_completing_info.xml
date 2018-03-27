@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        android:background="@color/night_blue">
+        android:background="@color/main_blue">
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,5 +74,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:text="@string/talk_later"
-        android:textColor="@color/night_blue" />
+        android:textColor="@color/main_blue" />
 </LinearLayout>

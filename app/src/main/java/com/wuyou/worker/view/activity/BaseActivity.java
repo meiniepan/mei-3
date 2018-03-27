@@ -33,7 +33,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
     View mRoot;
     protected P mPresenter;
     protected Toolbar mToolbar;
-    private int color = R.color.tint_bg;
+    private int color = R.color.main_blue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

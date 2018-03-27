@@ -1,15 +1,14 @@
 package com.wuyou.worker.view.activity;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 
-import com.gs.buluo.common.utils.DensityUtils;
 import com.gs.buluo.common.utils.ToastUtils;
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.MainPagerAdapter;
@@ -18,6 +17,8 @@ import com.wuyou.worker.mvp.store.StoreFragment;
 import com.wuyou.worker.mvp.wallet.WalletFragment;
 import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.view.widget.NoScrollViewPager;
+import com.yinglan.alphatabs.AlphaTabsIndicator;
+import com.yinglan.alphatabs.OnTabChangedListner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +29,15 @@ import io.rong.imkit.fragment.ConversationListFragment;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements OnTabChangedListner {
     @BindView(R.id.main_tab)
-    BottomNavigationViewEx bottomView;
+    AlphaTabsIndicator bottomView;
     @BindView(R.id.main_pager)
     NoScrollViewPager viewPager;
+    @BindView(R.id.main_title)
+    TextView mainTitle;
+    @BindView(R.id.main_title_area)
+    View titleView;
     List<Fragment> fragments = new ArrayList<>();
     MyOrderFragment orderFragment = new MyOrderFragment();
     private long mkeyTime = 0;
@@ -49,18 +54,10 @@ public class MainActivity extends BaseActivity {
         fragments.add(getMessageFragment());
         fragments.add(new StoreFragment());
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), fragments));
-        initBottomMenu();
+        bottomView.setViewPager(viewPager);
+        bottomView.setOnTabChangedListner(this);
+        bottomView.setTabCurrenItem(0);
         initRC();
-    }
-
-    private void initBottomMenu() {
-        bottomView.setupWithViewPager(viewPager, false);
-        bottomView.enableAnimation(false);
-        bottomView.setIconVisibility(true);
-        bottomView.enableShiftingMode(false);
-        bottomView.enableItemShiftingMode(false);
-        bottomView.setIconSize(DensityUtils.dip2px(getCtx(), 18), DensityUtils.dip2px(getCtx(), 14));
-//        bottomView.setIconsMarginTop(DensityUtils.dip2px(getCtx(), -8));
     }
 
     private void initRC() {
@@ -120,13 +117,6 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-//        setIntent(intent);
-//        orderFragment.loadDatas();
-    }
-
-    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -141,5 +131,26 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onTabSelected(int tabNum) {
+        switch (tabNum) {
+            case 0:
+                mainTitle.setText(R.string.main_order);
+                titleView.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                titleView.setVisibility(View.GONE);
+                break;
+            case 2:
+                mainTitle.setText(R.string.message);
+                titleView.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                titleView.setVisibility(View.GONE);
+                break;
+
+        }
     }
 }

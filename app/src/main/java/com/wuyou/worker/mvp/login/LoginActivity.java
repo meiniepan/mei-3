@@ -2,17 +2,13 @@ package com.wuyou.worker.mvp.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.R;
+import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.util.CounterDisposableObserver;
 import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
@@ -49,9 +45,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
-        setBarColor(R.color.night_blue);
+        setBarColor(R.color.main_blue);
         observer = new CounterDisposableObserver(reSendCaptcha);
-
     }
 
     @Override
@@ -59,6 +54,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         ToastUtils.ToastMessage(this, "login success");
         Intent view = new Intent(this, MainActivity.class);
         startActivity(view);
+        finish();
     }
 
     @Override
@@ -76,14 +72,15 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         switch (view.getId()) {
             case R.id.login_send_verify:
                 String phone = loginPhone.getText().toString().trim();
-//                if (!CommonUtil.checkPhone("", phone, this)) return;
+                if (!CommonUtil.checkPhone("", phone, this)) return;
+                showLoadingDialog();
                 mPresenter.getVerifyCode(phone);
                 break;
             case R.id.login:
-//                String phone = loginPhone.getText().toString().trim();
-//                if (!CommonUtil.checkPhone("", phone, getActivity())) return;
+                String phone1 = loginPhone.getText().toString().trim();
+                if (!CommonUtil.checkPhone("", phone1, getCtx())) return;
                 showLoadingDialog();
-                mPresenter.doLogin(loginPhone.getText().toString().trim(), loginVerify.getText().toString().trim());
+                mPresenter.doLogin(phone1, loginVerify.getText().toString().trim());
                 break;
         }
     }

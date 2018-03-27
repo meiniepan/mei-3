@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
+import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.DataCleanManager;
 import com.gs.buluo.common.widget.CustomAlertDialog;
 import com.wuyou.worker.CarefreeDaoSession;
@@ -98,21 +99,20 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 //    }
 
     private void logout() {
-//        CarefreeRetrofit.getInstance().createApi(UserApis.class)
-//                .doLogout(CarefreeDaoSession.getInstance().getUserId(), QueryMapBuilder.getIns().buildPost())
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new BaseSubscriber<BaseResponse>() {
-//                    @Override
-//                    public void onSuccess(BaseResponse baseResponse) {
-//
-//                    }
-//                });
+        CarefreeRetrofit.getInstance().createApi(UserApis.class)
+                .doLogout(CarefreeDaoSession.getInstance().getUserId(), QueryMapBuilder.getIns().buildPost())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<BaseResponse>() {
+                    @Override
+                    public void onSuccess(BaseResponse baseResponse) {
+                    }
+                });
         CarefreeDaoSession.getInstance().clearUserInfo();
-//        EventBus.getDefault().post(new LoginEvent());
         Intent intent = new Intent(getCtx(), LoginActivity.class);
         startActivity(intent);
         finish();
+        AppManager.getAppManager().finishActivity(MainActivity.class);
 //        CarefreeRetrofit.getInstance().createApi(UserApis.class).
 //                doLogout(CarefreeDaoSession.getInstance().getUserId(), com.wuyou.user.network.QueryMapBuilder.getIns().buildPost())
 //                .subscribeOn(Schedulers.io())

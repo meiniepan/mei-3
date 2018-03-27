@@ -11,11 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        android:background="@color/night_blue">
-
-        <include
-            android:id="@+id/back"
-            layout="@layout/back_white" />
+        android:background="@color/main_blue">
     </RelativeLayout>
 
     <LinearLayout
@@ -30,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/title_height"
             android:layout_weight=".7"
-            app:tabIndicatorColor="@color/night_blue" />
+            app:tabIndicatorColor="@color/main_blue" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
