@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.UserInfo;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -38,18 +38,16 @@ public class WorkerInfoActivity extends BaseActivity {
         UserInfo userInfo = CarefreeDaoSession.getInstance().getUserInfo();
     }
 
-    @OnClick({R.id.info_nickname_area, R.id.info_mobile_area, R.id.info_email_area, R.id.info_sex_area, R.id.info_birthday_area})
+    @OnClick({R.id.info_nickname_area, R.id.info_mobile_area, R.id.info_email_area, R.id.info_sex_area, R.id.info_birthday_area, R.id.info_head_area})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.info_head_area:
             case R.id.info_nickname_area:
-                break;
             case R.id.info_mobile_area:
-                break;
             case R.id.info_email_area:
-                break;
             case R.id.info_sex_area:
-                break;
             case R.id.info_birthday_area:
+                ToastUtils.ToastMessage(getCtx(), R.string.no_function);
                 break;
         }
     }

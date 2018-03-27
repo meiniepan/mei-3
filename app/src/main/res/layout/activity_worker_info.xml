@@ -25,6 +25,7 @@
     <include layout="@layout/split_area" />
 
     <LinearLayout
+        android:id="@+id/info_head_area"
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:gravity="center_vertical"

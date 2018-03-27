@@ -2,27 +2,22 @@ package com.wuyou.worker.mvp.wallet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.style.TtsSpan;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
+import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.WalletInfoEntity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.MoneyApis;
 import com.wuyou.worker.view.fragment.BaseFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -48,7 +43,7 @@ public class WalletFragment extends BaseFragment {
 
     @Override
     public void fetchData() {
-        CarefreeRetrofit.getInstance().createApi(MoneyApis.class).getWalletAccount(CarefreeDaoSession.getInstance().getUserId(),QueryMapBuilder.getIns().buildGet())
+        CarefreeRetrofit.getInstance().createApi(MoneyApis.class).getWalletAccount(CarefreeDaoSession.getInstance().getUserId(), QueryMapBuilder.getIns().buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<WalletInfoEntity>>() {
@@ -64,22 +59,22 @@ public class WalletFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.wallet_recharge, R.id.wallet_withdraw,R.id.wallet_detail})
+    @OnClick({R.id.wallet_recharge, R.id.wallet_withdraw, R.id.wallet_detail})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.wallet_recharge:
-                break;
             case R.id.wallet_withdraw:
+                ToastUtils.ToastMessage(mCtx, R.string.no_function);
                 break;
             case R.id.wallet_detail:
-                intent.setClass(mCtx,WalletTransactionActivity.class);
+                intent.setClass(mCtx, WalletTransactionActivity.class);
                 startActivity(intent);
                 break;
         }
     }
 
     public void setData(WalletInfoEntity data) {
-        walletAccount.setText(data.balance+"");
+        walletAccount.setText(data.balance + "");
     }
 }
