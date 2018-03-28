@@ -121,7 +121,6 @@ public class OrderCommentFragment extends BaseFragment<OrderContract.View, Order
     public void loadData() {
         statusLayout.showProgressView();
         fetchDatas();
-        Log.e("haha", "3");
     }
 
     private void fetchDatas() {

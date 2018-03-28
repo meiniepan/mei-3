@@ -14,6 +14,7 @@ import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.WalletInfoEntity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.MoneyApis;
+import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.view.fragment.BaseFragment;
 
 import butterknife.BindView;
@@ -75,6 +76,6 @@ public class WalletFragment extends BaseFragment {
     }
 
     public void setData(WalletInfoEntity data) {
-        walletAccount.setText(data.balance + "");
+        walletAccount.setText(CommonUtil.formatPrice(data.balance));
     }
 }

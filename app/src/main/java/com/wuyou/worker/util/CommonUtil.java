@@ -47,6 +47,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,6 +57,11 @@ import java.util.regex.Pattern;
  * Created by hjn on 2016/11/10.
  */
 public class CommonUtil {
+    public static String formatPrice(float price) {
+        NumberFormat nf = new DecimalFormat("#.00");
+        return nf.format(price);
+    }
+
     public static RecycleViewDivider getRecyclerDivider(Context context) {
         return new RecycleViewDivider(context, LinearLayoutManager.HORIZONTAL, DensityUtils.dip2px(context, 0.5f), context.getResources().getColor(R.color.tint_bg));
     }

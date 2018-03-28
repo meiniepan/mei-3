@@ -5,6 +5,7 @@
     android:text="@string/send_captcha"
     android:textColor="#fff"
     android:gravity="center"
+    android:textSize="12sp"
     android:background="@drawable/login_selector"
     android:layout_centerVertical="true"
     />

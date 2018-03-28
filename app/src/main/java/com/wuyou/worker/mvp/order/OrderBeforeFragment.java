@@ -106,7 +106,6 @@ public class OrderBeforeFragment extends BaseFragment<OrderContract.View, OrderC
     public void loadData() {
         statusLayout.showProgressView();
         fetchDatas();
-        Log.e("haha", "1");
     }
 
     private void fetchDatas() {

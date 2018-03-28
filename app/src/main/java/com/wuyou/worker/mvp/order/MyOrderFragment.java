@@ -32,9 +32,7 @@ public class MyOrderFragment extends BaseFragment {
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
-
         initView();
-
     }
 
     private void initView() {

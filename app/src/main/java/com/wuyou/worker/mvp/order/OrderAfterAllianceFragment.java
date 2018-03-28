@@ -121,7 +121,6 @@ public class OrderAfterAllianceFragment extends BaseFragment<OrderContract.View,
     public void loadData() {
         statusLayout.showProgressView();
         fetchDatas();
-        Log.e("haha", "3");
     }
 
     private void fetchDatas() {

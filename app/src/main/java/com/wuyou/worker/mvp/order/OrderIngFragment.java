@@ -128,7 +128,6 @@ public class OrderIngFragment extends BaseFragment<OrderContract.View, OrderCont
     public void loadData() {
         statusLayout.showProgressView();
         fetchDatas();
-        Log.e("haha", "2");
     }
 
     private void fetchDatas() {

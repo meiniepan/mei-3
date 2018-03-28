@@ -57,8 +57,7 @@
             android:drawablePadding="6dp"
             android:hint="@string/edit_verify"
             android:inputType="number"
-            android:paddingStart="6dp"
-            android:textSize="@dimen/dimens_14sp" />
+            android:paddingStart="6dp" />
 
     </LinearLayout>
 
