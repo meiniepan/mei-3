@@ -29,6 +29,6 @@ public class PartnerListRvAdapter extends BaseQuickAdapter<PartnerEntity, BaseHo
         helper.setText(R.id.tv_name, item.username)
         .setText(R.id.tv_distance,item.distance);
         ImageView imageView = helper.getView(R.id.avatar);
-        CommonUtil.GlideCircleLoad(activity, item.head_image, imageView);
+        CommonUtil.glideCircleLoad(activity, item.head_image, imageView);
     }
 }

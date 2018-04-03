@@ -27,21 +27,21 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.request.RequestOptions;
 import com.gs.buluo.common.utils.DensityUtils;
 import com.gs.buluo.common.utils.ToastUtils;
 import com.gs.buluo.common.widget.RecycleViewDivider;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.R;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
@@ -57,6 +57,41 @@ import java.util.regex.Pattern;
  * Created by hjn on 2016/11/10.
  */
 public class CommonUtil {
+    public static Bitmap compressByQuality(File file, long maxByteSize, boolean recycle) throws Exception {
+        if (file == null) return null;
+        InputStream is = null;
+        is = new BufferedInputStream(new FileInputStream(file));
+        Bitmap src = BitmapFactory.decodeStream(is);
+        if (maxByteSize <= 0) return null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int quality = 100;
+        src.compress(Bitmap.CompressFormat.JPEG, quality, baos);
+        while (baos.toByteArray().length > maxByteSize && quality >= 0) {
+            baos.reset();
+            src.compress(Bitmap.CompressFormat.JPEG, quality -= 10, baos);
+        }
+        if (quality < 0) return null;
+        byte[] bytes = baos.toByteArray();
+        if (recycle && !src.isRecycled()) src.recycle();
+        is.close();
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    public static boolean save(Bitmap src, File file, Bitmap.CompressFormat format, boolean recycle) throws Exception {
+        if (file.exists()) file.delete();
+        System.out.println(src.getWidth() + ", " + src.getHeight());
+        OutputStream os = null;
+        boolean ret = false;
+        try {
+            os = new BufferedOutputStream(new FileOutputStream(file));
+            ret = src.compress(format, 100, os);
+            if (recycle && !src.isRecycled()) src.recycle();
+        } finally {
+            os.close();
+        }
+        return ret;
+    }
+
     public static String formatPrice(float price) {
         NumberFormat nf = new DecimalFormat("#.00");
         return nf.format(price);
@@ -65,6 +100,7 @@ public class CommonUtil {
     public static RecycleViewDivider getRecyclerDivider(Context context) {
         return new RecycleViewDivider(context, LinearLayoutManager.HORIZONTAL, DensityUtils.dip2px(context, 0.5f), context.getResources().getColor(R.color.tint_bg));
     }
+
     public static String getCurProcessName(Context context) {
 
         int pid = android.os.Process.myPid();
@@ -393,27 +429,31 @@ public class CommonUtil {
 
     /**
      * Check if there is any connectivity to a mobile network
+     *
      * @param context
      * @return
      */
-    public static boolean isConnectedMobile(Context context){
+    public static boolean isConnectedMobile(Context context) {
         NetworkInfo info = getNetworkInfo(context);
         return (info != null && info.isConnected() && info.getType() == ConnectivityManager.TYPE_MOBILE);
     }
-    public static boolean isConnected(Context context){
+
+    public static boolean isConnected(Context context) {
         NetworkInfo info = getNetworkInfo(context);
         return (info != null && info.isConnected());
     }
 
-    public static NetworkInfo getNetworkInfo(Context context){
+    public static NetworkInfo getNetworkInfo(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo();
     }
-    public static boolean isConnectedWifi(Context context){
+
+    public static boolean isConnectedWifi(Context context) {
         NetworkInfo info = getNetworkInfo(context);
         return (info != null && info.isConnected() && info.getType() == ConnectivityManager.TYPE_WIFI);
     }
-    public static void GlideCircleLoad(Context context, String url, ImageView imageView){
-        Glide.with(context).load(url).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(imageView);
+
+    public static void glideCircleLoad(Context context, String url, ImageView imageView) {
+        GlideUtils.loadImage(context, url, imageView);
     }
 }

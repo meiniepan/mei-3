@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.R;
+import com.wuyou.worker.view.activity.IdentifyActivity;
 import com.wuyou.worker.view.activity.OrderStatisticsActivity;
 import com.wuyou.worker.view.activity.SettingActivity;
 import com.wuyou.worker.view.activity.WorkerInfoActivity;
@@ -25,7 +26,7 @@ import butterknife.Unbinder;
  * Created by Administrator on 2018\1\29 0029.
  */
 
-public class StoreFragment extends BaseFragment {
+public class MineFragment extends BaseFragment {
     @BindView(R.id.imageView)
     ImageView imageView;
     @BindView(R.id.mine_name)
@@ -67,6 +68,9 @@ public class StoreFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.mine_auth:
+                intent.setClass(mCtx,IdentifyActivity.class);
+                startActivity(intent);
+                break;
             case R.id.mine_introduction:
             case R.id.mine_score:
             case R.id.mine_feedback:

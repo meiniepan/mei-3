@@ -27,6 +27,6 @@ public class UnionAvatarRvAdapter extends BaseQuickAdapter<WorkerEntity, BaseHol
     @Override
     protected void convert(BaseHolder helper, WorkerEntity item) {
         ImageView imageView = helper.getView(R.id.avatar);
-        CommonUtil.GlideCircleLoad(activity,item.image,imageView);
+        CommonUtil.glideCircleLoad(activity,item.image,imageView);
     }
 }

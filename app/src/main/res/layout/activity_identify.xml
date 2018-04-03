@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/main_blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/identify"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <TextView
+            android:id="@+id/upload_identify"
+            android:text="上传"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:paddingEnd="20dp"
+            android:textSize="@dimen/dimens_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+
+        <include
+            android:id="@+id/back"
+            layout="@layout/back_white" />
+    </RelativeLayout>
+
+    <include layout="@layout/split_area" />
+
+    <ImageView
+        android:id="@+id/iv_card_add"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@mipmap/button_image_add" />
+
+    <TextView
+        android:id="@+id/tv_card_add_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="请上传您的身份证头像面照片"
+        android:textColor="@color/common_gray"
+        android:textSize="@dimen/dimens_16sp" />
+
+    <ImageView
+        android:id="@+id/iv_card_face"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/button_image_add" />
+
+    <TextView
+        android:id="@+id/tv_card_face_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="请上传您的一张自拍照"
+        android:textColor="@color/common_gray"
+        android:layout_marginBottom="10dp"
+        android:textSize="@dimen/dimens_16sp" />
+
+    <include layout="@layout/split_line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:lineSpacingExtra="3dp"
+        android:text="@string/upload_card_img_tip"
+        android:textColor="@color/common_gray" />
+
+</LinearLayout>

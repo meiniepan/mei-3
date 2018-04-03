@@ -28,6 +28,6 @@ public class DispatchMerchantListRvAdapter extends BaseQuickAdapter<WorkerEntity
     protected void convert(BaseHolder helper, WorkerEntity item) {
         helper.setText(R.id.tv_name, item.name);
         ImageView imageView = helper.getView(R.id.avatar);
-        CommonUtil.GlideCircleLoad(activity, item.image, imageView);
+        CommonUtil.glideCircleLoad(activity, item.image, imageView);
     }
 }
