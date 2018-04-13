@@ -19,10 +19,14 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -57,6 +61,39 @@ import java.util.regex.Pattern;
  * Created by hjn on 2016/11/10.
  */
 public class CommonUtil {
+
+    public static void setEdDecimal(EditText editText, int count) {
+        if (count < 0) {
+            count = 0;
+        }
+        count += 1;
+        editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_CLASS_NUMBER);
+        //设置字符过滤
+        final int finalCount = count;
+        editText.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+//                Log.d("setEdDecimal", "source:" + source + " start:" + start + " end:" + end + " dest:" + dest + " dstart:" + dstart + " dstart:" + dend);
+                if (source.equals(".") && dest.toString().length() == 0) {
+                    return "0.";
+                }
+                if (dest.toString().contains(".")) {
+                    int index = dest.toString().indexOf(".");
+                    int mlength = dest.toString().substring(index).length();
+                    if (mlength == finalCount) {
+                        return "";
+                    }
+                }
+
+                if (dest.toString().equals("0") && source.equals("0")) {
+                    return "";
+                }
+
+                return null;
+            }
+        }});
+    }
+
     public static Bitmap compressByQuality(File file, long maxByteSize, boolean recycle) throws Exception {
         if (file == null) return null;
         InputStream is = null;
