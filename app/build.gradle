@@ -30,6 +30,11 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 allprojects {
     repositories {
