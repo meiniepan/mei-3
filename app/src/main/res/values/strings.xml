@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">无忧技工端</string>
+    <string name="app_name">无忧服务端</string>
     <string name="yes">确定</string>
     <string name="cancel">取消</string>
     <string name="status_text_empty">当前暂无记录</string>
@@ -52,4 +52,6 @@
     <string name="sex">性别</string>
     <string name="no_function">功能暂未开通</string>
     <string name="login_success">登录成功</string>
+    <string name="upload_card_img_tip">上传要求: \n ·请上传真实身份证照片 \n ·图片质量请保证清晰可见</string>
+    <string name="identify">身份识别</string>
 </resources>

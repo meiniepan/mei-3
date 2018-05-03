@@ -2,37 +2,35 @@ package com.wuyou.worker.mvp.store;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gs.buluo.common.utils.ToastUtils;
+import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
+import com.wuyou.worker.util.GlideUtils;
+import com.wuyou.worker.view.activity.IdentifyActivity;
 import com.wuyou.worker.view.activity.OrderStatisticsActivity;
 import com.wuyou.worker.view.activity.SettingActivity;
 import com.wuyou.worker.view.activity.WorkerInfoActivity;
 import com.wuyou.worker.view.fragment.BaseFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 /**
  * Created by Administrator on 2018\1\29 0029.
  */
 
-public class StoreFragment extends BaseFragment {
+public class MineFragment extends BaseFragment {
     @BindView(R.id.imageView)
     ImageView imageView;
     @BindView(R.id.mine_name)
     TextView mineName;
     @BindView(R.id.mine_phone)
     TextView minePhone;
-    Unbinder unbinder;
 
     @Override
     protected int getContentLayout() {
@@ -41,9 +39,10 @@ public class StoreFragment extends BaseFragment {
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        minePhone.setText(CarefreeDaoSession.getInstance().getUserInfo().getMobile());
+        mineName.setText(CarefreeDaoSession.getInstance().getUserInfo().getWorker_name());
+        GlideUtils.loadImage(getContext(), CarefreeDaoSession.getInstance().getUserInfo().getAvatar(), imageView, true);
     }
-
-
 
     @Override
     public void showError(String message, int res) {
@@ -67,10 +66,13 @@ public class StoreFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.mine_auth:
+                intent.setClass(mCtx, IdentifyActivity.class);
+                startActivity(intent);
+                break;
             case R.id.mine_introduction:
             case R.id.mine_score:
             case R.id.mine_feedback:
-                ToastUtils.ToastMessage(mCtx,R.string.no_function);
+                ToastUtils.ToastMessage(mCtx, R.string.no_function);
                 break;
         }
     }

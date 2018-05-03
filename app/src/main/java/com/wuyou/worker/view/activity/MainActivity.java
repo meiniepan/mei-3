@@ -13,7 +13,7 @@ import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.MainPagerAdapter;
 import com.wuyou.worker.mvp.order.MyOrderFragment;
-import com.wuyou.worker.mvp.store.StoreFragment;
+import com.wuyou.worker.mvp.store.MineFragment;
 import com.wuyou.worker.mvp.wallet.WalletFragment;
 import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.view.widget.NoScrollViewPager;
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
         fragments.add(orderFragment);
         fragments.add(new WalletFragment());
         fragments.add(getMessageFragment());
-        fragments.add(new StoreFragment());
+        fragments.add(new MineFragment());
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), fragments));
         bottomView.setViewPager(viewPager);
         bottomView.setOnTabChangedListner(this);

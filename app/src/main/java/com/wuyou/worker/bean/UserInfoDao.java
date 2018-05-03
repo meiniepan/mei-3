@@ -24,7 +24,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
     public static class Properties {
         public final static Property Mid = new Property(0, long.class, "mid", true, "_id");
         public final static Property Worker_name = new Property(1, String.class, "worker_name", false, "USERNAME");
-        public final static Property Phone = new Property(2, String.class, "phone", false, "PHONE");
+        public final static Property Mobile = new Property(2, String.class, "mobile", false, "PHONE");
         public final static Property Worker_id = new Property(3, String.class, "worker_id", false, "UID");
         public final static Property Avatar = new Property(4, String.class, "avatar", false, "HEAD");
         public final static Property Token = new Property(5, String.class, "token", false, "TOKEN");
@@ -49,7 +49,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"USER_INFO\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY NOT NULL ," + // 0: mid
                 "\"USERNAME\" TEXT," + // 1: worker_name
-                "\"PHONE\" TEXT," + // 2: phone
+                "\"PHONE\" TEXT," + // 2: mobile
                 "\"UID\" TEXT," + // 3: worker_id
                 "\"HEAD\" TEXT," + // 4: avatar
                 "\"TOKEN\" TEXT," + // 5: token
@@ -75,9 +75,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             stmt.bindString(2, worker_name);
         }
  
-        String phone = entity.getPhone();
-        if (phone != null) {
-            stmt.bindString(3, phone);
+        String mobile = entity.getMobile();
+        if (mobile != null) {
+            stmt.bindString(3, mobile);
         }
  
         String worker_id = entity.getWorker_id();
@@ -126,9 +126,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             stmt.bindString(2, worker_name);
         }
  
-        String phone = entity.getPhone();
-        if (phone != null) {
-            stmt.bindString(3, phone);
+        String mobile = entity.getMobile();
+        if (mobile != null) {
+            stmt.bindString(3, mobile);
         }
  
         String worker_id = entity.getWorker_id();
@@ -177,7 +177,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         UserInfo entity = new UserInfo( //
             cursor.getLong(offset + 0), // mid
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // worker_name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // phone
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // mobile
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // worker_id
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // avatar
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // token
@@ -193,7 +193,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
     public void readEntity(Cursor cursor, UserInfo entity, int offset) {
         entity.setMid(cursor.getLong(offset + 0));
         entity.setWorker_name(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setPhone(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setMobile(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setWorker_id(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setAvatar(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setToken(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));

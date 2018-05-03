@@ -1,18 +1,12 @@
 package com.wuyou.worker;
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
 
 import com.gs.buluo.common.BaseApplication;
 import com.wuyou.worker.bean.DaoMaster;
 import com.wuyou.worker.bean.DaoSession;
 import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.bean.UserInfoDao;
-
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
 
 /**
  * Created by hjn on 2016/11/1.

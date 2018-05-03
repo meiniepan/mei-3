@@ -15,7 +15,7 @@ public class UserInfo {
     @Property(nameInDb = "USERNAME")
     private String worker_name;
     @Property(nameInDb = "PHONE")
-    private String phone;
+    private String mobile;
     @Property(nameInDb = "UID")
     private String worker_id;
     @Property(nameInDb = "HEAD")
@@ -31,13 +31,13 @@ public class UserInfo {
     @Property(nameInDb = "AMOUNT")
     private String amount;
 
-    @Generated(hash = 1712130219)
-    public UserInfo(long mid, String worker_name, String phone, String worker_id,
-                    String avatar, String token, String password, String rc_id,
-                    String rc_token, String amount) {
+    @Generated(hash = 1588903473)
+    public UserInfo(long mid, String worker_name, String mobile, String worker_id,
+            String avatar, String token, String password, String rc_id,
+            String rc_token, String amount) {
         this.mid = mid;
         this.worker_name = worker_name;
-        this.phone = phone;
+        this.mobile = mobile;
         this.worker_id = worker_id;
         this.avatar = avatar;
         this.token = token;
@@ -83,12 +83,12 @@ public class UserInfo {
         this.avatar = avatar;
     }
 
-    public String getPhone() {
-        return this.phone;
+    public String getMobile() {
+        return this.mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public long getMid() {

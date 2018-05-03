@@ -18,6 +18,7 @@ import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.event.OrderFinishEvent;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
+import com.wuyou.worker.util.CommonUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -57,6 +58,7 @@ public class FinishOrderActivity extends BaseActivity {
                 finishOrderFeeArea.setVisibility(View.GONE);
             }
         });
+        CommonUtil.setEdDecimal(finishOrderExtraFee, 2);
     }
 
     public void finishOrder(View view) {
