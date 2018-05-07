@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
-        setBarColor(R.color.main_blue);
+        setBarColor(R.color.tint_bg);
         observer = new CounterDisposableObserver(reSendCaptcha);
     }
 
