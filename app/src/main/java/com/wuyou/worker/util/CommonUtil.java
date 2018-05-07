@@ -130,7 +130,7 @@ public class CommonUtil {
     }
 
     public static String formatPrice(float price) {
-        NumberFormat nf = new DecimalFormat("#.00");
+        NumberFormat nf = new DecimalFormat("0.00");
         return nf.format(price);
     }
 

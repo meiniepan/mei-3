@@ -11,7 +11,6 @@ import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
 import com.wuyou.worker.util.GlideUtils;
 import com.wuyou.worker.view.activity.IdentifyActivity;
-import com.wuyou.worker.view.activity.OrderStatisticsActivity;
 import com.wuyou.worker.view.activity.SettingActivity;
 import com.wuyou.worker.view.activity.WorkerInfoActivity;
 import com.wuyou.worker.view.fragment.BaseFragment;
@@ -58,8 +57,9 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.mine_order_statistics:
-                intent.setClass(mCtx, OrderStatisticsActivity.class);
-                startActivity(intent);
+                ToastUtils.ToastMessage(mCtx, R.string.no_function);
+//                intent.setClass(mCtx, OrderStatisticsActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.mine_info:
                 intent.setClass(mCtx, WorkerInfoActivity.class);

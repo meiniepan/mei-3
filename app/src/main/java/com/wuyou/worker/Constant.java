@@ -5,7 +5,7 @@ package com.wuyou.worker;
  */
 
 public class Constant {
-    public static final String BASE_URL = "https://stage.api.iwantmei.com/worker/v1/";
+    public static final String BASE_URL = "https://api.iwantmei.com/worker/v1/";
     public static final String FACE_KEY = "8OJOJfkgYXW5muFp1Q80W9sDvD4JwOU6";
     public static final String FACE_SECRET = "r0pSk0cJNVPesAXn0IXixl_NN84qUAvt";
     public static final String INPUT_PHONE_FLAG = "input_phone_sign";
