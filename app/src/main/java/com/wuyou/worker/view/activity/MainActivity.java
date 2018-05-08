@@ -1,5 +1,6 @@
 package com.wuyou.worker.view.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,10 +9,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gs.buluo.common.network.TokenEvent;
 import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.MainPagerAdapter;
+import com.wuyou.worker.mvp.login.LoginActivity;
 import com.wuyou.worker.mvp.order.MyOrderFragment;
 import com.wuyou.worker.mvp.store.MineFragment;
 import com.wuyou.worker.mvp.wallet.WalletFragment;
@@ -19,6 +22,9 @@ import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.view.widget.NoScrollViewPager;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yinglan.alphatabs.OnTabChangedListner;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,5 +159,9 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
 
         }
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onTokenExpired(TokenEvent event) {
+        Intent intent = new Intent(getCtx(), LoginActivity.class);
+        startActivity(intent);
+    }
 }

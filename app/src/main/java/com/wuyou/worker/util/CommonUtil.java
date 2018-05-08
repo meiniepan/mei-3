@@ -130,8 +130,10 @@ public class CommonUtil {
     }
 
     public static String formatPrice(float price) {
-        NumberFormat nf = new DecimalFormat("0.00");
-        return nf.format(price);
+        if (price > 0) {
+            NumberFormat nf = new DecimalFormat("0.00");
+            return nf.format(price);
+        } else return "0.00";
     }
 
     public static RecycleViewDivider getRecyclerDivider(Context context) {
