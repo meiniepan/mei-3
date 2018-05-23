@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import com.gs.buluo.common.utils.TribeDateUtils;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
-import com.wuyou.worker.mvp.order.OrderAfterFragment;
 import com.wuyou.worker.view.widget.recyclerHelper.BaseHolder;
 import com.wuyou.worker.view.widget.recyclerHelper.BaseQuickAdapter;
 
@@ -17,11 +16,9 @@ import java.util.List;
  */
 
 public class OrderAfterRvAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHolder> {
-    private OrderAfterFragment fragment;
 
-    public OrderAfterRvAdapter(OrderAfterFragment fragment, int layoutResId, @Nullable List<OrderInfoEntity> data) {
+    public OrderAfterRvAdapter(int layoutResId, @Nullable List<OrderInfoEntity> data) {
         super(layoutResId, data);
-        this.fragment = fragment;
     }
 
     @Override

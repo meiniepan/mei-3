@@ -3,6 +3,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/divide_height"
-    android:elevation="1dp"
     android:background="@color/divide_gray"
     tools:targetApi="lollipop" />

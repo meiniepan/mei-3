@@ -40,7 +40,6 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     @Override
     public void showError(String message, int res) {
         ToastUtils.ToastMessage(this, message);
-        dismissDialog();
     }
 
 
@@ -52,11 +51,10 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @Override
     public void loginSuccess() {
-        dismissDialog();
-        ToastUtils.ToastMessage(getCtx(),R.string.login_success);
         Intent view = new Intent(this, MainActivity.class);
         startActivity(view);
         finish();
+        ToastUtils.ToastMessage(getCtx(),R.string.login_success);
     }
 
     @Override
@@ -77,6 +75,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 if (!CommonUtil.checkPhone("", phone, this)) return;
                 showLoadingDialog();
                 mPresenter.getVerifyCode(phone);
+                loginVerify.requestFocus();
                 break;
             case R.id.login:
                 String phone1 = loginPhone.getText().toString().trim();

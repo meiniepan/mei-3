@@ -25,7 +25,7 @@ public class CarefreeHttpInterceptor implements Interceptor {
         Request.Builder builder = req.newBuilder();
         HttpUrl url = req.url();
         String query = url.encodedQuery();
-        if (!TextUtils.isEmpty(query)) {
+        if (!TextUtils.isEmpty(query) && !query.contains("sign=")) {
             HttpUrl.Builder newBuilder = url.newBuilder();
             newBuilder.addQueryParameter("sign", EncryptUtil.getSha1(Base64.encode(query.getBytes(), Base64.NO_WRAP)).toUpperCase());
             url = newBuilder.build();

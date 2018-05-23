@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.gs.buluo.common.network.ApiException;
+import com.gs.buluo.common.network.BaseResponse;
+import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.DataCleanManager;
@@ -101,7 +104,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 .doLogout(CarefreeDaoSession.getInstance().getUserId(), QueryMapBuilder.getIns().buildPost())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(baseResponse -> {
+                .subscribe(new BaseSubscriber<BaseResponse>() {
+                    @Override
+                    public void onSuccess(BaseResponse baseResponse) {
+                    }
+                    @Override
+                    protected void onFail(ApiException e) {
+                    }
                 });
         CarefreeDaoSession.getInstance().clearUserInfo();
         Intent intent = new Intent(getCtx(), LoginActivity.class);

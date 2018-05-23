@@ -3,7 +3,6 @@ package com.wuyou.worker.mvp.order;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 
 import com.gs.buluo.common.widget.StatusLayout;
@@ -51,12 +50,12 @@ public class OrderBeforeAllianceFragment extends BaseFragment<OrderContract.View
     @Override
     protected void bindView(Bundle savedInstanceState) {
         adapter = new OrderBeforeAllianceRvAdapter(getActivity(), R.layout.item_order_before, data);
-//        adapter.setOnItemClickListener((adapter1, view, position) -> {
-//            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
-//            intent.putExtra(Constant.ORDER_ID,adapter.getItem(position).order_id);
-//            intent.putExtra(Constant.DIVIDE_ORDER_FROM,2);
-//            startActivity(intent);
-//        });
+        adapter.setOnItemClickListener((adapter1, view, position) -> {
+            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+            intent.putExtra(Constant.ORDER_ID,adapter.getItem(position).order_id);
+            intent.putExtra(Constant.DIVIDE_ORDER_FROM,2);
+            startActivity(intent);
+        });
         recyclerView.setAdapter(adapter);
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         recyclerView.getRecyclerView().addOnScrollListener(scrollListener);

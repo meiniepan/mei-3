@@ -10,6 +10,13 @@ import android.os.Parcelable;
 public class ServiceEntity implements Parcelable {
     public String service_id;
     public String service_name;
+    public String title;
+    public String photo;
+    public float visiting_fee;
+    public float price;
+
+    public ServiceEntity() {
+    }
 
     @Override
     public int describeContents() {
@@ -20,17 +27,22 @@ public class ServiceEntity implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.service_id);
         dest.writeString(this.service_name);
-    }
-
-    public ServiceEntity() {
+        dest.writeString(this.title);
+        dest.writeString(this.photo);
+        dest.writeFloat(this.visiting_fee);
+        dest.writeFloat(this.price);
     }
 
     protected ServiceEntity(Parcel in) {
         this.service_id = in.readString();
         this.service_name = in.readString();
+        this.title = in.readString();
+        this.photo = in.readString();
+        this.visiting_fee = in.readFloat();
+        this.price = in.readFloat();
     }
 
-    public static final Parcelable.Creator<ServiceEntity> CREATOR = new Parcelable.Creator<ServiceEntity>() {
+    public static final Creator<ServiceEntity> CREATOR = new Creator<ServiceEntity>() {
         @Override
         public ServiceEntity createFromParcel(Parcel source) {
             return new ServiceEntity(source);

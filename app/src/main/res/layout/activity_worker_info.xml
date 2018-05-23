@@ -41,12 +41,14 @@
             android:textSize="@dimen/dimens_16sp" />
 
         <ImageView
+            android:id="@+id/info_avatar"
             android:layout_width="58dp"
             android:layout_height="58dp"
             android:src="@mipmap/default_pic" />
     </LinearLayout>
 
-    <include layout="@layout/split_line"/>
+    <include layout="@layout/split_line_margin" />
+
     <LinearLayout
         android:id="@+id/info_nickname_area"
         android:layout_width="match_parent"
@@ -58,19 +60,23 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/nickname"
-            android:textSize="@dimen/dimens_16sp"/>
+            android:textSize="@dimen/dimens_16sp" />
+
         <TextView
             android:id="@+id/info_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未填写"
-            android:textColor="@color/common_gray"/>
+            android:textColor="@color/common_gray" />
 
-        <include layout="@layout/layout_next"/>
+        <include layout="@layout/layout_next" />
     </LinearLayout>
+
+    <include layout="@layout/split_line_margin" />
+
     <LinearLayout
         android:id="@+id/info_mobile_area"
         android:layout_width="match_parent"
@@ -82,90 +88,78 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/phone_number"
-            android:textSize="@dimen/dimens_16sp"/>
+            android:textSize="@dimen/dimens_16sp" />
+
         <TextView
             android:id="@+id/info_mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未填写"
-            android:textColor="@color/common_gray"/>
+            android:textColor="@color/common_gray" />
 
-        <include layout="@layout/layout_next"/>
+        <include layout="@layout/layout_next" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/info_email_area"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
         android:paddingStart="@dimen/activity_horizontal_margin">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/email"
-            android:textSize="@dimen/dimens_16sp"/>
+            android:textSize="@dimen/dimens_16sp" />
+
         <TextView
             android:id="@+id/info_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未填写"
-            android:textColor="@color/common_gray"/>
+            android:textColor="@color/common_gray" />
 
-        <include layout="@layout/layout_next"/>
+        <include layout="@layout/layout_next" />
     </LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/info_sex_area"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
         android:paddingStart="@dimen/activity_horizontal_margin">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/sex"
-            android:textSize="@dimen/dimens_16sp"/>
+            android:textSize="@dimen/dimens_16sp" />
+
         <TextView
             android:id="@+id/info_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未填写"
-            android:textColor="@color/common_gray"/>
+            android:textColor="@color/common_gray" />
 
-        <include layout="@layout/layout_next"/>
+        <include layout="@layout/layout_next" />
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/info_birthday_area"
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
-        android:paddingStart="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/nickname"
-            android:textSize="@dimen/dimens_16sp"/>
-        <TextView
-            android:id="@+id/info_birthday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="未填写"
-            android:textColor="@color/common_gray"/>
-
-        <include layout="@layout/layout_next"/>
-    </LinearLayout>
-
+        android:layout_height="match_parent"
+        android:background="@color/tint_bg" />
 </LinearLayout>

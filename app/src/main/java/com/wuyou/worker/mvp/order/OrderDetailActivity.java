@@ -2,7 +2,9 @@ package com.wuyou.worker.mvp.order;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gs.buluo.common.network.BaseResponse;
@@ -16,6 +18,9 @@ import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
+import com.wuyou.worker.util.CommonUtil;
+import com.wuyou.worker.util.GlideUtils;
+import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
 import com.wuyou.worker.view.activity.FinishOrderActivity;
 import com.wuyou.worker.view.activity.MainActivity;
@@ -24,111 +29,156 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by solang on 2018/2/5.
+ * Created by hjn on 2018/2/6.
  */
 
 public class OrderDetailActivity extends BaseActivity {
-    @BindView(R.id.tv_accept_time)
-    TextView tvAcceptTime;
-    @BindView(R.id.tv_category)
-    TextView tvCategory;
-    @BindView(R.id.tv_server_time)
-    TextView tvServerTime;
-    @BindView(R.id.tv_address)
-    TextView tvAddress;
-    @BindView(R.id.tv_phone)
-    TextView tvPhone;
-    @BindView(R.id.tv_create_time)
-    TextView tvCreateTime;
-    @BindView(R.id.tv_id)
-    TextView tvId;
-    @BindView(R.id.tv_sum)
-    TextView tvSum;
-    @BindView(R.id.tv_pay_way)
-    TextView tvPayWay;
-    @BindView(R.id.tv_is_payed)
-    TextView tvIsPayed;
-    @BindView(R.id.btn_divide_bill)
-    Button btnDivideBill;
-    String orderId;
-    int fromWhere;
-
-    @Override
-    protected int getContentLayout() {
-        return R.layout.order_detail;
-    }
+    @BindView(R.id.order_detail_status)
+    TextView orderDetailStatus;
+    @BindView(R.id.order_detail_un_pay_warn)
+    TextView orderDetailWarn;
+    @BindView(R.id.order_detail_address)
+    TextView orderDetailAddress;
+    @BindView(R.id.order_detail_name)
+    TextView orderDetailName;
+    @BindView(R.id.order_detail_phone)
+    TextView orderDetailPhone;
+    @BindView(R.id.order_detail_create_time)
+    TextView orderDetailCreateTime;
+    @BindView(R.id.order_detail_number)
+    TextView orderDetailNumber;
+    @BindView(R.id.order_detail_pay_method)
+    TextView orderDetailPayMethod;
+    @BindView(R.id.order_detail_pay_serial)
+    TextView orderDetailBillSerial;
+    @BindView(R.id.order_detail_serve_way)
+    TextView orderDetailServeWay;
+    @BindView(R.id.order_detail_serve_time)
+    TextView orderDetailServeTime;
+    @BindView(R.id.order_detail_remark)
+    TextView orderDetailRemark;
+    @BindView(R.id.order_detail_pay_time)
+    TextView orderDetailPayTime;
+    @BindView(R.id.order_detail_second_payment)
+    TextView orderDetailSecondPayment;
+    @BindView(R.id.order_detail_store_name)
+    TextView orderDetailStoreName;
+    @BindView(R.id.order_detail_picture)
+    ImageView orderDetailPicture;
+    @BindView(R.id.order_detail_serve_name)
+    TextView orderDetailServeName;
+    @BindView(R.id.order_detail_goods_number)
+    TextView orderDetailGoodsNumber;
+    @BindView(R.id.order_detail_fee)
+    TextView orderDetailFee;
+    @BindView(R.id.order_detail_other_fee)
+    TextView orderDetailOtherFee;
+    @BindView(R.id.order_detail_amount)
+    TextView orderDetailAmount;
+    @BindView(R.id.order_detail_change)
+    TextView orderDetailChange;
+    @BindView(R.id.order_detail_go)
+    TextView orderDetailGo;
+    @BindView(R.id.order_detail_finish)
+    TextView orderDetailFinish;
+    private String orderId;
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
         orderId = getIntent().getStringExtra(Constant.ORDER_ID);
-        fromWhere = getIntent().getIntExtra(Constant.DIVIDE_ORDER_FROM, 0);
-        initData();
+        showLoadingDialog();
+        getOrderDetail(orderId);
     }
 
-    private void initData() {
-        showLoadingDialog();
+    private void getOrderDetail(String orderId) {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getOrdersDetail(orderId, QueryMapBuilder.getIns().buildGet())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .getOrdersDetail(orderId, QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).buildGet())
+                .compose(RxUtil.switchSchedulers())
                 .subscribe(new BaseSubscriber<BaseResponse<OrderInfoEntity>>() {
                     @Override
-                    public void onSuccess(BaseResponse<OrderInfoEntity> response) {
-                        initUI(response.data);
+                    public void onSuccess(BaseResponse<OrderInfoEntity> orderInfoEntityBaseResponse) {
+                        setData(orderInfoEntityBaseResponse.data);
                     }
-
                 });
     }
 
-    private void initUI(OrderInfoEntity data) {
-        tvAcceptTime.setText(TribeDateUtils.dateFormat(new Date(data.accept_at * 1000)));
-        tvCategory.setText(data.category);
-        tvServerTime.setText(data.service_time);
-        tvAddress.setText(data.address.city_name + data.address.district + data.address.area+data.address.address);
-        tvPhone.setText(data.phone);
-        tvCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
-        tvId.setText(data.order_no);
-        tvSum.setText(data.price + "元");
-        tvPayWay.setText(data.pay_type);
-        tvIsPayed.setText(data.pay_status);
-        if (fromWhere == 1) {
-            btnDivideBill.setText("出发");
-            btnDivideBill.setOnClickListener(view -> {
-                CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                        .confirm(QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).put("order_id", orderId).buildPost())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new BaseSubscriber<BaseResponse>() {
-                            @Override
-                            public void onSuccess(BaseResponse response) {
-                                Intent intent = new Intent(OrderDetailActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
 
-                        });
-
-            });
-        } else if (fromWhere == 2) {
-            btnDivideBill.setText("完成");
-            btnDivideBill.setOnClickListener(view -> {
-                Intent intent = new Intent(getCtx(), FinishOrderActivity.class);
-                intent.putExtra(Constant.ORDER_INFO, data);
-                startActivity(intent);
-            });
-        } else if (fromWhere == 3) {
-            btnDivideBill.setText("评价");
-            btnDivideBill.setOnClickListener(view -> {
-                ToastUtils.ToastMessage(OrderDetailActivity.this, "此功能暂未开通！");
-            });
-        }
+    @Override
+    protected int getContentLayout() {
+        return R.layout.activity_order_detail;
     }
 
 
-    @OnClick(R.id.btn_divide_bill)
-    public void onViewClicked() {
+    @Override
+    public void showError(String message, int res) {
+        ToastUtils.ToastMessage(getCtx(), R.string.connect_fail);
+    }
+
+    public void setData(OrderInfoEntity data) {
+        if (data.status == 1) orderDetailWarn.setVisibility(View.VISIBLE);
+        if (data.status == 2 && data.second_payment != 0) {
+            orderDetailWarn.setVisibility(View.VISIBLE);
+            orderDetailWarn.setText("待支付附加金额 " + data.second_payment + "元");
+        }
+        if (data.status != 2 && data.second_payment != 0) {
+            findViewById(R.id.order_detail_second_payment_area).setVisibility(View.VISIBLE);
+        }
+        GlideUtils.loadImage(this, data.service.photo, orderDetailPicture);
+        orderDetailStatus.setText(CommonUtil.getOrderStatusString(data.status));
+        orderDetailStoreName.setText(data.shop.shop_name);
+        orderDetailServeName.setText(data.service.title);
+        orderDetailSecondPayment.setText(CommonUtil.formatPrice(data.second_payment));
+        orderDetailGoodsNumber.setText(data.number + "");
+        orderDetailOtherFee.setText(CommonUtil.formatPrice(data.service.visiting_fee));
+        orderDetailFee.setText(CommonUtil.formatPrice(data.service.price));
+        orderDetailAmount.setText(CommonUtil.formatPrice(data.amount));
+        orderDetailName.setText(data.address.name);
+        orderDetailAddress.setText(String.format("%s%s%s%s", data.address.city, data.address.district, data.address.area, data.address.address));
+        orderDetailPhone.setText(data.address.mobile);
+
+        orderDetailCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
+        orderDetailNumber.setText(data.order_no);
+        orderDetailServeWay.setText(data.service_mode);
+        orderDetailServeTime.setText(data.service_date + "  " + data.service_time);
+        orderDetailRemark.setText(data.remark);
+        if (!TextUtils.isEmpty(data.serial)) orderDetailBillSerial.setText(data.serial);
+        orderDetailPayMethod.setText(data.pay_type);
+        orderDetailPayTime.setText(TribeDateUtils.dateFormat(new Date(data.pay_time * 1000)));
+
+        setStatusUI(data);
+    }
+
+    @OnClick({R.id.order_detail_change, R.id.order_detail_go, R.id.order_detail_finish})
+    public void onViewClicked(View view) {
+        Intent intent = new Intent();
+        if (TextUtils.isEmpty(orderId)) return;
+        switch (view.getId()) {
+            case R.id.order_detail_change:
+                intent.setClass(getCtx(), OrderChangeTimeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.order_detail_go:
+                intent.setClass(getCtx(), MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.order_detail_finish:
+                intent.setClass(getCtx(), FinishOrderActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    public void setStatusUI(OrderInfoEntity beanDetail) {
+        if (beanDetail.status == 2 && beanDetail.is_finished != 1) {
+            orderDetailFinish.setVisibility(View.VISIBLE);
+        }
+
+        if (beanDetail.status == 1) {
+            orderDetailChange.setVisibility(View.VISIBLE);
+            orderDetailGo.setVisibility(View.VISIBLE);
+        }
+
     }
 }

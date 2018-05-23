@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:clipToPadding="true"
     android:fitsSystemWindows="true"
-    android:clipToPadding="true">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,84 +21,113 @@
             android:textColor="@color/white"
             android:textSize="@dimen/title_size" />
     </RelativeLayout>
-    <include layout="@layout/split_area"/>
+
+    <include layout="@layout/split_area" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:gravity="center"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dimens_16sp"
-                android:text="今日服务订单"/>
+                android:text="今日服务订单"
+                android:textSize="@dimen/dimens_16sp" />
+
             <TextView
                 android:id="@+id/order_statistic_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="888"/>
+                android:text="888"
+                android:textSize="24sp" />
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="@color/divide_gray" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dimens_16sp"
-                android:text="今日待服务订单"/>
+                android:text="今日待服务订单"
+                android:textSize="@dimen/dimens_16sp" />
+
             <TextView
                 android:id="@+id/order_statistic_count_waiting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="666"/>
+                android:text="666"
+                android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
-    <include layout="@layout/shadow_line"/>
-    <include layout="@layout/split_area"/>
+
+    <include layout="@layout/shadow_line" />
+
+    <include layout="@layout/split_area" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
-        android:gravity="center_vertical">
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="近30天服务订单"/>
+            android:layout_weight="1"
+            android:text="近30天服务订单" />
+
         <TextView
             android:id="@+id/order_statistic_month_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100"/>
+            android:text="100" />
     </LinearLayout>
+
+    <include layout="@layout/split_area" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
-        android:gravity="center_vertical">
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="服务订单总数"/>
+            android:layout_weight="1"
+            android:text="服务订单总数" />
+
         <TextView
             android:id="@+id/order_statistic_total_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="130"/>
+            android:text="130" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/tint_bg" />
 </LinearLayout>

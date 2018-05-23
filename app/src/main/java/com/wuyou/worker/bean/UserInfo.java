@@ -1,9 +1,9 @@
 package com.wuyou.worker.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Administrator on 2018\1\25 0025.
@@ -31,10 +31,12 @@ public class UserInfo {
     @Property(nameInDb = "AMOUNT")
     private String amount;
 
-    @Generated(hash = 1588903473)
+    private String gender;
+
+    @Generated(hash = 158500154)
     public UserInfo(long mid, String worker_name, String mobile, String worker_id,
             String avatar, String token, String password, String rc_id,
-            String rc_token, String amount) {
+            String rc_token, String amount, String gender) {
         this.mid = mid;
         this.worker_name = worker_name;
         this.mobile = mobile;
@@ -45,10 +47,19 @@ public class UserInfo {
         this.rc_id = rc_id;
         this.rc_token = rc_token;
         this.amount = amount;
+        this.gender = gender;
     }
 
     @Generated(hash = 1279772520)
     public UserInfo() {
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getToken() {

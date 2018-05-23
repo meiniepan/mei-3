@@ -32,6 +32,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         public final static Property Rc_id = new Property(7, String.class, "rc_id", false, "RC_ID");
         public final static Property Rc_token = new Property(8, String.class, "rc_token", false, "RC_TOKEN");
         public final static Property Amount = new Property(9, String.class, "amount", false, "AMOUNT");
+        public final static Property Gender = new Property(10, String.class, "gender", false, "GENDER");
     }
 
 
@@ -56,7 +57,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
                 "\"PWD\" TEXT," + // 6: password
                 "\"RC_ID\" TEXT," + // 7: rc_id
                 "\"RC_TOKEN\" TEXT," + // 8: rc_token
-                "\"AMOUNT\" TEXT);"); // 9: amount
+                "\"AMOUNT\" TEXT," + // 9: amount
+                "\"GENDER\" TEXT);"); // 10: gender
     }
 
     /** Drops the underlying database table. */
@@ -114,6 +116,11 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         if (amount != null) {
             stmt.bindString(10, amount);
         }
+ 
+        String gender = entity.getGender();
+        if (gender != null) {
+            stmt.bindString(11, gender);
+        }
     }
 
     @Override
@@ -165,6 +172,11 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         if (amount != null) {
             stmt.bindString(10, amount);
         }
+ 
+        String gender = entity.getGender();
+        if (gender != null) {
+            stmt.bindString(11, gender);
+        }
     }
 
     @Override
@@ -184,7 +196,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // password
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // rc_id
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // rc_token
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // amount
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // amount
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // gender
         );
         return entity;
     }
@@ -201,6 +214,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         entity.setRc_id(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setRc_token(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setAmount(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setGender(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
      }
     
     @Override

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/mine_info"
         android:layout_width="match_parent"
@@ -48,6 +49,44 @@
     </RelativeLayout>
 
     <include layout="@layout/split_area" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/mine_money" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="@string/total_money" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥"
+            android:textColor="@color/main_blue"
+            android:textSize="@dimen/dimens_18sp" />
+
+        <TextView
+            android:id="@+id/mine_total_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00.00"
+            android:textColor="@color/main_blue"
+            android:textSize="@dimen/dimens_18sp" />
+    </LinearLayout>
+
+    <include layout="@layout/split_area"/>
 
     <LinearLayout
         android:id="@+id/mine_order_statistics"
@@ -207,6 +246,9 @@
         <include layout="@layout/layout_next" />
     </LinearLayout>
 
-    <include layout="@layout/shadow_line" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/tint_bg"/>
 
 </LinearLayout>

@@ -16,6 +16,7 @@ import java.util.List;
 public class CarefreeDaoSession {
     private static DaoSession daoSession;
     private static CarefreeDaoSession instance;
+    public static String tempAvatar;
 
     private CarefreeDaoSession() {
         DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(CarefreeApplication.getInstance().getApplicationContext(), "carefree.db", null);
@@ -64,5 +65,11 @@ public class CarefreeDaoSession {
         } else {
             return uid;
         }
+    }
+
+    public static String getAvatar(UserInfo userInfo) {
+        if (tempAvatar != null) return tempAvatar;
+        return userInfo.getAvatar();
+
     }
 }

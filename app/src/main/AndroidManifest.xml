@@ -40,9 +40,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.order.OrderDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".view.activity.ContractDetailActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -101,9 +98,16 @@
             android:name=".view.activity.SettingActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".mvp.wallet.WalletTransactionActivity" />
-        <activity android:name=".view.activity.WorkerInfoActivity" />
+        <activity android:name=".mvp.info.WorkerInfoActivity" />
         <activity android:name=".view.activity.OrderStatisticsActivity" />
         <activity android:name=".view.activity.IdentifyActivity" />
+        <activity android:name=".mvp.info.ModifyGenderActivity" />
+        <activity android:name=".mvp.info.ModifyNickActivity"
+            android:windowSoftInputMode="stateVisible"/>
+        <activity android:name=".mvp.order.OrderChangeTimeActivity" />
+        <activity android:name=".mvp.order.OrderDetailActivity" />
+        <activity android:name=".mvp.info.ModifyPhoneActivity"
+            android:windowSoftInputMode="stateVisible"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
