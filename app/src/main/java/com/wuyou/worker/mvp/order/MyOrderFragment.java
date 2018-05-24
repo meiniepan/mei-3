@@ -22,8 +22,6 @@ public class MyOrderFragment extends BaseFragment {
     @BindView(R.id.vp_pager)
     ViewPager mViewPager;
     String[] mTitle = {"待出发", "进行中", "待评价", "已完成"};
-    OrderBeforeFragment orderBeforeFragment = new OrderBeforeFragment();
-
 
     @Override
     protected int getContentLayout() {
@@ -46,16 +44,8 @@ public class MyOrderFragment extends BaseFragment {
             @Override
             public Fragment getItem(int position) {
                 //创建Fragment并返回
-                Fragment fragment = null;
-                if (position == 0)
-                    fragment = orderBeforeFragment;
-                else if (position == 1)
-                    fragment = new OrderIngFragment();
-                else if (position == 2)
-                    fragment = new OrderCommentFragment();
-                else if (position == 3) {
-                    fragment = new OrderAfterFragment();
-                }
+                OrderStatusFragment fragment = new OrderStatusFragment();
+                fragment.setOrderState(position+1);
                 return fragment;
             }
 
@@ -66,11 +56,6 @@ public class MyOrderFragment extends BaseFragment {
         });
         //将ViewPager关联到TabLayout上
         mTabLayout.setupWithViewPager(mViewPager);
-
-//  设置监听,注意:如果设置了setOnTabSelectedListener,则setupWithViewPager不会生效
-//  因为setupWithViewPager内部也是通过设置该监听来触发ViewPager的切换的.
-//  mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//   @Override
 //   public void onTabSelected(TabLayout.Tab tab) {
 //   }
 //

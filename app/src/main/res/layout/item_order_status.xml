@@ -27,6 +27,7 @@
             android:text="2302041241414124"
             android:textColor="@color/main_gray" />
         <TextView
+            android:id="@+id/order_status_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wait_go"
@@ -135,8 +136,6 @@
             android:id="@+id/btn_divide_bill"
             android:layout_width="84dp"
             android:layout_height="30dp"
-            android:background="@drawable/pay_selector"
-            android:text="确认出发"
             android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

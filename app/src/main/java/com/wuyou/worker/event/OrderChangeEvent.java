@@ -5,22 +5,30 @@ package com.wuyou.worker.event;
  */
 
 public class OrderChangeEvent {
-    private int pos;
-
-    public OrderChangeEvent(int position) {
-        pos = position;
-    }
+    private String serveTime;
+    private String serveDate;
 
     public OrderChangeEvent() {
-
-
     }
 
-    public int getPos() {
-        return pos;
+    public String getServeTime() {
+        return serveTime;
     }
 
-    public void setPos(int pos) {
-        this.pos = pos;
+    public void setServeTime(String serveTime) {
+        this.serveTime = serveTime;
+    }
+
+    public String getServeDate() {
+        return serveDate;
+    }
+
+    public void setServeDate(String serveDate) {
+        this.serveDate = serveDate;
+    }
+
+    public OrderChangeEvent(String serveDate, String serveTime) {
+        this.serveDate = serveDate;
+        this.serveTime = serveTime;
     }
 }

@@ -179,5 +179,5 @@ public interface OrderApis {
     Observable<BaseResponse<ArrayMap<String, List<ServeTimeBean>>>> getAvailableServeTime(@Path("order_id") String orderId, @QueryMap SortedTreeMap<String, String> map);
 
     @PUT("service_time")
-    Observable<BaseResponse> updateServeTime(@FieldMap SortedTreeMap<String, String> map);
+    Observable<BaseResponse> updateServeTime(@QueryMap SortedTreeMap<String, String> map);
 }

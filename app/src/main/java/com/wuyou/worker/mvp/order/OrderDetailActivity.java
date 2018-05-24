@@ -26,6 +26,8 @@ import com.wuyou.worker.view.activity.BaseActivity;
 import com.wuyou.worker.view.activity.FinishOrderActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Date;
 
@@ -92,6 +94,7 @@ public class OrderDetailActivity extends BaseActivity {
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
         orderId = getIntent().getStringExtra(Constant.ORDER_ID);
         showLoadingDialog();
         getOrderDetail(orderId);
@@ -202,6 +205,16 @@ public class OrderDetailActivity extends BaseActivity {
             findViewById(R.id.order_detail_bottom).setVisibility(View.VISIBLE);
             orderDetailChange.setVisibility(View.VISIBLE);
             orderDetailGo.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onOrderChanged(OrderChangeEvent event) {
+        if (event.getServeDate() != null) {//改约时间，只改了时间，不需要重新拉数据
+            orderDetailServeTime.setText(String.format("%s  %s", event.getServeDate(), event.getServeTime()));
+        } else {
+            showLoadingDialog();
+            getOrderDetail(orderId);
         }
     }
 }

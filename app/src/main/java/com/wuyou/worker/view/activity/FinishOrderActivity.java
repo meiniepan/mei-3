@@ -10,14 +10,12 @@ import android.widget.TextView;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
-import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
-import com.wuyou.worker.mvp.order.OrderDetailActivity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
 import com.wuyou.worker.util.CommonUtil;
@@ -79,8 +77,7 @@ public class FinishOrderActivity extends BaseActivity {
                     @Override
                     public void onSuccess(BaseResponse response) {
                         ToastUtils.ToastMessage(getCtx(), "操作成功！");
-                        EventBus.getDefault().post(new OrderChangeEvent(infoEntity.position));
-                        AppManager.getAppManager().finishActivity(OrderDetailActivity.class);
+                        EventBus.getDefault().post(new OrderChangeEvent());
                         finish();
                     }
                 });

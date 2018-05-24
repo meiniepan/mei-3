@@ -25,7 +25,6 @@ public class OrderInfoEntity implements Parcelable {
     public String pay_type;
     public String pay_status;
     public long dispatched_at;
-    public int position;
     public int is_finished;
     public String number;
     public float total_amount;
@@ -65,7 +64,6 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeString(this.pay_type);
         dest.writeString(this.pay_status);
         dest.writeLong(this.dispatched_at);
-        dest.writeInt(this.position);
         dest.writeInt(this.is_finished);
         dest.writeString(this.number);
         dest.writeFloat(this.total_amount);
@@ -97,7 +95,6 @@ public class OrderInfoEntity implements Parcelable {
         this.pay_type = in.readString();
         this.pay_status = in.readString();
         this.dispatched_at = in.readLong();
-        this.position = in.readInt();
         this.is_finished = in.readInt();
         this.number = in.readString();
         this.total_amount = in.readFloat();

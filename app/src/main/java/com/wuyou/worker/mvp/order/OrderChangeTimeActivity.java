@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
-import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
@@ -80,6 +79,7 @@ public class OrderChangeTimeActivity extends BaseActivity {
 
 
     public void commitChangeTime(View view) {
+        showLoadingDialog();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class).updateServeTime(QueryMapBuilder.getIns().put("order_id", orderId)
                 .put("service_date", serveDate).put("service_time", serveTime).buildPost())
                 .compose(RxUtil.switchSchedulers())
@@ -87,9 +87,8 @@ public class OrderChangeTimeActivity extends BaseActivity {
                     @Override
                     public void onSuccess(BaseResponse baseResponse) {
                         ToastUtils.ToastMessage(getCtx(), R.string.update_success);
-                        EventBus.getDefault().post(new OrderChangeEvent());
+                        EventBus.getDefault().post(new OrderChangeEvent(serveDate, serveTime));
                         finish();
-                        AppManager.getAppManager().finishActivity(OrderDetailActivity.class);
                     }
                 });
     }
