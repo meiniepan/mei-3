@@ -16,6 +16,7 @@ import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
+import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
 import com.wuyou.worker.util.CommonUtil;
@@ -23,12 +24,15 @@ import com.wuyou.worker.util.GlideUtils;
 import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
 import com.wuyou.worker.view.activity.FinishOrderActivity;
-import com.wuyou.worker.view.activity.MainActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by hjn on 2018/2/6.
@@ -84,6 +88,7 @@ public class OrderDetailActivity extends BaseActivity {
     @BindView(R.id.order_detail_finish)
     TextView orderDetailFinish;
     private String orderId;
+    private OrderInfoEntity infoEntity;
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
@@ -117,7 +122,8 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     public void setData(OrderInfoEntity data) {
-        if (data.status == 1) orderDetailWarn.setVisibility(View.VISIBLE);
+        infoEntity = data;
+        if (infoEntity.status == 1) orderDetailWarn.setVisibility(View.VISIBLE);
         if (data.status == 2 && data.second_payment != 0) {
             orderDetailWarn.setVisibility(View.VISIBLE);
             orderDetailWarn.setText("待支付附加金额 " + data.second_payment + "元");
@@ -157,28 +163,45 @@ public class OrderDetailActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.order_detail_change:
                 intent.setClass(getCtx(), OrderChangeTimeActivity.class);
+                intent.putExtra(Constant.ORDER_ID, orderId);
+                intent.putExtra(Constant.ADDRESS_BEAN, infoEntity.address);
                 startActivity(intent);
                 break;
             case R.id.order_detail_go:
-                intent.setClass(getCtx(), MainActivity.class);
-                startActivity(intent);
+                confirmToGo();
                 break;
             case R.id.order_detail_finish:
                 intent.setClass(getCtx(), FinishOrderActivity.class);
+                intent.putExtra(Constant.ORDER_INFO, infoEntity);
                 startActivity(intent);
                 break;
         }
     }
 
+    private void confirmToGo() {
+        CarefreeRetrofit.getInstance().createApi(OrderApis.class)
+                .confirm(QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).put("order_id", orderId).buildPost())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<BaseResponse>() {
+                    @Override
+                    public void onSuccess(BaseResponse response) {
+                        EventBus.getDefault().post(new OrderChangeEvent());
+                        finish();
+                    }
+                });
+    }
+
     public void setStatusUI(OrderInfoEntity beanDetail) {
         if (beanDetail.status == 2 && beanDetail.is_finished != 1) {
+            findViewById(R.id.order_detail_bottom).setVisibility(View.VISIBLE);
             orderDetailFinish.setVisibility(View.VISIBLE);
         }
 
         if (beanDetail.status == 1) {
+            findViewById(R.id.order_detail_bottom).setVisibility(View.VISIBLE);
             orderDetailChange.setVisibility(View.VISIBLE);
             orderDetailGo.setVisibility(View.VISIBLE);
         }
-
     }
 }

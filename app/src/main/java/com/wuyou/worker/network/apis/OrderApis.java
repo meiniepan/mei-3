@@ -1,13 +1,18 @@
 package com.wuyou.worker.network.apis;
 
+import android.support.v4.util.ArrayMap;
+
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.SortedTreeMap;
+import com.wuyou.worker.bean.ServeTimeBean;
 import com.wuyou.worker.bean.entity.ContractDetailEntity;
 import com.wuyou.worker.bean.entity.MerchantDetailEntity;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.bean.entity.PartnerListEntity;
 import com.wuyou.worker.bean.entity.WorkerListEntity;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.FieldMap;
@@ -170,4 +175,9 @@ public interface OrderApis {
     Observable<BaseResponse> updatePwd(
             @Path("uid") String uid, @FieldMap SortedTreeMap<String, String> map);
 
+    @GET("service_times/{order_id}")
+    Observable<BaseResponse<ArrayMap<String, List<ServeTimeBean>>>> getAvailableServeTime(@Path("order_id") String orderId, @QueryMap SortedTreeMap<String, String> map);
+
+    @PUT("service_time")
+    Observable<BaseResponse> updateServeTime(@FieldMap SortedTreeMap<String, String> map);
 }

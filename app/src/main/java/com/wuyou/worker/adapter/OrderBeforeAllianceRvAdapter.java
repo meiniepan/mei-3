@@ -3,7 +3,6 @@ package com.wuyou.worker.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.Button;
 
 import com.gs.buluo.common.utils.ToastUtils;
@@ -35,6 +34,7 @@ public class OrderBeforeAllianceRvAdapter extends BaseQuickAdapter<OrderInfoEnti
         String dispatch = TribeDateUtils.dateFormat(new Date(item.dispatched_at * 1000));
         helper.setText(R.id.tv_create_time, item.order_no)
                 .setText(R.id.tv_category, item.service.service_name)
+                .setText(R.id.tv_server_time, item.service_time)
                 .setText(R.id.tv_address, item.address.city_name + item.address.district + item.address.area+item.address.address)
                 .setText(R.id.tv_deliver_time, dispatch);
         Button dispatchBt = helper.getView(R.id.btn_divide_bill);

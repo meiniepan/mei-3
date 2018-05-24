@@ -12,9 +12,14 @@ import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.OrderBeforeRvAdapter;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
+import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.util.MyRecyclerViewScrollListener;
 import com.wuyou.worker.view.fragment.BaseFragment;
 import com.wuyou.worker.view.widget.recyclerHelper.NewRefreshRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +52,7 @@ public class OrderBeforeFragment extends BaseFragment<OrderContract.View, OrderC
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         adapter = new OrderBeforeRvAdapter(scrollListener, this, R.layout.item_order_before, data);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
@@ -109,5 +115,10 @@ public class OrderBeforeFragment extends BaseFragment<OrderContract.View, OrderC
 
     private void fetchDatas() {
         mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "1");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onOrderFinished(OrderChangeEvent event) {
+       loadData();
     }
 }

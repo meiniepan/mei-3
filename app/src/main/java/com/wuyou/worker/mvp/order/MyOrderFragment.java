@@ -109,8 +109,4 @@ public class MyOrderFragment extends BaseFragment {
     public void showError(String message, int res) {
 
     }
-
-    public void loadDatas() {
-        orderBeforeFragment.loadData();
-    }
 }

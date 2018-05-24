@@ -34,7 +34,8 @@ public class OrderIngRvAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHol
         helper.setText(R.id.tv_create_time, item.order_no)
                 .setText(R.id.tv_category, item.service.service_name)
                 .setText(R.id.tv_address, item.address.city_name + item.address.district + item.address.address)
-                .setText(R.id.tv_deliver_time, dispatch);
+                .setText(R.id.tv_deliver_time, dispatch)
+                .setText(R.id.tv_server_time, item.service_time);
         Button button = helper.getView(R.id.btn_divide_bill);
         button.setOnClickListener(view -> confirm(item, helper.getAdapterPosition()));
         if (item.is_finished == 1) {

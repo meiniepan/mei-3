@@ -92,8 +92,4 @@ public class OrderFragment extends BaseFragment {
         tvRight.setBackgroundResource(R.drawable.shape_order_right_unclick);
         vpPager.setCurrentItem(0);
     }
-
-    public void loadDatas() {
-        myOrderFragment.loadDatas();
-    }
 }

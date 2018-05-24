@@ -12,6 +12,7 @@ import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.OrderIngRvAdapter;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
+import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.util.MyRecyclerViewScrollListener;
 import com.wuyou.worker.view.fragment.BaseFragment;
 import com.wuyou.worker.view.widget.recyclerHelper.BaseQuickAdapter;
@@ -134,7 +135,7 @@ public class OrderIngFragment extends BaseFragment<OrderContract.View, OrderCont
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onOrderFinished(int pos) {
-        adapter.remove(pos);
+    public void onOrderFinished(OrderChangeEvent event) {
+        loadData();
     }
 }

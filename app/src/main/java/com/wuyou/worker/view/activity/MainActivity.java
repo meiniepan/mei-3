@@ -64,13 +64,6 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
         initRC();
     }
 
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        orderFragment.loadDatas();
-    }
-
     private void initRC() {
         if (getApplicationInfo().packageName.equals(CommonUtil.getCurProcessName(getApplicationContext())) ||
                 "io.rong.push".equals(CommonUtil.getCurProcessName(getApplicationContext()))) {

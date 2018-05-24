@@ -40,11 +40,13 @@ public class OrderBeforeRvAdapter extends BaseQuickAdapter<OrderInfoEntity, Base
 
     @Override
     protected void convert(BaseHolder helper, OrderInfoEntity item) {
+        item.position = helper.getAdapterPosition();
         String dispatch = TribeDateUtils.dateFormat(new Date(item.dispatched_at * 1000));
         helper.setText(R.id.tv_create_time, item.order_no)
                 .setText(R.id.tv_category, item.service.service_name)
                 .setText(R.id.tv_address, item.address.city_name + item.address.district + item.address.area + item.address.address)
                 .setText(R.id.tv_deliver_time, dispatch)
+                .setText(R.id.tv_server_time, item.service_time)
                 .setText(R.id.tv_server_time, item.service_time);
         Button dispatchBt = helper.getView(R.id.btn_divide_bill);
         dispatchBt.setOnClickListener(view -> {

@@ -4,11 +4,16 @@ package com.wuyou.worker.event;
  * Created by DELL on 2018/3/22.
  */
 
-public class OrderFinishEvent {
+public class OrderChangeEvent {
     private int pos;
 
-    public OrderFinishEvent(int position) {
+    public OrderChangeEvent(int position) {
         pos = position;
+    }
+
+    public OrderChangeEvent() {
+
+
     }
 
     public int getPos() {

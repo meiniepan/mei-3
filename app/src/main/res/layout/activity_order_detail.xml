@@ -545,6 +545,7 @@
         android:layout_height="@dimen/bottom_height"
         android:background="@color/main_blue"
         android:gravity="center_vertical"
+        android:visibility="gone"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
         android:paddingStart="@dimen/activity_horizontal_margin_end">
 
