@@ -76,4 +76,5 @@
     <string name="total_money">总资产</string>
     <string name="already_finish">已完工</string>
     <string name="ing">进行中</string>
+    <string name="order_empty">您还没有相关订单</string>
 </resources>

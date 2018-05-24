@@ -89,7 +89,7 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
             adapter.loadMoreEnd(true);
         }
         if (adapter.getData().size() == 0) {
-            recyclerView.showEmptyView("没有订单");
+            recyclerView.showEmptyView(getString(R.string.order_empty));
         }
     }
 
