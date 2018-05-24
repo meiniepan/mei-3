@@ -69,8 +69,9 @@ public class WalletFragment extends BaseFragment {
                 ToastUtils.ToastMessage(mCtx, R.string.no_function);
                 break;
             case R.id.wallet_detail:
-                intent.setClass(mCtx, WalletTransactionActivity.class);
-                startActivity(intent);
+//                intent.setClass(mCtx, WalletTransactionActivity.class);
+//                startActivity(intent);
+                ToastUtils.ToastMessage(mCtx, R.string.no_function);
                 break;
         }
     }
