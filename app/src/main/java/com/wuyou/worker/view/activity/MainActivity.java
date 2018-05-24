@@ -159,6 +159,7 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
                 titleView.setVisibility(View.GONE);
                 break;
         }
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
