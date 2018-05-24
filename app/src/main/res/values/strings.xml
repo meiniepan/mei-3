@@ -74,4 +74,5 @@
     <string name="name">姓名</string>
     <string name="commit_change_time">提交改约</string>
     <string name="total_money">总资产</string>
+    <string name="order_empty">您还没有相关订单</string>
 </resources>

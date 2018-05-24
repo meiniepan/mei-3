@@ -6,6 +6,7 @@
 
     <color name="common_dark">#333333</color>
     <color name="common_gray">#666666</color>
+    <color name="common_gray_99">#999999</color>
     <color name="main_gray">#666666</color>
     <color name="common_red">#FF4B4B</color>
 
