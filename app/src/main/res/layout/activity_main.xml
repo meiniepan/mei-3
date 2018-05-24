@@ -52,17 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp"
-            app:tabIconNormal="@mipmap/home_wallet_0"
-            app:tabIconSelected="@mipmap/home_wallet_1"
-            app:tabText="@string/main_wallet"
-            app:textColorNormal="@color/common_dark"
-            app:textColorSelected="@color/main_blue" />
-
-        <com.yinglan.alphatabs.AlphaTabView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
             app:tabIconNormal="@mipmap/home_message_0"
             app:tabIconSelected="@mipmap/home_message_1"
             app:tabText="@string/message"

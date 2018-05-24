@@ -17,7 +17,6 @@ import com.wuyou.worker.adapter.MainPagerAdapter;
 import com.wuyou.worker.mvp.login.LoginActivity;
 import com.wuyou.worker.mvp.order.MyOrderFragment;
 import com.wuyou.worker.mvp.store.MineFragment;
-import com.wuyou.worker.mvp.wallet.WalletFragment;
 import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.view.widget.NoScrollViewPager;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
@@ -56,7 +55,6 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         fragments.add(orderFragment);
-        fragments.add(new WalletFragment());
         fragments.add(getMessageFragment());
         fragments.add(new MineFragment());
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), fragments));
@@ -64,6 +62,13 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
         bottomView.setOnTabChangedListner(this);
         bottomView.setTabCurrenItem(0);
         initRC();
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        orderFragment.loadDatas();
     }
 
     private void initRC() {
@@ -147,18 +152,15 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
                 titleView.setVisibility(View.VISIBLE);
                 break;
             case 1:
-                titleView.setVisibility(View.GONE);
+                titleView.setVisibility(View.VISIBLE);
+                mainTitle.setText(R.string.message);
                 break;
             case 2:
-                mainTitle.setText(R.string.message);
-                titleView.setVisibility(View.VISIBLE);
-                break;
-            case 3:
                 titleView.setVisibility(View.GONE);
                 break;
-
         }
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTokenExpired(TokenEvent event) {
         Intent intent = new Intent(getCtx(), LoginActivity.class);

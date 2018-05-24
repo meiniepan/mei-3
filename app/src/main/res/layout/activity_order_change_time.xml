@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tint_bg"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/main_blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/change_time"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <include
+            android:id="@+id/back"
+            layout="@layout/back_white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@mipmap/location"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            android:textSize="@dimen/dimens_16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/order_change_time_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="@dimen/dimens_16sp"
+            android:textColor="@color/main_gray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@mipmap/phone"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:textSize="@dimen/dimens_16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/order_change_time_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="@dimen/dimens_16sp"
+            android:textColor="@color/main_gray"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@mipmap/person"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textSize="@dimen/dimens_16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/order_change_time_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="@dimen/dimens_16sp"
+            android:textColor="@color/main_gray"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/order_change_time_area"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="12dp"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@mipmap/location"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_time"
+            android:textSize="@dimen/dimens_16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/order_change_time_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="请选择服务时间"
+            android:textSize="@dimen/dimens_16sp"
+            android:textColor="@color/main_gray"/>
+        <include layout="@layout/layout_next"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin_end"
+        android:layout_marginTop="10dp"
+        android:lineSpacingMultiplier="1.3"
+        android:text="温馨提示：修改服务时间，请提前与客户进行联系，与客户达成一致后再更改"
+        android:textColor="@color/common_red"/>
+
+    <Button
+        android:onClick="commitChangeTime"
+        style="@style/button_style"
+        android:layout_marginTop="60dp"
+        android:text="@string/commit_change_time"
+        android:background="@drawable/red_radius_button"/>
+</LinearLayout>

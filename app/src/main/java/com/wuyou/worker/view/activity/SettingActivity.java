@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.gs.buluo.common.network.ApiException;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
@@ -107,34 +108,15 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     @Override
                     public void onSuccess(BaseResponse baseResponse) {
                     }
+                    @Override
+                    protected void onFail(ApiException e) {
+                    }
                 });
         CarefreeDaoSession.getInstance().clearUserInfo();
         Intent intent = new Intent(getCtx(), LoginActivity.class);
         startActivity(intent);
         finish();
         AppManager.getAppManager().finishActivity(MainActivity.class);
-//        CarefreeRetrofit.getInstance().createApi(UserApis.class).
-//                doLogout(CarefreeDaoSession.getInstance().getUserId(), com.wuyou.user.network.QueryMapBuilder.getIns().buildPost())
-//                .subscribeOn(Schedulers.io())
-//                .flatMap(new Function<BaseResponse, ObservableSource<?>>() {
-//                    @Override
-//                    public ObservableSource<?> apply(BaseResponse baseResponse) throws Exception {
-//                        CarefreeApplication.getInstance().getUserInfoDao().deleteAll();
-//                        CarefreeApplication.getInstance().setUserInfo(null);
-//                        return (ObservableSource) observer -> {};
-//                    }
-//                })
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new com.wuyou.user.network.BaseSubscriber() {
-//                    @Override
-//                    public void onSuccess(Object o) {
-//                        Intent intent = new Intent();
-//                        intent.setClass(getCtx(), LoginActivity.class);
-//                        startActivity(intent);
-////        AppManager.getAppManager().finishActivity(MainActivity.class);
-//                        finish();
-//                    }
-//                });
     }
 
     @Override

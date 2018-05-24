@@ -1,11 +1,13 @@
 package com.wuyou.worker.mvp.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.gs.buluo.common.widget.StatusLayout;
 import com.wuyou.worker.CarefreeApplication;
+import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.OrderAfterRvAdapter;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
@@ -48,13 +50,13 @@ public class OrderAfterFragment extends BaseFragment<OrderContract.View, OrderCo
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
-        adapter = new OrderAfterRvAdapter(this, R.layout.item_order_after, data);
-//        adapter.setOnItemClickListener((adapter1, view, position) -> {
-//            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
-//            intent.putExtra(Constant.ORDER_ID,adapter.getItem(position).order_id);
-//            intent.putExtra(Constant.DIVIDE_ORDER_FROM,3);
-//            startActivity(intent);
-//        });
+        adapter = new OrderAfterRvAdapter(R.layout.item_order_after, data);
+        adapter.setOnItemClickListener((adapter1, view, position) -> {
+            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+            intent.putExtra(Constant.ORDER_ID,adapter.getItem(position).order_id);
+            intent.putExtra(Constant.DIVIDE_ORDER_FROM,3);
+            startActivity(intent);
+        });
         recyclerView.setAdapter(adapter);
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         recyclerView.getRecyclerView().addOnScrollListener(scrollListener);

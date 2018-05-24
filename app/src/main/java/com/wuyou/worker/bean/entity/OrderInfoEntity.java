@@ -16,7 +16,7 @@ public class OrderInfoEntity implements Parcelable {
     public AddressEntity address;
     public String price;
     public String service_time;
-    public String status;
+    public int status;
     public String is_dispatch;
     public String receiver;
     public long accept_at;
@@ -27,6 +27,16 @@ public class OrderInfoEntity implements Parcelable {
     public long dispatched_at;
     public int position;
     public int is_finished;
+    public String number;
+    public float total_amount;
+    public float amount;
+    public float second_payment;
+    public ShopBean shop;
+    public String service_mode;
+    public String service_date;
+    public String remark;
+    public String serial;
+    public long pay_time;
 
     public OrderInfoEntity() {
     }
@@ -46,7 +56,7 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeParcelable(this.address, flags);
         dest.writeString(this.price);
         dest.writeString(this.service_time);
-        dest.writeString(this.status);
+        dest.writeInt(this.status);
         dest.writeString(this.is_dispatch);
         dest.writeString(this.receiver);
         dest.writeLong(this.accept_at);
@@ -57,6 +67,16 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeLong(this.dispatched_at);
         dest.writeInt(this.position);
         dest.writeInt(this.is_finished);
+        dest.writeString(this.number);
+        dest.writeFloat(this.total_amount);
+        dest.writeFloat(this.amount);
+        dest.writeFloat(this.second_payment);
+        dest.writeParcelable(this.shop, flags);
+        dest.writeString(this.service_mode);
+        dest.writeString(this.service_date);
+        dest.writeString(this.remark);
+        dest.writeString(this.serial);
+        dest.writeLong(this.pay_time);
     }
 
     protected OrderInfoEntity(Parcel in) {
@@ -68,7 +88,7 @@ public class OrderInfoEntity implements Parcelable {
         this.address = in.readParcelable(AddressEntity.class.getClassLoader());
         this.price = in.readString();
         this.service_time = in.readString();
-        this.status = in.readString();
+        this.status = in.readInt();
         this.is_dispatch = in.readString();
         this.receiver = in.readString();
         this.accept_at = in.readLong();
@@ -79,6 +99,16 @@ public class OrderInfoEntity implements Parcelable {
         this.dispatched_at = in.readLong();
         this.position = in.readInt();
         this.is_finished = in.readInt();
+        this.number = in.readString();
+        this.total_amount = in.readFloat();
+        this.amount = in.readFloat();
+        this.second_payment = in.readFloat();
+        this.shop = in.readParcelable(ShopBean.class.getClassLoader());
+        this.service_mode = in.readString();
+        this.service_date = in.readString();
+        this.remark = in.readString();
+        this.serial = in.readString();
+        this.pay_time = in.readLong();
     }
 
     public static final Creator<OrderInfoEntity> CREATOR = new Creator<OrderInfoEntity>() {

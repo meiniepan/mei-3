@@ -495,4 +495,27 @@ public class CommonUtil {
     public static void glideCircleLoad(Context context, String url, ImageView imageView) {
         GlideUtils.loadImage(context, url, imageView);
     }
+
+    public static String getPhoneWithStar(String mobile) {
+        if (mobile.length() == 11) {
+            return mobile.substring(0, 3) + "****" + mobile.substring(7);
+        }
+        return mobile;
+    }
+
+    public static String getOrderStatusString(int status) {
+        switch (status) {
+            case 1:
+                return "待出发";
+            case 2:
+                return "进行中";
+            case 3:
+                return "待评价";
+            case 4:
+                return "已完成";
+            case 5:
+                return "已取消";
+        }
+        return "";
+    }
 }

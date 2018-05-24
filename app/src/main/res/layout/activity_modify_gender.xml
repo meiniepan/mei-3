@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tint_bg"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/main_blue">
+
+        <TextView
+            android:id="@+id/tv_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="修改性别"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <include
+            android:id="@+id/back"
+            layout="@layout/back_white" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/common_height"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="男" />
+
+        <CheckBox
+            android:id="@+id/cb_1"
+            android:layout_width="@dimen/radio_size"
+            android:layout_height="@dimen/radio_size"
+            android:background="@drawable/btn_radio"
+            android:button="@null" />
+    </LinearLayout>
+
+    <include layout="@layout/split_line_margin" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/common_height"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="女" />
+
+        <CheckBox
+            android:id="@+id/cb_2"
+            android:layout_width="@dimen/radio_size"
+            android:layout_height="@dimen/radio_size"
+            android:background="@drawable/btn_radio"
+            android:button="@null" />
+    </LinearLayout>
+
+    <include layout="@layout/split_line_margin" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/common_height"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="保密" />
+
+        <CheckBox
+            android:id="@+id/cb_3"
+            android:layout_width="@dimen/radio_size"
+            android:layout_height="@dimen/radio_size"
+            android:background="@drawable/btn_radio"
+            android:button="@null" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_modify_gender"
+        style="@style/button_style"
+        android:text="提交" />
+
+</LinearLayout>

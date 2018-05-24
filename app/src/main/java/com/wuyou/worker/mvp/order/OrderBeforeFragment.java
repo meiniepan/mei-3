@@ -3,7 +3,6 @@ package com.wuyou.worker.mvp.order;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 
 import com.gs.buluo.common.widget.StatusLayout;
@@ -50,12 +49,12 @@ public class OrderBeforeFragment extends BaseFragment<OrderContract.View, OrderC
     protected void bindView(Bundle savedInstanceState) {
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
         adapter = new OrderBeforeRvAdapter(scrollListener, this, R.layout.item_order_before, data);
-//        adapter.setOnItemClickListener((adapter1, view, position) -> {
-//            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
-//            intent.putExtra(Constant.ORDER_ID, adapter.getItem(position).order_id);
-//            intent.putExtra(Constant.DIVIDE_ORDER_FROM, 1);
-//            startActivity(intent);
-//        });
+        adapter.setOnItemClickListener((adapter1, view, position) -> {
+            Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+            intent.putExtra(Constant.ORDER_ID, adapter.getItem(position).order_id);
+            intent.putExtra(Constant.DIVIDE_ORDER_FROM, 1);
+            startActivity(intent);
+        });
         recyclerView.setAdapter(adapter);
 
         recyclerView.getRecyclerView().addOnScrollListener(scrollListener);
@@ -111,5 +110,4 @@ public class OrderBeforeFragment extends BaseFragment<OrderContract.View, OrderC
     private void fetchDatas() {
         mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), "1");
     }
-
 }

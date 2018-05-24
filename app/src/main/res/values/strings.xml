@@ -46,7 +46,7 @@
     <string name="reset_pwd_success">设置密码成功</string>
     <string name="wait_go">待出发</string>
     <string name="finished">已完成</string>
-    <string name="nickname">昵称</string>
+    <string name="nickname">名称</string>
     <string name="phone_number">手机号</string>
     <string name="email">邮箱</string>
     <string name="sex">性别</string>
@@ -54,4 +54,24 @@
     <string name="login_success">登录成功</string>
     <string name="upload_card_img_tip">上传要求: \n ·请上传真实身份证照片 \n ·图片质量请保证清晰可见</string>
     <string name="identify">身份识别</string>
+    <string name="photo_choose_fail">选择照片失败，请重试</string>
+    <string name="update_success">修改成功</string>
+    <string name="nickname_not_right">昵称格式不正确</string>
+    <string name="please_input_right_email">邮箱格式不正确</string>
+    <string name="order_status">订单状态:</string>
+    <string name="serve_fee">服务金额</string>
+    <string name="door_serve_fee">上门费用</string>
+    <string name="extra_fee">其他费用</string>
+    <string name="total">总计</string>
+    <string name="contact_store">联系商家</string>
+    <string name="go_pay">去支付</string>
+    <string name="order_detail">订单详情</string>
+    <string name="change_order">去改约</string>
+    <string name="confirm_go">确认出发</string>
+    <string name="confirm_finish">确认服务完成</string>
+    <string name="change_time">改约时间</string>
+    <string name="address">地址</string>
+    <string name="name">姓名</string>
+    <string name="commit_change_time">提交改约</string>
+    <string name="total_money">总资产</string>
 </resources>
