@@ -15,6 +15,7 @@ import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.DataCleanManager;
 import com.gs.buluo.common.widget.CustomAlertDialog;
 import com.wuyou.worker.CarefreeDaoSession;
+import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.mvp.login.LoginActivity;
 import com.wuyou.worker.network.CarefreeRetrofit;
@@ -44,6 +45,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         findViewById(R.id.setting_clear_cache).setOnClickListener(this);
         findViewById(R.id.setting_feedback).setOnClickListener(this);
         findViewById(R.id.setting_update).setOnClickListener(this);
+        findViewById(R.id.setting_about_us).setOnClickListener(this);
 
         String cacheSize = null;
         try {
@@ -65,8 +67,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.setting_feedback:
-//                intent.setClass(mCtx, FeedbackActivity.class);
-//                startActivity(intent);
+                intent.setClass(getCtx(), FeedbackActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.setting_about_us:
+                intent.setClass(getCtx(), WebActivity.class);
+                intent.putExtra(Constant.WEB_URL, "http://39.105.52.20:8086/apphtml/about-us.html");
+                startActivity(intent);
                 break;
             case R.id.setting_clear_cache:
                 new CustomAlertDialog.Builder(this).setTitle(R.string.prompt).setMessage("确定清除所有缓存?").setPositiveButton("清除", new DialogInterface.OnClickListener() {
@@ -108,6 +115,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     @Override
                     public void onSuccess(BaseResponse baseResponse) {
                     }
+
                     @Override
                     protected void onFail(ApiException e) {
                     }

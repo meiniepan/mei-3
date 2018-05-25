@@ -98,7 +98,7 @@ public class MineFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.mine_setting, R.id.mine_order_statistics, R.id.mine_info, R.id.mine_auth, R.id.mine_introduction, R.id.mine_score, R.id.mine_feedback})
+    @OnClick({R.id.mine_setting, R.id.mine_order_statistics, R.id.mine_info, R.id.mine_auth, R.id.mine_introduction, R.id.mine_score})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -121,8 +121,6 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.mine_introduction:
             case R.id.mine_score:
-            case R.id.mine_feedback:
-                ToastUtils.ToastMessage(mCtx, R.string.no_function);
                 break;
         }
     }

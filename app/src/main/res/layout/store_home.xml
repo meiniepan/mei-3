@@ -93,6 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
+        android:visibility="gone"
         android:orientation="horizontal"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
         android:paddingStart="@dimen/activity_horizontal_margin">
@@ -111,8 +112,6 @@
 
         <include layout="@layout/layout_next" />
     </LinearLayout>
-
-    <include layout="@layout/split_line" />
 
     <LinearLayout
         android:id="@+id/mine_auth"
@@ -138,8 +137,6 @@
         <include layout="@layout/layout_next" />
     </LinearLayout>
 
-    <include layout="@layout/shadow_line" />
-
     <include layout="@layout/split_area" />
 
     <LinearLayout
@@ -147,6 +144,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
+        android:visibility="gone"
         android:orientation="horizontal"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
         android:paddingStart="@dimen/activity_horizontal_margin">
@@ -166,7 +164,6 @@
         <include layout="@layout/layout_next" />
     </LinearLayout>
 
-    <include layout="@layout/split_line" />
 
     <LinearLayout
         android:id="@+id/mine_score"
@@ -174,6 +171,7 @@
         android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
         android:paddingStart="@dimen/activity_horizontal_margin">
 
@@ -191,34 +189,6 @@
 
         <include layout="@layout/layout_next" />
     </LinearLayout>
-
-    <include layout="@layout/split_line" />
-
-    <LinearLayout
-        android:id="@+id/mine_feedback"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingEnd="@dimen/activity_horizontal_margin_end"
-        android:paddingStart="@dimen/activity_horizontal_margin">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@mipmap/icon_mine_feedback" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:text="留言反馈" />
-
-        <include layout="@layout/layout_next" />
-    </LinearLayout>
-
-    <include layout="@layout/shadow_line" />
 
     <include layout="@layout/split_area" />
 

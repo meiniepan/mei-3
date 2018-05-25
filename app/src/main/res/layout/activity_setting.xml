@@ -80,6 +80,7 @@
     <include layout="@layout/split_line_margin" />
 
     <TextView
+        android:id="@+id/setting_about_us"
         android:layout_width="match_parent"
         android:layout_height="@dimen/setting_item_height"
         android:background="@drawable/layout_selector"
@@ -100,6 +101,7 @@
         android:background="@drawable/layout_selector"
         android:clickable="true"
         android:focusable="true"
+        android:visibility="gone"
         android:gravity="center_vertical"
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingStart="@dimen/activity_horizontal_margin"

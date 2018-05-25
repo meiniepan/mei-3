@@ -73,9 +73,6 @@
             android:name=".mvp.order.ChoseServerAllianceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.circle.AddAllianceMerchantActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.message.ConversationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
@@ -102,12 +99,16 @@
         <activity android:name=".view.activity.OrderStatisticsActivity" />
         <activity android:name=".view.activity.IdentifyActivity" />
         <activity android:name=".mvp.info.ModifyGenderActivity" />
-        <activity android:name=".mvp.info.ModifyNickActivity"
-            android:windowSoftInputMode="stateVisible"/>
+        <activity
+            android:name=".mvp.info.ModifyNickActivity"
+            android:windowSoftInputMode="stateVisible" />
         <activity android:name=".mvp.order.OrderChangeTimeActivity" />
         <activity android:name=".mvp.order.OrderDetailActivity" />
-        <activity android:name=".mvp.info.ModifyPhoneActivity"
-            android:windowSoftInputMode="stateVisible"/>
+        <activity
+            android:name=".mvp.info.ModifyPhoneActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity android:name=".view.activity.WebActivity" />
+        <activity android:name=".view.activity.FeedbackActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

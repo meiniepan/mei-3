@@ -28,6 +28,7 @@ public class Constant {
     public static final String GENDER = "gender";
     public static final String BACK_FLAG = "back_flag";
     public static final String ADDRESS_BEAN = "address_bean";
+    public static final String WEB_INTENT ="web_intent";
     public static int REQUEST_NICK = 206;
     public static int REQUEST_PHONE = 207;
     public static int REQUEST_EMAIL = 208;
