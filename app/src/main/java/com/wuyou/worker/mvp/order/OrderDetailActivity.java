@@ -89,6 +89,8 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDetailGo;
     @BindView(R.id.order_detail_finish)
     TextView orderDetailFinish;
+    @BindView(R.id.order_detail_bottom)
+    View bottomView;
     private String orderId;
     private OrderInfoEntity infoEntity;
 
@@ -190,21 +192,26 @@ public class OrderDetailActivity extends BaseActivity {
                     @Override
                     public void onSuccess(BaseResponse response) {
                         EventBus.getDefault().post(new OrderChangeEvent());
-                        finish();
                     }
                 });
     }
 
     public void setStatusUI(OrderInfoEntity beanDetail) {
         if (beanDetail.status == 2 && beanDetail.is_finished != 1) {
-            findViewById(R.id.order_detail_bottom).setVisibility(View.VISIBLE);
+            bottomView.setVisibility(View.VISIBLE);
+            orderDetailChange.setVisibility(View.GONE);
+            orderDetailGo.setVisibility(View.GONE);
             orderDetailFinish.setVisibility(View.VISIBLE);
-        }
-
-        if (beanDetail.status == 1) {
-            findViewById(R.id.order_detail_bottom).setVisibility(View.VISIBLE);
+        } else if (beanDetail.status == 1) {
+            bottomView.setVisibility(View.VISIBLE);
             orderDetailChange.setVisibility(View.VISIBLE);
             orderDetailGo.setVisibility(View.VISIBLE);
+            orderDetailFinish.setVisibility(View.GONE);
+        } else {
+            bottomView.setVisibility(View.VISIBLE);
+            orderDetailChange.setVisibility(View.GONE);
+            orderDetailGo.setVisibility(View.GONE);
+            orderDetailFinish.setVisibility(View.GONE);
         }
     }
 
@@ -216,5 +223,11 @@ public class OrderDetailActivity extends BaseActivity {
             showLoadingDialog();
             getOrderDetail(orderId);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

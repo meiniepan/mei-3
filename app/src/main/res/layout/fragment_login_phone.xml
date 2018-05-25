@@ -75,24 +75,4 @@
         android:textColor="#fff"
         android:textSize="@dimen/dimens_16sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="首次登录需您所在的商家为您开通账户"
-            android:textColor="@color/main_gray"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/main_gray"
-            android:text="前往商家版 >"
-            android:textSize="12sp" />
-    </LinearLayout>
 </LinearLayout>

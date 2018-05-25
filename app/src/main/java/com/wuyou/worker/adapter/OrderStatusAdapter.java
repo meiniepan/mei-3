@@ -58,13 +58,16 @@ public class OrderStatusAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHo
     private void setUpWithButton(OrderInfoEntity item, Button dispatchBt) {
         if (item.status == 1) {
             dispatchBt.setText(R.string.confirm_go);
+            dispatchBt.setVisibility(View.VISIBLE);
             dispatchBt.setBackgroundResource(R.drawable.pay_selector);
         } else if (item.status == 2) {
             dispatchBt.setBackgroundResource(R.drawable.login_selector);
             if (item.is_finished == 1) {
                 dispatchBt.setText(R.string.already_finish);
+                dispatchBt.setVisibility(View.GONE);
                 dispatchBt.setEnabled(false);
             } else {
+                dispatchBt.setVisibility(View.VISIBLE);
                 dispatchBt.setText(R.string.confirm_finish);
                 dispatchBt.setEnabled(true);
             }

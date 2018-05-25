@@ -74,6 +74,31 @@
 
             <include layout="@layout/split_area" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/activity_horizontal_margin_end">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@mipmap/serve_time" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务时间" />
+
+                <TextView
+                    android:id="@+id/order_detail_serve_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/main_gray"/>
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/order_detail_store_name"
                 android:layout_width="match_parent"
@@ -83,8 +108,7 @@
                 android:gravity="center_vertical"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingStart="@dimen/activity_horizontal_margin"
-                android:text="服务站名称"
-                android:textColor="@color/black" />
+                android:text="服务站名称" />
 
             <include layout="@layout/split_line_margin" />
 
@@ -398,27 +422,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                android:paddingStart="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="服务时间"
-                    android:textColor="@color/common_gray" />
-
-                <TextView
-                    android:id="@+id/order_detail_serve_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
@@ -545,9 +548,9 @@
         android:layout_height="@dimen/bottom_height"
         android:background="@color/main_blue"
         android:gravity="center_vertical"
-        android:visibility="gone"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
-        android:paddingStart="@dimen/activity_horizontal_margin_end">
+        android:paddingStart="@dimen/activity_horizontal_margin_end"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/order_detail_change"
@@ -556,8 +559,8 @@
             android:background="@drawable/white_border"
             android:gravity="center"
             android:text="@string/change_order"
-            android:visibility="gone"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone" />
 
         <View
             android:layout_width="0dp"
@@ -571,16 +574,16 @@
             android:background="@drawable/pay_selector"
             android:gravity="center"
             android:text="@string/confirm_go"
-            android:visibility="gone"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/order_detail_finish"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:gravity="center"
             android:text="@string/confirm_finish"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>

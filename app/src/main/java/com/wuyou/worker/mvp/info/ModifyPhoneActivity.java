@@ -92,7 +92,7 @@ public class ModifyPhoneActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        if (observer != null) observer.dispose();
         super.onDestroy();
-        observer.dispose();
     }
 }
