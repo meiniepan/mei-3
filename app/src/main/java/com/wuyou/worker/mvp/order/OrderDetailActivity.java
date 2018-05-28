@@ -59,8 +59,6 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDetailPayMethod;
     @BindView(R.id.order_detail_pay_serial)
     TextView orderDetailBillSerial;
-    @BindView(R.id.order_detail_serve_way)
-    TextView orderDetailServeWay;
     @BindView(R.id.order_detail_serve_time)
     TextView orderDetailServeTime;
     @BindView(R.id.order_detail_remark)
@@ -83,6 +81,8 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDetailOtherFee;
     @BindView(R.id.order_detail_amount)
     TextView orderDetailAmount;
+    @BindView(R.id.order_detail_delivery_time)
+    TextView orderDeliveryTime;
     @BindView(R.id.order_detail_change)
     TextView orderDetailChange;
     @BindView(R.id.order_detail_go)
@@ -150,8 +150,8 @@ public class OrderDetailActivity extends BaseActivity {
         orderDetailPhone.setText(data.address.mobile);
 
         orderDetailCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
+        orderDeliveryTime.setText(TribeDateUtils.dateFormat(new Date(data.dispatched_at * 1000)));
         orderDetailNumber.setText(data.order_no);
-        orderDetailServeWay.setText(data.service_mode);
         orderDetailServeTime.setText(data.service_date + "  " + data.service_time);
         orderDetailRemark.setText(data.remark);
         if (!TextUtils.isEmpty(data.serial)) orderDetailBillSerial.setText(data.serial);
@@ -208,7 +208,7 @@ public class OrderDetailActivity extends BaseActivity {
             orderDetailGo.setVisibility(View.VISIBLE);
             orderDetailFinish.setVisibility(View.GONE);
         } else {
-            bottomView.setVisibility(View.VISIBLE);
+            bottomView.setVisibility(View.GONE);
             orderDetailChange.setVisibility(View.GONE);
             orderDetailGo.setVisibility(View.GONE);
             orderDetailFinish.setVisibility(View.GONE);

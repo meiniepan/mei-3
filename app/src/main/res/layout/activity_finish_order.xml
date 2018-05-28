@@ -40,10 +40,10 @@
 
         <TextView
             android:id="@+id/finish_order_account"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textSize="24sp"
+            android:gravity="end"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -76,12 +76,12 @@
     <LinearLayout
         android:id="@+id/finish_order_fee_area"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="@dimen/common_height"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingEnd="@dimen/activity_horizontal_margin_end"
-        android:paddingStart="@dimen/activity_horizontal_margin_end">
+        android:paddingStart="@dimen/activity_horizontal_margin_end"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="0dp"
@@ -94,17 +94,19 @@
             android:id="@+id/finish_order_extra_fee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/dimens_18sp"
             android:inputType="numberDecimal"
-            android:minWidth="50dp"/>
+            android:minWidth="50dp"
+            android:textSize="@dimen/dimens_18sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="元"/>
+            android:text="元" />
     </LinearLayout>
 
     <include layout="@layout/shadow_line" />
+
     <include layout="@layout/split_area" />
 
     <TextView
@@ -118,8 +120,8 @@
         android:textSize="12sp" />
 
     <Button
+        style="@style/button_style"
         android:layout_marginTop="100dp"
-        android:text="@string/yes"
         android:onClick="finishOrder"
-        style="@style/button_style"/>
+        android:text="@string/yes" />
 </LinearLayout>

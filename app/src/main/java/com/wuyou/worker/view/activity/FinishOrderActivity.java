@@ -50,7 +50,7 @@ public class FinishOrderActivity extends BaseActivity {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         infoEntity = getIntent().getParcelableExtra(Constant.ORDER_INFO);
-        finishOrderAccount.setText(infoEntity.price);
+        finishOrderAccount.setText(CommonUtil.formatPrice(infoEntity.amount));
         finishOrderExtra.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 finishOrderFeeArea.setVisibility(View.VISIBLE);

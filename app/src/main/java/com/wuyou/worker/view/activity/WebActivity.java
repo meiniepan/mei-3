@@ -39,7 +39,7 @@ public class WebActivity extends BaseActivity {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         setUpWebView();
-        String url = getIntent().getStringExtra(Constant.WEB_INTENT);
+        String url = getIntent().getStringExtra(Constant.WEB_URL);
         int type = getIntent().getIntExtra(Constant.WEB_TYPE, 0);
         if (url != null) {
             webView.loadUrl(url);

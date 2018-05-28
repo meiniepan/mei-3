@@ -50,7 +50,7 @@ public class OrderStatusAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHo
                 .setText(R.id.tv_category, item.service.service_name)
                 .setText(R.id.tv_address, item.address.city_name + item.address.district + item.address.area + item.address.address)
                 .setText(R.id.tv_deliver_time, dispatch)
-                .setText(R.id.tv_server_time, item.service_time);
+                .setText(R.id.tv_server_time, item.service_date + "  " + item.service_time);
         Button dispatchBt = helper.getView(R.id.btn_divide_bill);
         setUpWithButton(item, dispatchBt);
     }

@@ -36,6 +36,7 @@ public class OrderInfoEntity implements Parcelable {
     public String remark;
     public String serial;
     public long pay_time;
+    public long dispatch_at;
 
     public OrderInfoEntity() {
     }
@@ -75,6 +76,7 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeString(this.remark);
         dest.writeString(this.serial);
         dest.writeLong(this.pay_time);
+        dest.writeLong(this.dispatch_at);
     }
 
     protected OrderInfoEntity(Parcel in) {
@@ -106,6 +108,7 @@ public class OrderInfoEntity implements Parcelable {
         this.remark = in.readString();
         this.serial = in.readString();
         this.pay_time = in.readLong();
+        this.dispatch_at = in.readLong();
     }
 
     public static final Creator<OrderInfoEntity> CREATOR = new Creator<OrderInfoEntity>() {
