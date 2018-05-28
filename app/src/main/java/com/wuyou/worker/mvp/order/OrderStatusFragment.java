@@ -36,7 +36,7 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
     View toTop;
     OrderStatusAdapter adapter;
     List<OrderInfoEntity> data = new ArrayList();
-    private String orderState;
+    private int orderState;
 
     @Override
     protected int getContentLayout() {
@@ -65,7 +65,7 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
 
         recyclerView.getRecyclerView().addOnScrollListener(scrollListener);
         recyclerView.getRecyclerView().setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setOnLoadMoreListener(() -> mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), orderState), recyclerView.getRecyclerView());
+        adapter.setOnLoadMoreListener(() -> mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), orderState+""), recyclerView.getRecyclerView());
         recyclerView.setRefreshAction(() -> {
             scrollListener.setRefresh();
             adapter.clearData();
@@ -114,7 +114,7 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
     }
 
     private void fetchDatas() {
-        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), orderState);
+        mPresenter.getOrders(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), orderState+"");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -123,6 +123,6 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
     }
 
     public void setOrderState(int orderState) {
-        this.orderState = orderState+"";
+        this.orderState = orderState;
     }
 }

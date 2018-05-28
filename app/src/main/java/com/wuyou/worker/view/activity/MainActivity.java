@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
         fragments.add(getMessageFragment());
         fragments.add(new MineFragment());
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), fragments));
+        viewPager.setOffscreenPageLimit(3);
         bottomView.setViewPager(viewPager);
         bottomView.setOnTabChangedListner(this);
         bottomView.setTabCurrenItem(0);
