@@ -75,4 +75,6 @@ dependencies {
     compile('com.github.gzu-liyujiang.AndroidPicker:WheelPicker:1.5.5') {
         exclude group: 'com.android.support'
     }
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
 }

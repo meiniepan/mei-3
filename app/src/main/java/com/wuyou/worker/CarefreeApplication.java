@@ -3,10 +3,15 @@ package com.wuyou.worker;
 import android.os.Environment;
 
 import com.gs.buluo.common.BaseApplication;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 import com.wuyou.worker.bean.DaoMaster;
 import com.wuyou.worker.bean.DaoSession;
 import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.bean.UserInfoDao;
+import com.wuyou.worker.mvp.login.LoginActivity;
+import com.wuyou.worker.view.activity.MainActivity;
+import com.wuyou.worker.view.activity.SettingActivity;
 
 /**
  * Created by hjn on 2016/11/1.
@@ -21,6 +26,7 @@ public class CarefreeApplication extends BaseApplication {
         super.onCreate();
         instance = this;
         initDB();
+        initBuglyUpgrade();
     }
 
     private void initDB() {
@@ -53,5 +59,12 @@ public class CarefreeApplication extends BaseApplication {
 
     public UserInfoDao getUserInfoDao() {
         return userInfoDao;
+    }
+    private void initBuglyUpgrade() {
+        Beta.upgradeDialogLayoutId = R.layout.upgrade_dialog;
+        Beta.canShowUpgradeActs.add(MainActivity.class);
+        Beta.canShowUpgradeActs.add(LoginActivity.class);
+        Beta.canShowUpgradeActs.add(SettingActivity.class);
+        Bugly.init(getApplicationContext(), "9117d51dca", false);
     }
 }

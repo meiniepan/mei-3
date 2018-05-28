@@ -14,6 +14,7 @@ import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.DataCleanManager;
 import com.gs.buluo.common.widget.CustomAlertDialog;
+import com.tencent.bugly.beta.Beta;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
@@ -85,7 +86,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 }).setNegativeButton(getCtx().getString(R.string.cancel), null).create().show();
                 break;
             case R.id.setting_update:
-//                checkUpdate();
+                checkUpdate();
                 break;
             case R.id.exit:
                 customAlertDialog = new CustomAlertDialog.Builder(this).setTitle(R.string.prompt).setMessage("您确定要退出登录吗?")
@@ -94,6 +95,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 customAlertDialog.show();
                 break;
         }
+    }
+
+    private void checkUpdate() {
+        Beta.checkUpgrade(true,false);
     }
 
 //    @Subscribe(threadMode = ThreadMode.MAIN)
