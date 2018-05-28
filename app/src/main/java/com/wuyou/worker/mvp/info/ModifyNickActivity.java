@@ -68,7 +68,7 @@ public class ModifyNickActivity extends BaseActivity {
                 String input = editText.getText().toString();
                 switch (from) {
                     case Constant.NICK:
-                        if (editText.length() < 4 || editText.length() > 12) {
+                        if (editText.length() < 1 || editText.length() > 12) {
                             ToastUtils.ToastMessage(getCtx(), getString(R.string.nickname_not_right));
                             return;
                         }

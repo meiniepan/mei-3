@@ -44,7 +44,7 @@
         android:gravity="center_vertical"
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingStart="@dimen/activity_horizontal_margin"
-        android:text="4-12个字符,可使用汉字、数字、字母、-、_" />
+        android:text="最多12个字符,可使用汉字、数字、字母、-、_" />
 
     <Button
         android:id="@+id/btn_modify_nick"

@@ -1,6 +1,8 @@
 package com.wuyou.worker;
 
+import android.content.Context;
 import android.os.Environment;
+import android.support.multidex.MultiDex;
 
 import com.gs.buluo.common.BaseApplication;
 import com.tencent.bugly.Bugly;
@@ -66,5 +68,11 @@ public class CarefreeApplication extends BaseApplication {
         Beta.canShowUpgradeActs.add(LoginActivity.class);
         Beta.canShowUpgradeActs.add(SettingActivity.class);
         Bugly.init(getApplicationContext(), "9117d51dca", false);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

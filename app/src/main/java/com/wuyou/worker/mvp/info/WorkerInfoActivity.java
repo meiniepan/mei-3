@@ -12,6 +12,9 @@ import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.ToastUtils;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
@@ -19,18 +22,15 @@ import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.UserApis;
 import com.wuyou.worker.util.CommonUtil;
-import com.wuyou.worker.util.Glide4Engine;
 import com.wuyou.worker.util.GlideUtils;
 import com.wuyou.worker.util.ImageUtil;
 import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -85,7 +85,7 @@ public class WorkerInfoActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.info_head_area:
-                chosePhoto();
+                CommonUtil.choosePhoto(this, PictureConfig.CHOOSE_REQUEST);
                 break;
             case R.id.info_nickname_area:
                 intent.setClass(getCtx(), ModifyNickActivity.class);
@@ -143,33 +143,25 @@ public class WorkerInfoActivity extends BaseActivity {
 
     }
 
-    private void chosePhoto() {
-        Matisse.from(this)
-                .choose(MimeType.ofImage())
-                .capture(true)
-                .captureStrategy(new CaptureStrategy(true, "com.wuyou.user.FileProvider"))
-                .showSingleMediaType(true)
-                .theme(R.style.Matisse_Dracula)
-                .countable(false)
-                .maxSelectable(1)
-                .imageEngine(new Glide4Engine())
-                .forResult(Constant.REQUEST_CODE_CHOOSE_IMAGE);
-    }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            if (requestCode == Constant.REQUEST_CODE_CHOOSE_IMAGE) {
-                String imagePath = Matisse.obtainPathResult(data).get(0);
-                if (imagePath != null) {
-                    GlideUtils.loadImage(getCtx(), imagePath, infoAvatar, true);
-                    CarefreeDaoSession.tempAvatar = imagePath;
-                    uploadAvatar(imagePath);
-                } else {
-                    ToastUtils.ToastMessage(getCtx(), getString(R.string.photo_choose_fail));
+            if (requestCode == PictureConfig.CHOOSE_REQUEST) {
+                List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+                String path = "";
+                if (selectList != null && selectList.size() > 0) {
+                    LocalMedia localMedia = selectList.get(0);
+                    if (localMedia.isCompressed()) {
+                        path = localMedia.getCompressPath();
+                    } else if (localMedia.isCut()) {
+                        path = localMedia.getCutPath();
+                    } else {
+                        path = localMedia.getPath();
+                    }
                 }
+                GlideUtils.loadImage(getCtx(), path, infoAvatar, true);
+                uploadAvatar(path);
             } else if (requestCode == Constant.REQUEST_NICK) {
                 infoNickname.setText(data.getStringExtra("info"));
             } else if (requestCode == Constant.REQUEST_PHONE) {

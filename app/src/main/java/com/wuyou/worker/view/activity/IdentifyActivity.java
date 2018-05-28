@@ -1,31 +1,26 @@
 package com.wuyou.worker.view.activity;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.gs.buluo.common.network.ApiException;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.CustomGsonFactory;
-import com.gs.buluo.common.utils.DensityUtils;
 import com.gs.buluo.common.utils.ToastUtils;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.FaceResult;
 import com.wuyou.worker.network.apis.FaceApis;
-import com.wuyou.worker.util.CommonUtil;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
-import com.zhihu.matisse.internal.entity.CaptureStrategy;
+import com.wuyou.worker.util.GlideUtils;
 
 import java.io.File;
 import java.util.List;
@@ -53,6 +48,7 @@ public class IdentifyActivity extends BaseActivity {
     ImageView ivCardFace;
     @BindView(R.id.tv_card_face_tip)
     TextView tvCardFaceTip;
+    private boolean isFront;
 
     @Override
     protected int getContentLayout() {
@@ -80,28 +76,37 @@ public class IdentifyActivity extends BaseActivity {
                 doCompareAndUpload();
                 break;
             case R.id.iv_card_add:
-                Matisse.from(this)
-                        .choose(MimeType.ofImage())
-//                        .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-                        .captureStrategy(new CaptureStrategy(true, "com.wuyou.worker.FileProvider"))
-                        .gridExpectedSize(DensityUtils.dip2px(this, 120))
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new GlideEngine())
-                        .forResult(201);
+                choosePhoto(201);
                 break;
             case R.id.iv_card_face:
-                Matisse.from(this)
-                        .choose(MimeType.ofImage())
-//                        .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-                        .captureStrategy(new CaptureStrategy(true, "com.wuyou.worker.FileProvider"))
-                        .gridExpectedSize(DensityUtils.dip2px(this, 120))
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new GlideEngine())
-                        .forResult(202);
+                choosePhoto(202);
                 break;
         }
+    }
+
+    public void choosePhoto(int requestCode) {
+        PictureSelector.create(this)
+                .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                .compressSavePath(CarefreeApplication.getInstance().getApplicationContext().getFilesDir().getAbsolutePath())//压缩图片保存地址
+                .setOutputCameraPath(CarefreeApplication.getInstance().getApplicationContext().getFilesDir().getAbsolutePath())
+                .maxSelectNum(1)// 最大图片选择数量 int
+                .imageSpanCount(4)// 每行显示个数 int
+                .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                .isCamera(true)// 是否显示拍照按钮 true or false
+                .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+                .enableCrop(true)// 是否裁剪 true or false
+                .compress(true)// 是否压缩 true or false
+                .withAspectRatio(16, 9)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示 true or false
+                .freeStyleCropEnabled(false)// 裁剪框是否可拖拽 true or false
+                .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+                .showCropGrid(true)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+                .openClickSound(false)// 是否开启点击声音 true or false
+                .minimumCompressSize(100)// 小于100kb的图片不压缩
+                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
+                .isDragFrame(false)// 是否可拖动裁剪框(固定)
+                .forResult(requestCode);//结果回调onActivityResult code
     }
 
     private void doCompareAndUpload() {
@@ -127,7 +132,7 @@ public class IdentifyActivity extends BaseActivity {
                 .subscribe(new BaseSubscriber<FaceResult>() {
                     @Override
                     public void onSuccess(FaceResult faceResult) {
-                        Log.e("Test", "onSuccess: " + faceResult);
+                        Log.e("FaceResult", "onSuccess: " + faceResult);
                         if (faceResult.confidence > 30) {
                             compareSuccess();
                         } else {
@@ -149,42 +154,36 @@ public class IdentifyActivity extends BaseActivity {
 
     String idPath;
     String facePath;
-    long MAX_BYTES = 2 * 1024 * 1024;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 201 && resultCode == RESULT_OK) {
-            List<String> pathResult = Matisse.obtainPathResult(data);
-            if (pathResult != null && pathResult.size() > 0) {
-                idPath = pathResult.get(0);
-                compressFile(idPath);
-                Glide.with(this)
-                        .load(Uri.parse("file://" + idPath))
-                        .priority(Priority.HIGH)
-                        .into(ivCardAdd);
+            List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+            if (selectList != null && selectList.size() > 0) {
+                LocalMedia localMedia = selectList.get(0);
+                if (localMedia.isCompressed()) {
+                    idPath = localMedia.getCompressPath();
+                } else if (localMedia.isCut()) {
+                    idPath = localMedia.getCutPath();
+                } else {
+                    idPath = localMedia.getPath();
+                }
             }
+            GlideUtils.loadImage(getCtx(), idPath, ivCardAdd);
         } else if (requestCode == 202 && resultCode == RESULT_OK) {
-            List<String> pathResult = Matisse.obtainPathResult(data);
-            if (pathResult != null && pathResult.size() > 0) {
-                facePath = pathResult.get(0);
-                compressFile(facePath);
-                Glide.with(this)
-                        .load(Uri.parse("file://" + facePath))
-                        .priority(Priority.HIGH)
-                        .into(ivCardFace);
+            List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+            if (selectList != null && selectList.size() > 0) {
+                LocalMedia localMedia = selectList.get(0);
+                if (localMedia.isCompressed()) {
+                    facePath = localMedia.getCompressPath();
+                } else if (localMedia.isCut()) {
+                    facePath = localMedia.getCutPath();
+                } else {
+                    facePath = localMedia.getPath();
+                }
             }
-        }
-    }
-
-    private void compressFile(String path) {
-        try {
-            showLoadingDialog();
-            Bitmap bitmap = CommonUtil.compressByQuality(new File(path), MAX_BYTES, true);
-            CommonUtil.save(bitmap, new File(path), Bitmap.CompressFormat.JPEG, true);
-            dismissDialog();
-        } catch (Exception e) {
-            e.printStackTrace();
+            GlideUtils.loadImage(getCtx(), facePath, ivCardFace);
         }
     }
 }
