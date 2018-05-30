@@ -22,6 +22,10 @@ public class MyOrderFragment extends BaseFragment {
     @BindView(R.id.vp_pager)
     ViewPager mViewPager;
     String[] mTitle = {"待出发", "进行中", "待评价", "已完成"};
+    private OrderStatusFragment fragment1;
+    private OrderStatusFragment fragment2;
+    private OrderStatusFragment fragment3;
+    private OrderStatusFragment fragment4;
 
     @Override
     protected int getContentLayout() {
@@ -34,6 +38,14 @@ public class MyOrderFragment extends BaseFragment {
     }
 
     private void initView() {
+        fragment1 = new OrderStatusFragment();
+        fragment1.setOrderState(1);
+        fragment2 = new OrderStatusFragment();
+        fragment2.setOrderState(2);
+        fragment3 = new OrderStatusFragment();
+        fragment3.setOrderState(3);
+        fragment4 = new OrderStatusFragment();
+        fragment4.setOrderState(4);
         mViewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             //此方法用来显示tab上的名字
             @Override
@@ -44,8 +56,20 @@ public class MyOrderFragment extends BaseFragment {
             @Override
             public Fragment getItem(int position) {
                 //创建Fragment并返回
-                OrderStatusFragment fragment = new OrderStatusFragment();
-                fragment.setOrderState(position+1);
+                Fragment fragment = null;
+                if (position == 0) {
+
+                    fragment = fragment1;
+                } else if (position == 1) {
+
+                    fragment = fragment2;
+                }else if (position == 2) {
+
+                    fragment = fragment3;
+                }else if (position == 3) {
+
+                    fragment = fragment4;
+                }
                 return fragment;
             }
 
