@@ -22,6 +22,7 @@ import com.wuyou.worker.view.widget.NoScrollViewPager;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yinglan.alphatabs.OnTabChangedListner;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -54,6 +55,9 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         fragments.add(orderFragment);
         fragments.add(getMessageFragment());
         fragments.add(new MineFragment());
@@ -158,7 +162,15 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTokenExpired(TokenEvent event) {
+        CarefreeDaoSession.getInstance().clearUserInfo();
         Intent intent = new Intent(getCtx(), LoginActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }
