@@ -58,16 +58,12 @@ public class MyOrderFragment extends BaseFragment {
                 //创建Fragment并返回
                 Fragment fragment = null;
                 if (position == 0) {
-
                     fragment = fragment1;
                 } else if (position == 1) {
-
                     fragment = fragment2;
                 }else if (position == 2) {
-
                     fragment = fragment3;
                 }else if (position == 3) {
-
                     fragment = fragment4;
                 }
                 return fragment;
