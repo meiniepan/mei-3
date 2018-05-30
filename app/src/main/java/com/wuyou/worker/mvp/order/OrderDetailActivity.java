@@ -150,7 +150,7 @@ public class OrderDetailActivity extends BaseActivity {
         orderDetailPhone.setText(data.address.mobile);
 
         orderDetailCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
-        orderDeliveryTime.setText(TribeDateUtils.dateFormat(new Date(data.dispatched_at * 1000)));
+        orderDeliveryTime.setText(TribeDateUtils.dateFormat(new Date(data.dispatch_at * 1000)));
         orderDetailNumber.setText(data.order_no);
         orderDetailServeTime.setText(data.service_date + "  " + data.service_time);
         orderDetailRemark.setText(data.remark);
