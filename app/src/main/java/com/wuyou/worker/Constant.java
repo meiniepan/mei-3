@@ -25,6 +25,7 @@ public class Constant {
     public static final String WEB_TYPE = "web_type";
     public static final String GENDER = "gender";
     public static final String ADDRESS_BEAN = "address_bean";
+    public static final String ABOUT_US_URL = "https://ulaidao.iwantmei.com/apphtml/about-us.html";
     public static int REQUEST_NICK = 206;
     public static int REQUEST_PHONE = 207;
     public static int REQUEST_EMAIL = 208;

@@ -73,7 +73,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.setting_about_us:
                 intent.setClass(getCtx(), WebActivity.class);
-                intent.putExtra(Constant.WEB_URL, "http://39.105.52.20:8086/apphtml/about-us.html");
+                intent.putExtra(Constant.WEB_URL, Constant.ABOUT_US_URL);
                 startActivity(intent);
                 break;
             case R.id.setting_clear_cache:

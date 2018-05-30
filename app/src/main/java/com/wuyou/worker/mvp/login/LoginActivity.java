@@ -46,7 +46,6 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     @Override
     protected void bindView(Bundle savedInstanceState) {
         setBarColor(R.color.tint_bg);
-        observer = new CounterDisposableObserver(reSendCaptcha);
     }
 
     @Override
@@ -59,6 +58,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @Override
     public void getVerifySuccess() {
+        observer = new CounterDisposableObserver(reSendCaptcha);
         RxUtil.countdown(59).subscribe(observer);
     }
 

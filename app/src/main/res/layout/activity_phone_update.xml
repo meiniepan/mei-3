@@ -56,7 +56,7 @@
             android:onClick="sendCaptchaToUpdate"
             android:textSize="@dimen/dimens_12sp"
             android:text="@string/send_captcha"
-            android:textColor="@color/night_blue" />
+            android:textColor="@color/main_blue" />
     </LinearLayout>
 
     <include layout="@layout/split_area" />
