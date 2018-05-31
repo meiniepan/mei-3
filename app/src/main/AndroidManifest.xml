@@ -53,6 +53,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.login.LoginActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.login.CompletingInfoActivity"
