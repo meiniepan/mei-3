@@ -17,7 +17,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/white_ring"
-            android:src="@mipmap/default_pic" />
+            android:src="@mipmap/default_head" />
 
         <TextView
             android:id="@+id/mine_name"
