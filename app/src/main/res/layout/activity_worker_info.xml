@@ -44,7 +44,7 @@
             android:id="@+id/info_avatar"
             android:layout_width="58dp"
             android:layout_height="58dp"
-            android:src="@mipmap/default_pic" />
+            android:src="@mipmap/default_head" />
     </LinearLayout>
 
     <include layout="@layout/split_line_margin" />
