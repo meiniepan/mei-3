@@ -204,9 +204,9 @@ public class OrderDetailActivity extends BaseActivity {
             orderDetailFinish.setVisibility(View.VISIBLE);
         } else if (beanDetail.status == 1) {
             bottomView.setVisibility(View.VISIBLE);
-            orderDetailChange.setVisibility(View.VISIBLE);
             orderDetailGo.setVisibility(View.VISIBLE);
             orderDetailFinish.setVisibility(View.GONE);
+            if (beanDetail.service_time_is_changed == 0) orderDetailChange.setVisibility(View.VISIBLE);
         } else {
             bottomView.setVisibility(View.GONE);
             orderDetailChange.setVisibility(View.GONE);
@@ -219,6 +219,7 @@ public class OrderDetailActivity extends BaseActivity {
     public void onOrderChanged(OrderChangeEvent event) {
         if (event.getServeDate() != null) {//改约时间，只改了时间，不需要重新拉数据
             orderDetailServeTime.setText(String.format("%s  %s", event.getServeDate(), event.getServeTime()));
+            orderDetailChange.setVisibility(View.GONE);
         } else {
             showLoadingDialog();
             getOrderDetail(orderId);
