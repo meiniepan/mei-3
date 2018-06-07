@@ -5,13 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/tint_bg">
 
-    <com.wuyou.worker.view.widget.recyclerHelper.NewRefreshRecyclerView
-        android:id="@+id/rv_orders"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:emptyDrawable="@mipmap/empty_order"
-        app:errorDrawable="@mipmap/net_error" />
-
     <RelativeLayout
         android:id="@+id/rl_to_top"
         android:layout_width="50dp"
@@ -29,4 +22,11 @@
             android:background="@drawable/circle_to_top_bg"
             android:src="@mipmap/icon_top" />
     </RelativeLayout>
+
+    <com.wuyou.worker.view.widget.recyclerHelper.NewRefreshRecyclerView
+        android:id="@+id/rv_orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyDrawable="@mipmap/empty_order"
+        app:errorDrawable="@mipmap/net_error" />
 </FrameLayout>

@@ -63,15 +63,15 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
         });
         recyclerView.setAdapter(adapter);
 
-        recyclerView.getRecyclerView().addOnScrollListener(scrollListener);
+//        recyclerView.getRecyclerView().addOnScrollListener(scrollListener);
         recyclerView.getRecyclerView().setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setOnLoadMoreListener(() -> mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), orderState+""), recyclerView.getRecyclerView());
         recyclerView.setRefreshAction(() -> {
-            scrollListener.setRefresh();
+//            scrollListener.setRefresh();
             adapter.clearData();
             fetchDatas();
         });
-        toTop.setOnClickListener(v -> recyclerView.getRecyclerView().smoothScrollToPosition(0));
+//        toTop.setOnClickListener(v -> recyclerView.getRecyclerView().smoothScrollToPosition(0));
     }
 
     @Override

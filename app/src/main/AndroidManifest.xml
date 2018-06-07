@@ -46,9 +46,6 @@
             android:name=".view.activity.ServiceProviderDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.order.ChoseServerActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.login.CaptchaInputActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -69,9 +66,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.wallet.FundIntroduceActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.order.ChoseServerAllianceActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.message.ConversationActivity"
