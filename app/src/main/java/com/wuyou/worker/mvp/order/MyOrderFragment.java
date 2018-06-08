@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.wuyou.worker.R;
 import com.wuyou.worker.view.fragment.BaseFragment;
+import com.wuyou.worker.view.widget.panel.EnvironmentChoosePanel;
 
 import butterknife.BindView;
 
@@ -35,6 +36,7 @@ public class MyOrderFragment extends BaseFragment {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         initView();
+        getActivity().findViewById(R.id.back_door).setOnClickListener(v -> showChangeEnvironment());
     }
 
     private void initView() {
@@ -76,42 +78,34 @@ public class MyOrderFragment extends BaseFragment {
         });
         //将ViewPager关联到TabLayout上
         mTabLayout.setupWithViewPager(mViewPager);
-//   public void onTabSelected(TabLayout.Tab tab) {
-//   }
-//
-//   @Override
-//   public void onTabUnselected(TabLayout.Tab tab) {
-//
-//   }
-//
-//   @Override
-//   public void onTabReselected(TabLayout.Tab tab) {
-//
-//   }
-//  });
-//  那我们如果真的需要监听tab的点击或者ViewPager的切换,则需要手动配置ViewPager的切换,例如:
-        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                //切换ViewPager
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
     }
 
     @Override
     public void showError(String message, int res) {
 
+    }
+
+    @Override
+    public void loadData() {
+        mViewPager.setCurrentItem(0);
+        clickTime = 0;
+        firstTime = 0;
+    }
+
+    private int clickTime = 0;
+    private long firstTime = 0;
+
+    private void showChangeEnvironment() {
+        if (clickTime == 0) {
+            firstTime = System.currentTimeMillis();
+        }
+        clickTime++;
+        if (clickTime == 5) {
+            long nowTime = System.currentTimeMillis();
+            if (nowTime - firstTime <= 2000) {
+                EnvironmentChoosePanel choosePanel = new EnvironmentChoosePanel(getContext());
+                choosePanel.show();
+            }
+        }
     }
 }

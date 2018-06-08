@@ -4,6 +4,27 @@
     android:id="@id/rc_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/main_title_area"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#3e81ff">
+
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#fafafa"
+            android:text="消息"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_title_area"
+        >
     <LinearLayout
         android:id="@+id/rc_status_bar"
         android:layout_width="match_parent"
@@ -61,5 +82,5 @@
             android:text="@string/rc_conversation_list_empty_prompt"
             android:textSize="14sp" />
     </LinearLayout>
-
+    </RelativeLayout>
 </RelativeLayout>
