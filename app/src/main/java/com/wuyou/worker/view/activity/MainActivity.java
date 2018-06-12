@@ -35,15 +35,11 @@ import io.rong.imkit.fragment.ConversationListFragment;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 
-public class MainActivity extends BaseActivity implements OnTabChangedListner {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.main_tab)
     AlphaTabsIndicator bottomView;
     @BindView(R.id.main_pager)
     NoScrollViewPager viewPager;
-    @BindView(R.id.main_title)
-    TextView mainTitle;
-    @BindView(R.id.main_title_area)
-    View titleView;
     List<Fragment> fragments = new ArrayList<>();
     MyOrderFragment orderFragment = new MyOrderFragment();
     private long mkeyTime = 0;
@@ -64,7 +60,6 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), fragments));
         viewPager.setOffscreenPageLimit(3);
         bottomView.setViewPager(viewPager);
-        bottomView.setOnTabChangedListner(this);
         bottomView.setTabCurrenItem(0);
         initRC();
     }
@@ -142,23 +137,6 @@ public class MainActivity extends BaseActivity implements OnTabChangedListner {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onTabSelected(int tabNum) {
-        switch (tabNum) {
-            case 0:
-                mainTitle.setText(R.string.main_order);
-                titleView.setVisibility(View.VISIBLE);
-                break;
-            case 1:
-                titleView.setVisibility(View.VISIBLE);
-                mainTitle.setText(R.string.message);
-                break;
-            case 2:
-                titleView.setVisibility(View.GONE);
-                break;
-        }
-
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTokenExpired(TokenEvent event) {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <com.wuyou.worker.view.widget.CustomNestRadioGroup
+        android:id="@+id/env_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <RadioButton
+            android:id="@+id/env_dev"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="开发环境"
+            android:textColor="@color/common_dark" />
+
+        <RadioButton
+            android:id="@+id/env_test"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="测试环境"
+            android:textColor="@color/common_dark" />
+
+
+        <RadioButton
+            android:id="@+id/env_online"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="正式环境"
+            android:textColor="@color/common_dark" />
+
+    </com.wuyou.worker.view.widget.CustomNestRadioGroup>
+
+    <Button
+        android:id="@+id/env_login"
+        style="@style/button_style"
+        android:text="选完得重新登录" />
+</LinearLayout>

@@ -18,9 +18,7 @@ public interface OrderContract {
 
     abstract class Presenter extends BasePresenter<View> {
         abstract void getOrders(String merchant_id, String status);
-        abstract void getAllianceOrders(String merchant_id, String status);
 
         abstract void loadMore(String merchant_id, String status);
-        abstract void loadAllianceMore(String merchant_id, String status);
     }
 }

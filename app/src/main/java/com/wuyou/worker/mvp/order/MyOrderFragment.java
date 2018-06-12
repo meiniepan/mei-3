@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.wuyou.worker.R;
 import com.wuyou.worker.view.fragment.BaseFragment;
+import com.wuyou.worker.view.widget.panel.EnvironmentChoosePanel;
 
 import butterknife.BindView;
 
@@ -35,17 +36,27 @@ public class MyOrderFragment extends BaseFragment {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         initView();
+        getActivity().findViewById(R.id.back_door).setOnClickListener(v -> showChangeEnvironment());
     }
 
     private void initView() {
+        //防止Activity被回收后Fragment状态不正确
+        Bundle bundle1 = new Bundle();
+        bundle1.putInt("h", 1);
+        Bundle bundle2 = new Bundle();
+        bundle2.putInt("h", 2);
+        Bundle bundle3 = new Bundle();
+        bundle3.putInt("h", 3);
+        Bundle bundle4 = new Bundle();
+        bundle4.putInt("h", 4);
         fragment1 = new OrderStatusFragment();
-        fragment1.setOrderState(1);
+        fragment1.setArguments(bundle1);
         fragment2 = new OrderStatusFragment();
-        fragment2.setOrderState(2);
+        fragment2.setArguments(bundle2);
         fragment3 = new OrderStatusFragment();
-        fragment3.setOrderState(3);
+        fragment3.setArguments(bundle3);
         fragment4 = new OrderStatusFragment();
-        fragment4.setOrderState(4);
+        fragment4.setArguments(bundle4);
         mViewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             //此方法用来显示tab上的名字
             @Override
@@ -76,42 +87,34 @@ public class MyOrderFragment extends BaseFragment {
         });
         //将ViewPager关联到TabLayout上
         mTabLayout.setupWithViewPager(mViewPager);
-//   public void onTabSelected(TabLayout.Tab tab) {
-//   }
-//
-//   @Override
-//   public void onTabUnselected(TabLayout.Tab tab) {
-//
-//   }
-//
-//   @Override
-//   public void onTabReselected(TabLayout.Tab tab) {
-//
-//   }
-//  });
-//  那我们如果真的需要监听tab的点击或者ViewPager的切换,则需要手动配置ViewPager的切换,例如:
-        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                //切换ViewPager
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
     }
 
     @Override
     public void showError(String message, int res) {
 
+    }
+
+    @Override
+    public void loadData() {
+        mViewPager.setCurrentItem(0);
+        clickTime = 0;
+        firstTime = 0;
+    }
+
+    private int clickTime = 0;
+    private long firstTime = 0;
+
+    private void showChangeEnvironment() {
+        if (clickTime == 0) {
+            firstTime = System.currentTimeMillis();
+        }
+        clickTime++;
+        if (clickTime == 5) {
+            long nowTime = System.currentTimeMillis();
+            if (nowTime - firstTime <= 2000) {
+                EnvironmentChoosePanel choosePanel = new EnvironmentChoosePanel(getContext());
+                choosePanel.show();
+            }
+        }
     }
 }

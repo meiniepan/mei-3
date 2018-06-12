@@ -22,14 +22,14 @@ public class OrderPresenter extends OrderContract.Presenter {
     @Override
     void getOrders(String merchant_id, String status) {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getOrders(QueryMapBuilder.getIns().put("worker_id",CarefreeDaoSession.getInstance().getUserId()).put("status", status).put("start_id", 0 + "").put("flag", 1 + "").put("size","10").buildGet())
+                .getOrders(QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).put("status", status).put("start_id", 0 + "").put("flag", 1 + "").put("size", "10").buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<OrderInfoListEntity>>() {
                     @Override
                     public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
                         if (userInfoBaseResponse.data.list.size() > 0)
-                            lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
+                            lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).order_id;
                         if (isAttach()) mView.getSuccess(userInfoBaseResponse.data);
                     }
 
@@ -40,68 +40,26 @@ public class OrderPresenter extends OrderContract.Presenter {
                 });
     }
 
-    @Override
-    void getAllianceOrders(String merchant_id, String status) {
-        CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getAllianceOrders(merchant_id, status, "0", "1", QueryMapBuilder.getIns().buildGet())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseSubscriber<BaseResponse<OrderInfoListEntity>>() {
-                    @Override
-                    public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
-                        if (userInfoBaseResponse.data.list.size() > 0)
-                            lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
-                        if (isAttach()) mView.getSuccess(userInfoBaseResponse.data);
-                    }
-
-                    @Override
-                    protected void onFail(ApiException e) {
-                        if (isAttach()) mView.showError(e.getDisplayMessage(), e.getCode());
-                    }
-                });
-    }
 
     @Override
     void loadMore(String merchant_id, String status) {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getOrders(QueryMapBuilder.getIns().put("merchant_id", merchant_id).put("status", status).put("start_id", lastId).put("flag", "2").put("size","10").buildGet())
+                .getOrders(QueryMapBuilder.getIns().put("worker_id", merchant_id).put("status", status).put("start_id", lastId).put("flag", "2").put("size", "10").buildGet())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<OrderInfoListEntity>>() {
                     @Override
                     public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
                         if (userInfoBaseResponse.data.list.size() > 0)
-                            lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
+                            lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).order_id;
                         if (isAttach()) mView.getMore(userInfoBaseResponse.data);
                     }
 
                     @Override
                     protected void onFail(ApiException e) {
-                        if (isAttach())mView.loadMoreError(e.getCode());
+                        if (isAttach()) mView.loadMoreError(e.getCode());
                     }
                 });
     }
-
-    @Override
-    void loadAllianceMore(String merchant_id, String status) {
-        CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-                .getAllianceOrders(merchant_id, status, lastId, "2", QueryMapBuilder.getIns().buildGet())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseSubscriber<BaseResponse<OrderInfoListEntity>>() {
-                    @Override
-                    public void onSuccess(BaseResponse<OrderInfoListEntity> userInfoBaseResponse) {
-                        if (userInfoBaseResponse.data.list.size() > 0)
-                            lastId = userInfoBaseResponse.data.list.get(userInfoBaseResponse.data.list.size() - 1).id;
-                        if (isAttach()) mView.getMore(userInfoBaseResponse.data);
-                    }
-
-                    @Override
-                    protected void onFail(ApiException e) {
-                        if (isAttach())mView.loadMoreError(e.getCode());
-                    }
-                });
-    }
-
 
 }

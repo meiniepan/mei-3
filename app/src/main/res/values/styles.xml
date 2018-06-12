@@ -22,7 +22,10 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
-
+    <style name="bottom_dialog" parent="@style/sheet_dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
+    </style>
     <style name="AppSplash" parent="AppTheme">
         <!--<item name="android:windowBackground">@mipmap/app_start</item>-->
         <item name="android:windowNoTitle">true</item>
