@@ -40,14 +40,23 @@ public class MyOrderFragment extends BaseFragment {
     }
 
     private void initView() {
+        //防止Activity被回收后Fragment状态不正确
+        Bundle bundle1 = new Bundle();
+        bundle1.putInt("h", 1);
+        Bundle bundle2 = new Bundle();
+        bundle2.putInt("h", 2);
+        Bundle bundle3 = new Bundle();
+        bundle3.putInt("h", 3);
+        Bundle bundle4 = new Bundle();
+        bundle4.putInt("h", 4);
         fragment1 = new OrderStatusFragment();
-        fragment1.setOrderState(1);
+        fragment1.setArguments(bundle1);
         fragment2 = new OrderStatusFragment();
-        fragment2.setOrderState(2);
+        fragment2.setArguments(bundle2);
         fragment3 = new OrderStatusFragment();
-        fragment3.setOrderState(3);
+        fragment3.setArguments(bundle3);
         fragment4 = new OrderStatusFragment();
-        fragment4.setOrderState(4);
+        fragment4.setArguments(bundle4);
         mViewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             //此方法用来显示tab上的名字
             @Override
