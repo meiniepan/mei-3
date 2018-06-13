@@ -40,12 +40,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.ContractDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.activity.ServiceProviderDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.login.CaptchaInputActivity"
             android:screenOrientation="portrait" />
         <activity
