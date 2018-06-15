@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.gs.buluo.common.widget.recyclerHelper.RefreshRecyclerView;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
@@ -14,7 +15,6 @@ import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.util.MyRecyclerViewScrollListener;
 import com.wuyou.worker.view.fragment.BaseFragment;
-import com.wuyou.worker.view.widget.recyclerHelper.NewRefreshRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,7 +31,7 @@ import butterknife.BindView;
 
 public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderContract.Presenter> implements OrderContract.View {
     @BindView(R.id.rv_orders)
-    NewRefreshRecyclerView recyclerView;
+    RefreshRecyclerView recyclerView;
     @BindView(R.id.rl_to_top)
     View toTop;
     OrderStatusAdapter adapter;
@@ -50,6 +50,10 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        recyclerView.getStatusLayout().setErrorAction(v -> {
+            recyclerView.showProgressView();
+            fetchDatas();
+        });
         if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
         final MyRecyclerViewScrollListener scrollListener = new MyRecyclerViewScrollListener(getActivity(), toTop);
 
@@ -76,12 +80,14 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
 
     @Override
     public void showError(String message, int res) {
+        recyclerView.getRefreshLayout().setEnabled(false);
         recyclerView.setRefreshFinished();
         recyclerView.showErrorView(message);
     }
 
     @Override
     public void getSuccess(OrderInfoListEntity data) {
+        recyclerView.getRefreshLayout().setEnabled(true);
         recyclerView.setRefreshFinished();
         adapter.setNewData(data.list);
         recyclerView.showContentView();

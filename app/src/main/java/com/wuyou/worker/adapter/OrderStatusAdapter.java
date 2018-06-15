@@ -10,6 +10,8 @@ import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.ToastUtils;
 import com.gs.buluo.common.utils.TribeDateUtils;
+import com.gs.buluo.common.widget.recyclerHelper.BaseHolder;
+import com.gs.buluo.common.widget.recyclerHelper.BaseQuickAdapter;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
@@ -19,12 +21,8 @@ import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
 import com.wuyou.worker.util.MyRecyclerViewScrollListener;
 import com.wuyou.worker.view.activity.FinishOrderActivity;
-import com.wuyou.worker.view.widget.recyclerHelper.BaseHolder;
-import com.wuyou.worker.view.widget.recyclerHelper.BaseQuickAdapter;
-
 import java.util.Date;
 import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 

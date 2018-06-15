@@ -23,7 +23,7 @@
             android:src="@mipmap/icon_top" />
     </RelativeLayout>
 
-    <com.wuyou.worker.view.widget.recyclerHelper.NewRefreshRecyclerView
+    <com.gs.buluo.common.widget.recyclerHelper.RefreshRecyclerView
         android:id="@+id/rv_orders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

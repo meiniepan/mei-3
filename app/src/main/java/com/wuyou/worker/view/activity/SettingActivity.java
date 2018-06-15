@@ -13,6 +13,7 @@ import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.DataCleanManager;
+import com.gs.buluo.common.utils.ToastUtils;
 import com.gs.buluo.common.widget.CustomAlertDialog;
 import com.tencent.bugly.beta.Beta;
 import com.wuyou.worker.CarefreeDaoSession;
@@ -21,6 +22,7 @@ import com.wuyou.worker.R;
 import com.wuyou.worker.mvp.login.LoginActivity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.UserApis;
+import com.wuyou.worker.util.NetTool;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -72,6 +74,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.setting_about_us:
+                if (!NetTool.isConnected(getCtx())) {
+                    ToastUtils.ToastMessage(getCtx(), R.string.no_network);
+                    return;
+                }
                 intent.setClass(getCtx(), WebActivity.class);
                 intent.putExtra(Constant.WEB_URL, Constant.ABOUT_US_URL);
                 startActivity(intent);
