@@ -9,14 +9,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewStub;
 import android.view.Window;
 import android.view.WindowManager;
-
+import android.widget.TextView;
 import com.gs.buluo.common.utils.AppManager;
 import com.gs.buluo.common.utils.SystemBarTintManager;
 import com.gs.buluo.common.widget.LoadingDialog;
+import com.gs.buluo.common.widget.StatusLayout;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.R;
 import com.wuyou.worker.mvp.BasePresenter;
@@ -45,21 +46,68 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         init();
         AppManager.getAppManager().addActivity(this);
         setExplode();//new Slide()  new Fade()
-        mRoot = createView();
-        setContentView(mRoot);
-        View view = mRoot.findViewById(R.id.back);
-        if (view != null) {
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onBackPressed();
-                }
-            });
-        }
+        initContentView(R.layout.layout_base_activity);
+
         mToolbar = findViewById(getToolBarId());
         setSupportActionBar(mToolbar);
         bindView(savedInstanceState);
         initSystemBar(this);
+    }
+
+    private void initContentView(int layout_base_activity) {
+        setContentView(layout_base_activity);
+        findViewById(R.id.back_base).setOnClickListener(v -> onBackPressed());
+
+        createView();
+
+    }
+
+    protected void setTitleVisiable(int type) {
+        findViewById(R.id.id_title).setVisibility(type);
+    }
+
+    protected void setTitleText(String title) {
+        findViewById(R.id.id_title).setVisibility(View.VISIBLE);
+        ((TextView) findViewById(R.id.tv_title)).setText(title);
+    }
+    protected void setTitleIcon(int resId, View.OnClickListener listener) {
+        findViewById(R.id.iv_title_icon).setVisibility(View.VISIBLE);
+        findViewById(R.id.iv_title_icon).setBackgroundResource(resId);
+        findViewById(R.id.iv_title_icon).setOnClickListener(listener);
+    }
+
+    protected void setTitleText(int titleId) {
+        findViewById(R.id.id_title).setVisibility(View.VISIBLE);
+        ((TextView) findViewById(R.id.tv_title)).setText(titleId);
+    }
+
+    protected void setBackVisiable(int type) {
+        findViewById(R.id.back).setVisibility(type);
+    }
+
+    public StatusLayout baseStatusLayout;
+
+    protected void showErrMessage(String message) {
+        baseStatusLayout.showErrorView(message);
+    }
+
+    protected void showErrMessage(int msgId) {
+        baseStatusLayout.showErrorView(getString(msgId));
+    }
+
+    protected void showErrMessage() {
+        baseStatusLayout.showErrorView(null);
+    }
+
+    private void createView() {
+        baseStatusLayout = findViewById(R.id.id_status);
+        ViewStub viewStub = findViewById(R.id.id_stub);
+        viewStub.setLayoutResource(getContentLayout());
+        mRoot = viewStub.inflate();
+        View back = mRoot.findViewById(R.id.back);
+        if (back != null)
+            back.setOnClickListener(v -> onBackPressed());
+        ButterKnife.bind(this);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -72,12 +120,6 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
 
     protected void init() {
 
-    }
-
-    private View createView() {
-        View view = LayoutInflater.from(this).inflate(getContentLayout(), null);
-        ButterKnife.bind(this, view);
-        return view;
     }
 
     @Override
@@ -178,7 +220,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
 
     @Override
     public void showError(String message, int res) {
-
+        showErrMessage(message);
     }
 
     public int getToolBarId() {

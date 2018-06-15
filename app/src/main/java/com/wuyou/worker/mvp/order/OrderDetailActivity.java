@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gs.buluo.common.network.ApiException;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
@@ -95,35 +96,39 @@ public class OrderDetailActivity extends BaseActivity {
     private OrderInfoEntity infoEntity;
 
     @Override
+    protected int getContentLayout() {
+        return R.layout.activity_order_detail;
+    }
+
+    @Override
     protected void bindView(Bundle savedInstanceState) {
+        setTitleText(R.string.order_detail);
+        baseStatusLayout.setErrorAction(
+                v -> getOrderDetail(orderId)
+        );
         if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
         orderId = getIntent().getStringExtra(Constant.ORDER_ID);
-        showLoadingDialog();
         getOrderDetail(orderId);
     }
 
+
     private void getOrderDetail(String orderId) {
+        baseStatusLayout.showProgressView();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
                 .getOrdersDetail(orderId, QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).buildGet())
                 .compose(RxUtil.switchSchedulers())
                 .subscribe(new BaseSubscriber<BaseResponse<OrderInfoEntity>>() {
                     @Override
                     public void onSuccess(BaseResponse<OrderInfoEntity> orderInfoEntityBaseResponse) {
+                        baseStatusLayout.showContentView();
                         setData(orderInfoEntityBaseResponse.data);
                     }
+
+                    @Override
+                    protected void onFail(ApiException e) {
+                        showErrMessage(e.getDisplayMessage());
+                    }
                 });
-    }
-
-
-    @Override
-    protected int getContentLayout() {
-        return R.layout.activity_order_detail;
-    }
-
-
-    @Override
-    public void showError(String message, int res) {
-        ToastUtils.ToastMessage(getCtx(), R.string.connect_fail);
     }
 
     public void setData(OrderInfoEntity data) {

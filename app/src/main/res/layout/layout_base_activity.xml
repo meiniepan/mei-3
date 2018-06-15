@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/tint_bg"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+    <RelativeLayout
+        android:id="@+id/id_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:visibility="gone"
+        android:background="@color/main_blue">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <include
+            android:id="@+id/back_base"
+            layout="@layout/back_white" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_title_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="12dp"
+            android:background="@mipmap/ic_launcher" />
+    </RelativeLayout>
+    <com.gs.buluo.common.widget.StatusLayout
+        android:id="@+id/id_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyDrawable="@mipmap/empty_order"
+        app:errorDrawable="@mipmap/net_error" >
+        <ViewStub
+            android:id="@+id/id_stub"
+            android:inflatedId="@+id/stub_content"
+            android:layout="@layout/back_black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.gs.buluo.common.widget.StatusLayout>
+</LinearLayout>

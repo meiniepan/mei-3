@@ -3,6 +3,9 @@ package com.wuyou.worker.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.R;
@@ -12,16 +15,22 @@ import com.wuyou.worker.mvp.login.LoginActivity;
  * Created by Administrator on 2018\1\29 0029.
  */
 
-public class AppStartActivity extends BaseActivity {
+public class AppStartActivity extends AppCompatActivity {
     @Override
-    protected void bindView(Bundle savedInstanceState) {
-        setBarColor(R.color.transparent);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_start);
+        init();
+    }
+
+    private void init() {
         new Handler().postDelayed(() -> {
             if (CarefreeApplication.getInstance().getUserInfo() != null) {
-                startActivity(new Intent(getCtx(), MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 finish();
             } else {
-                Intent view = new Intent(getCtx(), LoginActivity.class);
+                Intent view = new Intent(this, LoginActivity.class);
                 startActivity(view);
                 finish();
             }
@@ -29,8 +38,6 @@ public class AppStartActivity extends BaseActivity {
         }, 1000);
     }
 
-    @Override
-    protected int getContentLayout() {
-        return R.layout.activity_start;
-    }
+
+
 }
