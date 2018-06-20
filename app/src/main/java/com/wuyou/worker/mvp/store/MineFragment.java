@@ -10,6 +10,7 @@ import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.ToastUtils;
+import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.UserInfo;
@@ -62,35 +63,10 @@ public class MineFragment extends BaseFragment {
     }
 
     private void getBalanceAndInfo() {
-        CarefreeRetrofit.getInstance().createApi(UserApis.class)
-                .getUserInfo(CarefreeDaoSession.getInstance().getUserId(), QueryMapBuilder.getIns().buildGet())
-                .subscribeOn(Schedulers.io())
-                .doOnNext(userInfoBaseResponse -> {
-                    UserInfo newUserInfo = userInfoBaseResponse.data;
-                    UserInfo userInfo = CarefreeDaoSession.getInstance().getUserInfo();
-                    newUserInfo.setMid(userInfo.getMid());
-                    newUserInfo.setToken(userInfo.getToken());
-                    CarefreeDaoSession.getInstance().updateUserInfo(newUserInfo);
-                })
-                .compose(RxUtil.switchSchedulers())
-                .subscribe(new BaseSubscriber<BaseResponse<UserInfo>>() {
-                    @Override
-                    public void onSuccess(BaseResponse<UserInfo> userInfoBaseResponse) {
-                        UserInfo data = userInfoBaseResponse.data;
-                        minePhone.setText(data.getMobile());
-                        mineName.setText(data.getWorker_name());
-                        GlideUtils.loadImage(getContext(), CarefreeDaoSession.getAvatar(data), imageView, true);
-                    }
-                });
-        CarefreeRetrofit.getInstance().createApi(MoneyApis.class).getWalletAccount(CarefreeDaoSession.getInstance().getUserId(), QueryMapBuilder.getIns().buildGet())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseSubscriber<BaseResponse<WalletInfoEntity>>() {
-                    @Override
-                    public void onSuccess(BaseResponse<WalletInfoEntity> response) {
-                        mineTotal.setText(CommonUtil.formatPrice(response.data.balance));
-                    }
-                });
+        GlideUtils.loadImage(getContext(), CarefreeDaoSession.getInstance().getUserInfo().getAvatar(), imageView, true);
+        mineName.setText(CarefreeDaoSession.getInstance().getUserInfo().getName());
+        minePhone.setText(CommonUtil.getPhoneWithStar(CarefreeDaoSession.getInstance().getUserInfo().getMobile()));
+        mineTotal.setText(CommonUtil.formatPrice(Float.valueOf(CarefreeDaoSession.getInstance().getUserInfo().getAmount())));
     }
 
     @Override

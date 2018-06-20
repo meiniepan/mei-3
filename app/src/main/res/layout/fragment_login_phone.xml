@@ -36,6 +36,7 @@
                 android:drawablePadding="6dp"
                 android:hint="@string/edit_phone"
                 android:inputType="phone"
+                android:maxLength="11"
                 android:paddingStart="6dp"
                 android:textSize="@dimen/dimens_14sp" />
 
