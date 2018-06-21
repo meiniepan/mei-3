@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="14dp"
                     android:layout_marginEnd="20dp"
                     android:text="1" />
 
@@ -145,6 +145,13 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/text_x"
                     android:text="数量" />
+                <TextView
+                    android:id="@+id/order_detail_specification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/order_detail_goods_number"
+                    android:layout_alignStart="@+id/order_detail_serve_name"
+                    tool:text="服务规格"/>
             </RelativeLayout>
 
             <include layout="@layout/split_line_margin" />
