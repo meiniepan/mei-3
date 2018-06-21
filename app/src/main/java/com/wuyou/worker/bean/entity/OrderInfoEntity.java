@@ -26,7 +26,7 @@ public class OrderInfoEntity implements Parcelable {
     public String pay_status;
     public long dispatched_at;
     public int is_finished;
-    public String number;
+    public int number;
     public float total_amount;
     public float amount;
     public float second_payment;
@@ -38,6 +38,7 @@ public class OrderInfoEntity implements Parcelable {
     public long pay_time;
     public long dispatch_at;
     public int service_time_is_changed;
+    public ServeSpecificationEntity specification;
 
     public OrderInfoEntity() {
     }
@@ -67,7 +68,7 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeString(this.pay_status);
         dest.writeLong(this.dispatched_at);
         dest.writeInt(this.is_finished);
-        dest.writeString(this.number);
+        dest.writeInt(this.number);
         dest.writeFloat(this.total_amount);
         dest.writeFloat(this.amount);
         dest.writeFloat(this.second_payment);
@@ -79,6 +80,7 @@ public class OrderInfoEntity implements Parcelable {
         dest.writeLong(this.pay_time);
         dest.writeLong(this.dispatch_at);
         dest.writeInt(this.service_time_is_changed);
+        dest.writeParcelable(this.specification, flags);
     }
 
     protected OrderInfoEntity(Parcel in) {
@@ -100,7 +102,7 @@ public class OrderInfoEntity implements Parcelable {
         this.pay_status = in.readString();
         this.dispatched_at = in.readLong();
         this.is_finished = in.readInt();
-        this.number = in.readString();
+        this.number = in.readInt();
         this.total_amount = in.readFloat();
         this.amount = in.readFloat();
         this.second_payment = in.readFloat();
@@ -112,6 +114,7 @@ public class OrderInfoEntity implements Parcelable {
         this.pay_time = in.readLong();
         this.dispatch_at = in.readLong();
         this.service_time_is_changed = in.readInt();
+        this.specification = in.readParcelable(ServeSpecificationEntity.class.getClassLoader());
     }
 
     public static final Creator<OrderInfoEntity> CREATOR = new Creator<OrderInfoEntity>() {

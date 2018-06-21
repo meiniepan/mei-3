@@ -11,7 +11,6 @@ import com.gs.buluo.common.network.ApiException;
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
 import com.gs.buluo.common.network.QueryMapBuilder;
-import com.gs.buluo.common.utils.ToastUtils;
 import com.gs.buluo.common.utils.TribeDateUtils;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
@@ -82,6 +81,8 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDetailOtherFee;
     @BindView(R.id.order_detail_amount)
     TextView orderDetailAmount;
+    @BindView(R.id.order_detail_specification)
+    TextView orderDetailSpec;
     @BindView(R.id.order_detail_delivery_time)
     TextView orderDeliveryTime;
     @BindView(R.id.order_detail_change)
@@ -148,7 +149,14 @@ public class OrderDetailActivity extends BaseActivity {
         orderDetailSecondPayment.setText(CommonUtil.formatPrice(data.second_payment));
         orderDetailGoodsNumber.setText(data.number + "");
         orderDetailOtherFee.setText(CommonUtil.formatPrice(data.service.visiting_fee));
-        orderDetailFee.setText(CommonUtil.formatPrice(data.service.price));
+        float price;
+        if (data.specification != null && data.specification.id != null) {
+            price = data.specification.price * data.number;
+            orderDetailSpec.setText(data.specification.name);
+        } else {
+            price = data.service.price * data.number;
+        }
+        orderDetailFee.setText(CommonUtil.formatPrice(price));
         orderDetailAmount.setText(CommonUtil.formatPrice(data.amount));
         orderDetailName.setText(data.address.name);
         orderDetailAddress.setText(String.format("%s%s%s%s", data.address.city, data.address.district, data.address.area, data.address.address));
@@ -211,7 +219,8 @@ public class OrderDetailActivity extends BaseActivity {
             bottomView.setVisibility(View.VISIBLE);
             orderDetailGo.setVisibility(View.VISIBLE);
             orderDetailFinish.setVisibility(View.GONE);
-            if (beanDetail.service_time_is_changed == 0) orderDetailChange.setVisibility(View.VISIBLE);
+            if (beanDetail.service_time_is_changed == 0)
+                orderDetailChange.setVisibility(View.VISIBLE);
         } else {
             bottomView.setVisibility(View.GONE);
             orderDetailChange.setVisibility(View.GONE);
