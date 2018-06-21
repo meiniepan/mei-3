@@ -19,11 +19,6 @@
             android:text="@string/main_order"
             android:textColor="@color/white"
             android:textSize="@dimen/title_size" />
-        <View
-            android:id="@+id/back_door"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
     <LinearLayout

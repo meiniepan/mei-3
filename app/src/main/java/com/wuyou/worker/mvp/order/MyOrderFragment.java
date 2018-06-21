@@ -36,7 +36,6 @@ public class MyOrderFragment extends BaseFragment {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         initView();
-        getActivity().findViewById(R.id.back_door).setOnClickListener(v -> showChangeEnvironment());
     }
 
     private void initView() {
@@ -97,24 +96,5 @@ public class MyOrderFragment extends BaseFragment {
     @Override
     public void loadData() {
         mViewPager.setCurrentItem(0);
-        clickTime = 0;
-        firstTime = 0;
-    }
-
-    private int clickTime = 0;
-    private long firstTime = 0;
-
-    private void showChangeEnvironment() {
-        if (clickTime == 0) {
-            firstTime = System.currentTimeMillis();
-        }
-        clickTime++;
-        if (clickTime == 5) {
-            long nowTime = System.currentTimeMillis();
-            if (nowTime - firstTime <= 2000) {
-                EnvironmentChoosePanel choosePanel = new EnvironmentChoosePanel(getContext());
-                choosePanel.show();
-            }
-        }
     }
 }

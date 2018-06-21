@@ -13,6 +13,7 @@ import com.wuyou.worker.util.CounterDisposableObserver;
 import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
 import com.wuyou.worker.view.activity.MainActivity;
+import com.wuyou.worker.view.widget.panel.EnvironmentChoosePanel;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -46,6 +47,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     @Override
     protected void bindView(Bundle savedInstanceState) {
         setBarColor(R.color.tint_bg);
+        findViewById(R.id.back_door).setOnClickListener(v -> showChangeEnvironment());
     }
 
     @Override
@@ -94,5 +96,19 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         }
 
     }
-
+    private int clickTime = 0;
+    private long firstTime = 0;
+    private void showChangeEnvironment() {
+        if (clickTime == 0) {
+            firstTime = System.currentTimeMillis();
+        }
+        clickTime++;
+        if (clickTime == 5) {
+            long nowTime = System.currentTimeMillis();
+            if (nowTime - firstTime <= 2000) {
+                EnvironmentChoosePanel choosePanel = new EnvironmentChoosePanel(this);
+                choosePanel.show();
+            }
+        }
+    }
 }
