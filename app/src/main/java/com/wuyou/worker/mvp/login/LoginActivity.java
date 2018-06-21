@@ -55,7 +55,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         Intent view = new Intent(this, MainActivity.class);
         startActivity(view);
         finish();
-        ToastUtils.ToastMessage(getCtx(),R.string.login_success);
+        ToastUtils.ToastMessage(getCtx(), R.string.login_success);
     }
 
     @Override
@@ -96,8 +96,10 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         }
 
     }
+
     private int clickTime = 0;
     private long firstTime = 0;
+
     private void showChangeEnvironment() {
         if (clickTime == 0) {
             firstTime = System.currentTimeMillis();
@@ -108,6 +110,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
             if (nowTime - firstTime <= 2000) {
                 EnvironmentChoosePanel choosePanel = new EnvironmentChoosePanel(this);
                 choosePanel.show();
+                clickTime = 0;
+                firstTime = 0;
             }
         }
     }
