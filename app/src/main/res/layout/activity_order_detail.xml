@@ -150,8 +150,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/order_detail_goods_number"
-                    android:layout_alignStart="@+id/order_detail_serve_name"
+                    android:layout_toEndOf="@+id/textView5"
                     tool:text="服务规格"/>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="规格: "
+                    android:layout_alignTop="@+id/order_detail_goods_number"
+                    android:layout_alignStart="@+id/order_detail_serve_name"/>
             </RelativeLayout>
 
             <include layout="@layout/split_line_margin" />
