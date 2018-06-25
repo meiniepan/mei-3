@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 
 import com.wuyou.worker.R;
 import com.wuyou.worker.view.fragment.BaseFragment;
-import com.wuyou.worker.view.widget.panel.EnvironmentChoosePanel;
 
 import butterknife.BindView;
 

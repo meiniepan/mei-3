@@ -31,7 +31,7 @@
             android:id="@+id/tl_tab"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_weight=".7"
+            android:layout_weight=".9"
             app:tabIndicatorColor="@color/main_blue"
             app:tabSelectedTextColor="@color/main_blue"
             app:tabTextColor="#000" />
