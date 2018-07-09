@@ -1,31 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/split_line" />
+
     <com.gs.buluo.common.widget.StatusLayout
         android:id="@+id/sl_extra_choose_service"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        app:emptyDrawable="@mipmap/status_empty_service"
+        app:errorDrawable="@mipmap/net_error"
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            >
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_extra_choose_service_l"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_extra_choose_service_r"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_extra_choose_service_l"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/divide_gray" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_extra_choose_service_r"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:background="@color/main_blue"
+                android:gravity="center_vertical"
+                android:paddingEnd="@dimen/common_margin"
+                android:paddingStart="@dimen/common_margin">
+
+                <TextView
+                    android:id="@+id/tv_extra_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合计:"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimens_10sp" />
+
+                <TextView
+                    android:id="@+id/tv_extra_sum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_text_margin"
+                    android:layout_weight="1"
+                    android:text="¥ 250.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimens_12sp" />
+
+                <TextView
+                    android:id="@+id/tv_extra_settle"
+                    android:layout_width="66dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/orange_round_bac"
+                    android:gravity="center"
+                    android:text="去结算"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimens_10sp" />
+            </LinearLayout>
         </LinearLayout>
     </com.gs.buluo.common.widget.StatusLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/common_height"></LinearLayout>
+
+
 </LinearLayout>
