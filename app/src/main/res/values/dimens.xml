@@ -31,5 +31,6 @@
     <dimen name="dimens_8sp">8dp</dimen>
     <dimen name="dimens_27sp">27dp</dimen>
     <dimen name="dimens_10sp">10dp</dimen>
+    <dimen name="dimens_15sp">15dp</dimen>
     <dimen name="dimens_14sp">14dp</dimen>
 </resources>

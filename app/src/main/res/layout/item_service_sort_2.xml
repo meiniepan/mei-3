@@ -2,46 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingEnd="6dp"
-    android:paddingStart="6dp">
+    android:background="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="93dp"
+        android:paddingEnd="9dp"
+        android:paddingStart="9dp"
         android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/iv_service"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@mipmap/default_pic" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/default_pic" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="6dp">
+            android:paddingStart="9dp">
 
             <TextView
+                android:id="@+id/name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dimens_10sp"
+                android:textSize="@dimen/dimens_15sp"
                 tool:text="sdsd" />
 
             <LinearLayout
                 android:id="@+id/ll_title_control"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="18dp">
 
                 <TextView
                     android:id="@+id/tv_service_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/dimens_10sp" />
+                    android:textSize="@dimen/dimens_15sp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -49,41 +53,44 @@
                     android:layout_weight="1"
                     android:text="/次"
                     android:textColor="@color/common_gray"
-                    android:textSize="@dimen/dimens_10sp" />
+                    android:textSize="@dimen/dimens_15sp" />
 
                 <TextView
                     android:id="@+id/tv_service_reduce"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
                     android:background="@drawable/gray_line_circle_bac"
                     android:gravity="center"
-                    android:text="-"
+                    android:text="－"
                     android:textColor="@color/common_gray"
-                    android:textSize="@dimen/dimens_10sp" />
+                    android:textSize="@dimen/dimens_15sp" />
 
                 <TextView
                     android:id="@+id/tv_service_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/text_margin" />
+                    android:layout_marginStart="@dimen/dimens_15sp" />
 
                 <TextView
                     android:id="@+id/tv_service_add"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:layout_marginStart="@dimen/text_margin"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="@dimen/dimens_15sp"
                     android:background="@drawable/blue_circle_bac"
                     android:gravity="center"
-                    android:text="+"
+                    android:text="＋"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimens_10sp" />
+                    android:textSize="@dimen/dimens_15sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_spec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingEnd="9dp"
+        android:paddingStart="9dp"
         android:orientation="vertical">
 
         <include layout="@layout/split_line" />
@@ -92,7 +99,8 @@
             android:id="@+id/rv_service_sub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="18dp" />
     </LinearLayout>
 
+    <include layout="@layout/split_area" />
 </LinearLayout>

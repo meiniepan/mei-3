@@ -5,8 +5,6 @@ package com.wuyou.worker.bean.entity;
  */
 
 public class ServiceSortEntity {
-    public String client_id;
-    public Double lng;
-    public Double lat;
-    public String client;
+    public String category_id;
+    public String category_name;
 }

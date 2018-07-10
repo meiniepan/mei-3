@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="12dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="18dp"
     android:orientation="horizontal"
     android:weightSum="1">
 
@@ -13,14 +13,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.4"
-        android:textSize="@dimen/dimens_10sp" />
+        android:textSize="@dimen/dimens_15sp" />
 
     <TextView
         android:id="@+id/tv_service_sub_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/red"
-        android:textSize="@dimen/dimens_10sp" />
+        android:textSize="@dimen/dimens_15sp" />
 
     <TextView
         android:layout_width="0dp"
@@ -28,33 +28,33 @@
         android:layout_weight="0.6"
         android:text="/次"
         android:textColor="@color/common_gray"
-        android:textSize="@dimen/dimens_10sp" />
+        android:textSize="@dimen/dimens_15sp" />
 
     <TextView
         android:id="@+id/tv_service_sub_reduce"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
         android:background="@drawable/gray_line_circle_bac"
         android:gravity="center"
-        android:text="-"
+        android:text="－"
         android:textColor="@color/common_gray"
-        android:textSize="@dimen/dimens_10sp" />
+        android:textSize="@dimen/dimens_15sp" />
 
     <TextView
         android:id="@+id/tv_service_sub_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_margin" />
+        android:layout_marginStart="@dimen/dimens_15sp" />
 
     <TextView
         android:id="@+id/tv_service_sub_add"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
-        android:layout_marginStart="@dimen/text_margin"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="@dimen/dimens_15sp"
         android:background="@drawable/blue_circle_bac"
         android:gravity="center"
-        android:text="+"
+        android:text="＋"
         android:textColor="@color/white"
-        android:textSize="@dimen/dimens_10sp" />
+        android:textSize="@dimen/dimens_15sp" />
 
 </LinearLayout>

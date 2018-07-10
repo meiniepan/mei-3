@@ -126,6 +126,10 @@
         <activity
             android:name=".mvp.order.ExtraChooseServiceConfirmActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".mvp.order.ProceedsQrActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.order.PayDoneActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

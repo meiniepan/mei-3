@@ -5,11 +5,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.ChooseService2Adapter;
 import com.wuyou.worker.adapter.ChooseServiceConfirmAdapter;
+import com.wuyou.worker.bean.entity.ChosenServiceEntity;
 import com.wuyou.worker.bean.entity.ServiceSort2Entity;
 import com.wuyou.worker.bean.entity.ServiceSortConfirmEntity;
+import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
 
 import java.util.ArrayList;
@@ -26,7 +29,8 @@ import butterknife.OnClick;
 public class ExtraChooseServiceConfirmActivity extends BaseActivity {
 
     ChooseServiceConfirmAdapter adapter;
-    List<ServiceSortConfirmEntity> data = new ArrayList();
+    Float total;
+    ArrayList<ChosenServiceEntity> data;
     @BindView(R.id.tv_service_confirm_num)
     TextView tvServiceConfirmNum;
     @BindView(R.id.rv_service_confirm)
@@ -39,6 +43,7 @@ public class ExtraChooseServiceConfirmActivity extends BaseActivity {
 
 
     private void initRv() {
+        data = getIntent().getParcelableArrayListExtra(Constant.CHOSEN_SERVICE);
         adapter = new ChooseServiceConfirmAdapter(R.layout.item_service_confirm, data);
         rvServiceConfirm.setLayoutManager(new LinearLayoutManager(this));
         rvServiceConfirm.setAdapter(adapter);
@@ -47,6 +52,8 @@ public class ExtraChooseServiceConfirmActivity extends BaseActivity {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         setTitleText("结算确认");
+        total = getIntent().getFloatExtra(Constant.CHOSEN_SERVICE_TOTAL,0F);
+        tvServiceConfirmNum.setText(CommonUtil.formatPrice(total));
         initRv();
     }
 

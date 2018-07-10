@@ -120,6 +120,7 @@
         android:textSize="12sp" />
 
     <Button
+        android:id="@+id/btn_confirm_1"
         style="@style/button_style"
         android:layout_marginTop="100dp"
         android:onClick="finishOrder"

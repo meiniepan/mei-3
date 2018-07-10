@@ -41,6 +41,7 @@ public class ChooseServiceAdapter extends BaseQuickAdapter<ServiceSortEntity, Ba
 
     @Override
     protected void convert(BaseHolder helper, ServiceSortEntity item) {
+        helper.setText(R.id.tv_service_sort,item.category_name);
 //        String dispatch = TribeDateUtils.dateFormat(new Date(item.dispatched_at * 1000));
 //        helper.setText(R.id.order_status_state, getStatusText(item.status))
 

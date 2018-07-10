@@ -51,7 +51,7 @@
             android:id="@+id/phone_update_send"
             android:layout_width="80dp"
             android:layout_height="30dp"
-            android:background="@drawable/night_blue_border"
+            android:background="@drawable/blue_border"
             android:gravity="center"
             android:onClick="sendCaptchaToUpdate"
             android:textSize="@dimen/dimens_12sp"

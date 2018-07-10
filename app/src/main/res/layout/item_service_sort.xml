@@ -6,8 +6,10 @@
 
     <TextView
         android:id="@+id/tv_service_sort"
-        android:layout_width="50dp"
-        android:layout_height="36dp" />
+        android:textSize="@dimen/dimens_15sp"
+        android:gravity="center"
+        android:layout_width="75dp"
+        android:layout_height="54dp" />
 
     <include layout="@layout/split_line" />
 </LinearLayout>
