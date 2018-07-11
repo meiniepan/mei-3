@@ -1,10 +1,7 @@
 package com.wuyou.worker.adapter;
 
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gs.buluo.common.utils.ToastUtils;
@@ -42,7 +39,8 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
         TextView num = helper.getView(R.id.tv_service_sub_num);
         TextView add = helper.getView(R.id.tv_service_sub_add);
         if (item.number > 0) {
-            showReduce(num, reduce);
+            showReduce(num, reduce,item.number);
+
         } else {
             hideReduce(num, reduce);
         }
@@ -52,7 +50,7 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
                 return;
             }
             if (item.number == 0) {
-                showReduce(num, reduce);
+                showReduce(num, reduce, item.number);
             }
             item.number = item.number + 1;
             num.setText(item.number + "");
@@ -89,9 +87,10 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
         this.addReduceNumListener = listener;
     }
 
-    private void showReduce(TextView num, TextView reduce) {
+    private void showReduce(TextView num, TextView reduce, int number) {
         num.setVisibility(View.VISIBLE);
         reduce.setVisibility(View.VISIBLE);
+        num.setText(number+"");
     }
 
     private void hideReduce(TextView num, TextView reduce) {

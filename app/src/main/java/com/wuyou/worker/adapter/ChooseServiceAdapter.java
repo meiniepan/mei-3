@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.BaseSubscriber;
@@ -41,9 +42,15 @@ public class ChooseServiceAdapter extends BaseQuickAdapter<ServiceSortEntity, Ba
 
     @Override
     protected void convert(BaseHolder helper, ServiceSortEntity item) {
-        helper.setText(R.id.tv_service_sort,item.category_name);
-//        String dispatch = TribeDateUtils.dateFormat(new Date(item.dispatched_at * 1000));
-//        helper.setText(R.id.order_status_state, getStatusText(item.status))
+        TextView textView = helper.getView(R.id.tv_service_sort);
+        textView.setText(item.category_name);
+        if (item.click) {
+            textView.setBackgroundColor(mContext.getResources().getColor(R.color.tint_bg));
+            textView.setTextColor(mContext.getResources().getColor(R.color.common_dark));
+        } else {
+            textView.setBackgroundColor(mContext.getResources().getColor(R.color.white));
+            textView.setTextColor(mContext.getResources().getColor(R.color.common_gray));
+        }
 
     }
 

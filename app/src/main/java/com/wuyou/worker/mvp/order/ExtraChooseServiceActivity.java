@@ -1,10 +1,13 @@
 package com.wuyou.worker.mvp.order;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.ArrayMap;
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,6 +37,7 @@ import com.wuyou.worker.view.activity.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +49,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Solang on 2018/7/5.
  */
 
+@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class ExtraChooseServiceActivity extends BaseActivity implements AddReduceNumListener {
     @BindView(R.id.rv_extra_choose_service_l)
     RecyclerView rvExtraChooseServiceL;
@@ -111,12 +116,31 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         adapterLeft.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                for (int j = 0; j < dataLeft.size(); j++) {
+
+                    if (adapterLeft.getItem(j).category_id.equals(adapterLeft.getItem(i).category_id)) {
+                        adapterLeft.getItem(j).click = true;
+                    } else {
+                        adapterLeft.getItem(j).click = false;
+                    }
+                }
+                adapterLeft.notifyDataSetChanged();
                 getSubData(adapterLeft.getItem(i).category_id);
             }
         });
     }
 
+    Map<String, List<ServiceSort2>> cacheData = new ArrayMap<>();
+
     private void getSubData(String category_id) {
+        if (cacheData.containsKey(category_id)) {
+            adapterRight.setNewData(cacheData.get(category_id));
+        } else {
+            getFromNet(category_id);
+        }
+    }
+
+    private void getFromNet(String category_id) {
         statusLayout2.showProgressView();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
                 .getServiceSubSort(CarefreeDaoSession.getInstance().getUserInfo().getWorker_id(), QueryMapBuilder.getIns().put("category_id", category_id).put("start_id", "0").put("flag", "1").buildGet())
@@ -128,7 +152,8 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
                         dataRight = response.data.list;
                         if (dataRight.size() > 0) {
                             statusLayout2.showContentView();
-                            adapterRight.setNewData(dataRight);
+                            cacheData.put(category_id, dataRight);
+                            adapterRight.setNewData(cacheData.get(category_id));
                         } else statusLayout2.showEmptyView();
                     }
 
@@ -137,7 +162,6 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
                         statusLayout2.showErrorView(e.getDisplayMessage());
                     }
                 });
-
     }
 
 
@@ -147,8 +171,6 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         rvExtraChooseServiceR.setLayoutManager(new LinearLayoutManager(this));
         rvExtraChooseServiceR.setAdapter(adapterRight);
     }
-
-
 
 
     private void setOnNoChosen() {
@@ -168,7 +190,7 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
 
     @Override
     public void addNum(ChosenServiceEntity entity) {
-        if (chosenData.size() == 0){
+        if (chosenData.size() == 0) {
             setOnChosen();
             chosenData.add(entity);
             totalSum = totalSum + entity.price;
@@ -178,12 +200,12 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         boolean isHave = false;
         for (ChosenServiceEntity e : chosenData
                 ) {
-            if (entity.id.equals(e.id)&&!TextUtils.isEmpty(entity.subId)) {
-                    if (entity.subId.equals(e.subId)) {
-                        e.number = entity.number;
-                        isHave = true;
+            if (entity.id.equals(e.id) && !TextUtils.isEmpty(entity.subId)) {
+                if (entity.subId.equals(e.subId)) {
+                    e.number = entity.number;
+                    isHave = true;
                 }
-            } else if (entity.id.equals(e.id)&&TextUtils.isEmpty(entity.subId)){
+            } else if (entity.id.equals(e.id) && TextUtils.isEmpty(entity.subId)) {
                 e.number = entity.number;
                 isHave = true;
             }
@@ -195,29 +217,29 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
 
     @Override
     public void reduceNum(ChosenServiceEntity entity) {
-        if (entity.number <= 0){
-           ChosenServiceEntity ee = new ChosenServiceEntity();
+        if (entity.number <= 0) {
+            ChosenServiceEntity ee = new ChosenServiceEntity();
             for (ChosenServiceEntity e : chosenData
                     ) {
-                if (TextUtils.isEmpty(entity.subId)){
+                if (TextUtils.isEmpty(entity.subId)) {
                     if (entity.id == e.id) ee = e;
-                }else {
+                } else {
                     if (entity.id == e.id && entity.subId == e.subId) ee = e;
                 }
             }
             chosenData.remove(ee);
-            if (chosenData.size() == 0){
+            if (chosenData.size() == 0) {
                 setOnNoChosen();
             }
 
-        }else {
+        } else {
             for (ChosenServiceEntity e : chosenData
                     ) {
-                if (entity.id.equals(e.id)&&!TextUtils.isEmpty(entity.subId)) {
+                if (entity.id.equals(e.id) && !TextUtils.isEmpty(entity.subId)) {
                     if (entity.subId.equals(e.subId)) {
                         e.number = entity.number;
                     }
-                } else if (entity.id.equals(e.id)&&TextUtils.isEmpty(entity.subId)){
+                } else if (entity.id.equals(e.id) && TextUtils.isEmpty(entity.subId)) {
                     e.number = entity.number;
                 }
             }
@@ -225,11 +247,12 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         totalSum = totalSum - entity.price;
         tvExtraSum.setText("¥" + CommonUtil.formatPrice(totalSum));
     }
+
     @OnClick(R.id.tv_extra_settle)
     public void onViewClicked() {
-        Intent intent= new Intent(getCtx(), ExtraChooseServiceConfirmActivity.class);
-        intent.putExtra(Constant.CHOSEN_SERVICE_TOTAL,totalSum);
-        intent.putParcelableArrayListExtra(Constant.CHOSEN_SERVICE,chosenData);
+        Intent intent = new Intent(getCtx(), ExtraChooseServiceConfirmActivity.class);
+        intent.putExtra(Constant.CHOSEN_SERVICE_TOTAL, totalSum);
+        intent.putParcelableArrayListExtra(Constant.CHOSEN_SERVICE, chosenData);
         startActivity(intent);
     }
 }

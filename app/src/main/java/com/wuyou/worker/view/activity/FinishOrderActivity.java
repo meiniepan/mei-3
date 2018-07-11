@@ -16,7 +16,6 @@ import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
-import com.wuyou.worker.adapter.ChooseServiceAdapter;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.mvp.order.ExtraChooseServiceActivity;
@@ -47,6 +46,7 @@ public class FinishOrderActivity extends BaseActivity {
     @BindView(R.id.btn_confirm_1)
     Button btnConfirm;
     private OrderInfoEntity infoEntity;
+    private boolean mChecked;
 
     @Override
     protected int getContentLayout() {
@@ -58,7 +58,9 @@ public class FinishOrderActivity extends BaseActivity {
         infoEntity = getIntent().getParcelableExtra(Constant.ORDER_INFO);
         finishOrderAccount.setText(CommonUtil.formatPrice(infoEntity.amount));
         finishOrderExtra.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            mChecked = isChecked;
             if (isChecked) {
+
                 btnConfirm.setText("下一步");
 //                finishOrderFeeArea.setVisibility(View.VISIBLE);
             } else {
@@ -70,25 +72,29 @@ public class FinishOrderActivity extends BaseActivity {
     }
 
     public void finishOrder(View view) {
-        startActivity(new Intent(getCtx(), ExtraChooseServiceActivity.class));
-//        if (finishOrderExtra.isChecked() && finishOrderExtraFee.length() == 0) {
-//            ToastUtils.ToastMessage(getCtx(), "请填写附加金额");
-//            return;
-//        }
-//        showLoadingDialog();
-//        CarefreeRetrofit.getInstance().createApi(OrderApis.class)
-//                .finish(QueryMapBuilder.getIns().put("worker_id", CarefreeApplication.getInstance().getUserInfo().getWorker_id())
-//                        .put("order_id", infoEntity.order_id)
-//                        .put("second_payment", finishOrderExtraFee.getText().toString().trim()).buildPost())
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new BaseSubscriber<BaseResponse>() {
-//                    @Override
-//                    public void onSuccess(BaseResponse response) {
-//                        ToastUtils.ToastMessage(getCtx(), "操作成功！");
-//                        EventBus.getDefault().post(new OrderChangeEvent());
-//                        finish();
-//                    }
-//                });
+        if (mChecked) {
+            startActivity(new Intent(getCtx(), ExtraChooseServiceActivity.class));
+        } else {
+            finishCost();
+        }
+
+    }
+
+    private void finishCost() {
+        showLoadingDialog();
+        CarefreeRetrofit.getInstance().createApi(OrderApis.class)
+                .finish(QueryMapBuilder.getIns().put("worker_id", CarefreeApplication.getInstance().getUserInfo().getWorker_id())
+                        .put("order_id", infoEntity.order_id)
+                        .put("second_payment", finishOrderExtraFee.getText().toString().trim()).buildPost())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<BaseResponse>() {
+                    @Override
+                    public void onSuccess(BaseResponse response) {
+                        ToastUtils.ToastMessage(getCtx(), "操作成功！");
+                        EventBus.getDefault().post(new OrderChangeEvent());
+                        finish();
+                    }
+                });
     }
 }

@@ -13,14 +13,10 @@ import com.gs.buluo.common.widget.recyclerHelper.BaseHolder;
 import com.gs.buluo.common.widget.recyclerHelper.BaseQuickAdapter;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.ChosenServiceEntity;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.ServiceSort2;
-import com.wuyou.worker.bean.entity.ServiceSort2Entity;
 import com.wuyou.worker.mvp.order.AddReduceNumListener;
-import com.wuyou.worker.mvp.order.OrderStatusFragment;
 import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.util.GlideUtils;
-import com.wuyou.worker.util.MyRecyclerViewScrollListener;
 
 import java.util.List;
 
@@ -46,7 +42,8 @@ public class ChooseService2Adapter extends BaseQuickAdapter<ServiceSort2, BaseHo
         GlideUtils.loadRoundCornerImage(mContext, item.photo, avatar);
         helper.setText(R.id.name2, item.title);
         if (item.number > 0) {
-            showReduce(num, reduce);
+            showReduce(num, reduce,item.number);
+
         } else {
             hideReduce(num, reduce);
         }
@@ -60,7 +57,7 @@ public class ChooseService2Adapter extends BaseQuickAdapter<ServiceSort2, BaseHo
                     return;
                 }
                 if (item.number == 0) {
-                    showReduce(num, reduce);
+                    showReduce(num, reduce, item.number);
                 }
                 item.number = item.number + 1;
                 num.setText(item.number + "");
@@ -95,9 +92,10 @@ public class ChooseService2Adapter extends BaseQuickAdapter<ServiceSort2, BaseHo
         }
     }
 
-    private void showReduce(TextView num, TextView reduce) {
+    private void showReduce(TextView num, TextView reduce, int number) {
         num.setVisibility(View.VISIBLE);
         reduce.setVisibility(View.VISIBLE);
+        num.setText(number+"");
     }
 
     private void hideReduce(TextView num, TextView reduce) {
