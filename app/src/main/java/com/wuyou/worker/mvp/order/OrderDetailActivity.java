@@ -2,9 +2,10 @@ package com.wuyou.worker.mvp.order;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gs.buluo.common.network.ApiException;
@@ -15,12 +16,14 @@ import com.gs.buluo.common.utils.TribeDateUtils;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
+import com.wuyou.worker.adapter.OrderDetailServiceAdapter;
+import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
+import com.wuyou.worker.bean.entity.ServiceEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
 import com.wuyou.worker.util.CommonUtil;
-import com.wuyou.worker.util.GlideUtils;
 import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
 import com.wuyou.worker.view.activity.FinishOrderActivity;
@@ -30,6 +33,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -69,20 +73,20 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDetailSecondPayment;
     @BindView(R.id.order_detail_store_name)
     TextView orderDetailStoreName;
-    @BindView(R.id.order_detail_picture)
-    ImageView orderDetailPicture;
-    @BindView(R.id.order_detail_serve_name)
-    TextView orderDetailServeName;
-    @BindView(R.id.order_detail_goods_number)
-    TextView orderDetailGoodsNumber;
-    @BindView(R.id.order_detail_fee)
-    TextView orderDetailFee;
+    //    @BindView(R.id.order_detail_picture)
+//    ImageView orderDetailPicture;
+//    @BindView(R.id.order_detail_serve_name)
+//    TextView orderDetailServeName;
+//    @BindView(R.id.order_detail_goods_number)
+//    TextView orderDetailGoodsNumber;
+//    @BindView(R.id.order_detail_fee)
+//    TextView orderDetailFee;
     @BindView(R.id.order_detail_other_fee)
     TextView orderDetailOtherFee;
     @BindView(R.id.order_detail_amount)
     TextView orderDetailAmount;
-    @BindView(R.id.order_detail_specification)
-    TextView orderDetailSpec;
+    //    @BindView(R.id.order_detail_specification)
+//    TextView orderDetailSpec;
     @BindView(R.id.order_detail_delivery_time)
     TextView orderDeliveryTime;
     @BindView(R.id.order_detail_change)
@@ -93,8 +97,11 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDetailFinish;
     @BindView(R.id.order_detail_bottom)
     View bottomView;
+    @BindView(R.id.rv_service_detail)
+    RecyclerView recyclerView;
+    OrderDetailServiceAdapter adapter;
     private String orderId;
-    private OrderInfoEntity infoEntity;
+    private OrderDetailInfoEntity infoEntity;
 
     @Override
     protected int getContentLayout() {
@@ -118,9 +125,9 @@ public class OrderDetailActivity extends BaseActivity {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
                 .getOrdersDetail(orderId, QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).buildGet())
                 .compose(RxUtil.switchSchedulers())
-                .subscribe(new BaseSubscriber<BaseResponse<OrderInfoEntity>>() {
+                .subscribe(new BaseSubscriber<BaseResponse<OrderDetailInfoEntity>>() {
                     @Override
-                    public void onSuccess(BaseResponse<OrderInfoEntity> orderInfoEntityBaseResponse) {
+                    public void onSuccess(BaseResponse<OrderDetailInfoEntity> orderInfoEntityBaseResponse) {
                         baseStatusLayout.showContentView();
                         setData(orderInfoEntityBaseResponse.data);
                     }
@@ -132,7 +139,7 @@ public class OrderDetailActivity extends BaseActivity {
                 });
     }
 
-    public void setData(OrderInfoEntity data) {
+    public void setData(OrderDetailInfoEntity data) {
         infoEntity = data;
         if (infoEntity.status == 1) orderDetailWarn.setVisibility(View.VISIBLE);
         if (data.status == 2 && data.second_payment != 0) {
@@ -142,21 +149,21 @@ public class OrderDetailActivity extends BaseActivity {
         if (data.status != 2 && data.second_payment != 0) {
             findViewById(R.id.order_detail_second_payment_area).setVisibility(View.VISIBLE);
         }
-        GlideUtils.loadImage(this, data.service.photo, orderDetailPicture);
+//        GlideUtils.loadImage(this, data.service.photo, orderDetailPicture);
         orderDetailStatus.setText(CommonUtil.getOrderStatusString(data.status));
         orderDetailStoreName.setText(data.shop.shop_name);
-        orderDetailServeName.setText(data.service.title);
+//        orderDetailServeName.setText(data.service.title);
         orderDetailSecondPayment.setText(CommonUtil.formatPrice(data.second_payment));
-        orderDetailGoodsNumber.setText(data.number + "");
-        orderDetailOtherFee.setText(CommonUtil.formatPrice(data.service.visiting_fee));
+//        orderDetailGoodsNumber.setText(data.number + "");
+//        orderDetailOtherFee.setText(CommonUtil.formatPrice(data.service.visiting_fee));
         float price;
         if (data.specification != null && data.specification.id != null) {
             price = data.specification.price * data.number;
-            orderDetailSpec.setText("规格：" + data.specification.name);
+//            orderDetailSpec.setText("规格：" + data.specification.name);
         } else {
-            price = data.service.price * data.number;
+//            price = data.service.price * data.number;
         }
-        orderDetailFee.setText(CommonUtil.formatPrice(price));
+//        orderDetailFee.setText(CommonUtil.formatPrice(price));
         orderDetailAmount.setText(CommonUtil.formatPrice(data.amount));
         orderDetailName.setText(data.address.name);
         orderDetailAddress.setText(String.format("%s%s%s%s", data.address.city, data.address.district, data.address.area, data.address.address));
@@ -170,8 +177,14 @@ public class OrderDetailActivity extends BaseActivity {
         if (!TextUtils.isEmpty(data.serial)) orderDetailBillSerial.setText(data.serial);
         orderDetailPayMethod.setText(data.pay_type);
         orderDetailPayTime.setText(TribeDateUtils.dateFormat(new Date(data.pay_time * 1000)));
-
+        initRv(data.service);
         setStatusUI(data);
+    }
+
+    private void initRv(List<ServiceEntity> service) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getCtx()));
+        adapter = new OrderDetailServiceAdapter(R.layout.item_order_detail_service_confirm,service);
+        recyclerView.setAdapter(adapter);
     }
 
     @OnClick({R.id.order_detail_change, R.id.order_detail_go, R.id.order_detail_finish})
@@ -209,7 +222,7 @@ public class OrderDetailActivity extends BaseActivity {
                 });
     }
 
-    public void setStatusUI(OrderInfoEntity beanDetail) {
+    public void setStatusUI(OrderDetailInfoEntity beanDetail) {
         if (beanDetail.status == 2 && beanDetail.is_finished != 1) {
             bottomView.setVisibility(View.VISIBLE);
             orderDetailChange.setVisibility(View.GONE);

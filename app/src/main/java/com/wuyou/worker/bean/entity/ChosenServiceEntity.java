@@ -13,6 +13,9 @@ public class ChosenServiceEntity implements Parcelable{
     public String id;
     public String subId;
     public String title;
+    public String name;
+    public String stock;
+    public String sales;
     public String spec;
     public Float price;
     public String photo;

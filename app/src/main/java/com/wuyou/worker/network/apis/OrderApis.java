@@ -7,6 +7,7 @@ import com.gs.buluo.common.network.SortedTreeMap;
 import com.wuyou.worker.bean.ServeTimeBean;
 import com.wuyou.worker.bean.entity.ContractDetailEntity;
 import com.wuyou.worker.bean.entity.MerchantDetailEntity;
+import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.bean.entity.PartnerListEntity;
@@ -85,7 +86,7 @@ public interface OrderApis {
      * @return
      */
     @GET("order/{order_id}")
-    Observable<BaseResponse<OrderInfoEntity>> getOrdersDetail(
+    Observable<BaseResponse<OrderDetailInfoEntity>> getOrdersDetail(
             @Path("order_id") String order_id,
             @QueryMap SortedTreeMap<String, String> map);
 

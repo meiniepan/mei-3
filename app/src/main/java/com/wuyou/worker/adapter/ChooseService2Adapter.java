@@ -39,7 +39,7 @@ public class ChooseService2Adapter extends BaseQuickAdapter<ServiceSort2, BaseHo
         TextView num = helper.getView(R.id.tv_service_num);
         TextView add = helper.getView(R.id.tv_service_add);
         ImageView avatar = helper.getView(R.id.iv_service);
-        GlideUtils.loadRoundCornerImage(mContext, item.photo, avatar);
+        GlideUtils.loadRoundCornerImage(mContext, item.photo, avatar,12);
         helper.setText(R.id.name2, item.title);
         if (item.number > 0) {
             showReduce(num, reduce,item.number);

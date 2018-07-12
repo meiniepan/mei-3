@@ -96,64 +96,68 @@
 
             <include layout="@layout/split_line_margin" />
 
-            <RelativeLayout
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="92dp"-->
+            <!--android:paddingEnd="@dimen/activity_horizontal_margin"-->
+            <!--android:paddingStart="@dimen/activity_horizontal_margin">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/order_detail_picture"-->
+            <!--android:layout_width="72dp"-->
+            <!--android:layout_height="72dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:scaleType="centerCrop" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/order_detail_serve_name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="13dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:layout_toEndOf="@+id/order_detail_picture"-->
+            <!--android:ellipsize="end"-->
+            <!--android:maxLines="2" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/order_detail_goods_number"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginBottom="14dp"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:text="1" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/text_x"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignTop="@+id/order_detail_goods_number"-->
+            <!--android:layout_toStartOf="@+id/order_detail_goods_number"-->
+            <!--android:text="x" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignTop="@+id/order_detail_goods_number"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:layout_toStartOf="@+id/text_x"-->
+            <!--android:text="数量" />-->
+            <!--<TextView-->
+            <!--android:id="@+id/order_detail_specification"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignTop="@+id/order_detail_goods_number"-->
+            <!--android:layout_alignStart="@+id/order_detail_serve_name"-->
+            <!--tool:text="服务规格"/>-->
+
+            <!--</RelativeLayout>-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_service_detail"
                 android:layout_width="match_parent"
-                android:layout_height="92dp"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                android:paddingStart="@dimen/activity_horizontal_margin">
-
-                <ImageView
-                    android:id="@+id/order_detail_picture"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_centerVertical="true"
-                    android:scaleType="centerCrop" />
-
-                <TextView
-                    android:id="@+id/order_detail_serve_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="13dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_toEndOf="@+id/order_detail_picture"
-                    android:ellipsize="end"
-                    android:maxLines="2" />
-
-                <TextView
-                    android:id="@+id/order_detail_goods_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="14dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/text_x"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignTop="@+id/order_detail_goods_number"
-                    android:layout_toStartOf="@+id/order_detail_goods_number"
-                    android:text="x" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/order_detail_goods_number"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/text_x"
-                    android:text="数量" />
-                <TextView
-                    android:id="@+id/order_detail_specification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/order_detail_goods_number"
-                    android:layout_alignStart="@+id/order_detail_serve_name"
-                    tool:text="服务规格"/>
-
-            </RelativeLayout>
+                android:layout_height="wrap_content" />
 
             <include layout="@layout/split_line_margin" />
 

@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme,android:allowBackup,android:name">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
         <activity
             android:name=".view.activity.AppStartActivity"
             android:screenOrientation="portrait"

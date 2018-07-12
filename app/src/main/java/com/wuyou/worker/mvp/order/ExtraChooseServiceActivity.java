@@ -22,10 +22,7 @@ import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.ChooseService2Adapter;
 import com.wuyou.worker.adapter.ChooseServiceAdapter;
-import com.wuyou.worker.adapter.OrderStatusAdapter;
 import com.wuyou.worker.bean.entity.ChosenServiceEntity;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
-import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.bean.entity.ResponseListEntity;
 import com.wuyou.worker.bean.entity.ServiceSort2;
 import com.wuyou.worker.bean.entity.ServiceSort2Entity;
@@ -40,7 +37,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
