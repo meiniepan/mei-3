@@ -194,7 +194,10 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     private void initRv(List<ServiceEntity> service) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getCtx()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getCtx());
+        linearLayoutManager.setAutoMeasureEnabled(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setNestedScrollingEnabled(false);
         adapter = new OrderDetailServiceAdapter(R.layout.item_order_detail_service_confirm, service);
         recyclerView.setAdapter(adapter);
     }

@@ -67,6 +67,8 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
     List<ServiceSort2> dataRight = new ArrayList();
     ArrayList<ChosenServiceEntity> chosenData = new ArrayList<>();
     private float totalSum;
+    private String categoryId;
+    private String loadMoreStartId = "0";
 
     @Override
     protected int getContentLayout() {
@@ -112,6 +114,7 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         adapterLeft.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                categoryId = adapterLeft.getItem(i).category_id;
                 for (int j = 0; j < dataLeft.size(); j++) {
 
                     if (adapterLeft.getItem(j).category_id.equals(adapterLeft.getItem(i).category_id)) {
@@ -164,8 +167,33 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
     private void initRightRv() {
         adapterRight = new ChooseService2Adapter(R.layout.item_service_sort_2, dataRight);
         adapterRight.setAddReduceNumLis(this);
+        adapterRight.setOnLoadMoreListener(() -> getMore(), rvExtraChooseServiceR);
         rvExtraChooseServiceR.setLayoutManager(new LinearLayoutManager(this));
         rvExtraChooseServiceR.setAdapter(adapterRight);
+    }
+
+    private void getMore() {
+        CarefreeRetrofit.getInstance().createApi(OrderApis.class)
+                .getServiceSubSort(CarefreeDaoSession.getInstance().getUserInfo().getWorker_id(), QueryMapBuilder.getIns().put("category_id", categoryId).put("start_id", loadMoreStartId).put("flag", "2").buildGet())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<BaseResponse<ServiceSort2Entity>>() {
+                    @Override
+                    public void onSuccess(BaseResponse<ServiceSort2Entity> response) {
+                        if (response.data.list.size() > 0) {
+                            loadMoreStartId = response.data.list.get(response.data.list.size() - 1).id;
+                        }
+                        adapterRight.addData(response.data.list);
+                        if (response.data.has_more.equals("0")) {
+                            adapterRight.loadMoreEnd(true);
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(ApiException e) {
+                        adapterRight.loadMoreFail();
+                    }
+                });
     }
 
 

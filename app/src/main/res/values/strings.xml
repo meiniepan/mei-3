@@ -78,4 +78,5 @@
     <string name="ing">进行中</string>
     <string name="order_empty">您还没有相关订单</string>
     <string name="no_network">当前无网络连接，请稍后再试</string>
+    <string name="wrong_qr_code">对不起，该二维码无效</string>
 </resources>
