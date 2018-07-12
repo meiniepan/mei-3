@@ -12,18 +12,18 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="@dimen/text_margin">
+        android:padding="15dp">
 
         <LinearLayout
             android:id="@+id/ll_alipay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/text_margin"
+            android:layout_marginBottom="15dp"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="39dp"
+                android:layout_height="39dp"
                 android:background="@mipmap/icon_alipay" />
 
             <TextView
@@ -32,13 +32,13 @@
                 android:layout_marginStart="@dimen/text_margin"
                 android:layout_weight="1"
                 android:text="支付宝支付"
-                android:textSize="@dimen/dimens_10sp" />
+                android:textSize="@dimen/dimens_15sp" />
 
             <ImageView
                 android:id="@+id/iv_alipay"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/ic_checked" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@mipmap/icon_selected" />
         </LinearLayout>
 
         <include layout="@layout/split_line" />
@@ -47,12 +47,12 @@
             android:id="@+id/ll_wechat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin"
+            android:layout_marginTop="15dp"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="39dp"
+                android:layout_height="39dp"
                 android:background="@mipmap/icon_wechat" />
 
             <TextView
@@ -61,13 +61,13 @@
                 android:layout_marginStart="@dimen/text_margin"
                 android:layout_weight="1"
                 android:text="微信支付"
-                android:textSize="@dimen/dimens_10sp" />
+                android:textSize="@dimen/dimens_15sp" />
 
             <ImageView
                 android:id="@+id/iv_wechat"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/ic_checked" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@mipmap/icon_un_selected" />
         </LinearLayout>
     </LinearLayout>
 

@@ -11,12 +11,12 @@ public class ServiceEntity implements Parcelable {
     public String service_id;
     public String service_name;
     public String image;
-    public String number;
+    public int number;
     public String has_specification;
     public ChosenServiceEntity specification;
     public String title;
     public String stage;
-    public String amount;
+    public float amount;
     public String photo;
     public float visiting_fee;
     public float price;

@@ -79,8 +79,8 @@ public class OrderDetailActivity extends BaseActivity {
 //    TextView orderDetailServeName;
 //    @BindView(R.id.order_detail_goods_number)
 //    TextView orderDetailGoodsNumber;
-//    @BindView(R.id.order_detail_fee)
-//    TextView orderDetailFee;
+    @BindView(R.id.order_detail_fee)
+    TextView orderDetailFee;
     @BindView(R.id.order_detail_other_fee)
     TextView orderDetailOtherFee;
     @BindView(R.id.order_detail_amount)
@@ -89,6 +89,8 @@ public class OrderDetailActivity extends BaseActivity {
 //    TextView orderDetailSpec;
     @BindView(R.id.order_detail_delivery_time)
     TextView orderDeliveryTime;
+    @BindView(R.id.tv_second_time)
+    TextView orderSecondTime;
     @BindView(R.id.order_detail_change)
     TextView orderDetailChange;
     @BindView(R.id.order_detail_go)
@@ -155,7 +157,6 @@ public class OrderDetailActivity extends BaseActivity {
 //        orderDetailServeName.setText(data.service.title);
         orderDetailSecondPayment.setText(CommonUtil.formatPrice(data.second_payment));
 //        orderDetailGoodsNumber.setText(data.number + "");
-//        orderDetailOtherFee.setText(CommonUtil.formatPrice(data.service.visiting_fee));
         float price;
         if (data.specification != null && data.specification.id != null) {
             price = data.specification.price * data.number;
@@ -163,14 +164,25 @@ public class OrderDetailActivity extends BaseActivity {
         } else {
 //            price = data.service.price * data.number;
         }
-//        orderDetailFee.setText(CommonUtil.formatPrice(price));
-        orderDetailAmount.setText(CommonUtil.formatPrice(data.amount));
+        float pureFee = 0f;
+        float visitFee = 0;
+        float total;
+        for (ServiceEntity e : data.service
+                ) {
+            pureFee = pureFee + e.amount;
+            visitFee = visitFee + e.visiting_fee;
+        }
+        total = pureFee + visitFee;
+        orderDetailFee.setText(CommonUtil.formatPrice(pureFee));
+        orderDetailOtherFee.setText(CommonUtil.formatPrice(visitFee));
+        orderDetailAmount.setText(CommonUtil.formatPrice(total));
         orderDetailName.setText(data.address.name);
         orderDetailAddress.setText(String.format("%s%s%s%s", data.address.city, data.address.district, data.address.area, data.address.address));
         orderDetailPhone.setText(data.address.mobile);
 
         orderDetailCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
         orderDeliveryTime.setText(TribeDateUtils.dateFormat(new Date(data.dispatch_at * 1000)));
+        if (data.second_pay_time > 0) orderSecondTime.setText(TribeDateUtils.dateFormat(new Date(data.second_pay_time * 1000)));
         orderDetailNumber.setText(data.order_no);
         orderDetailServeTime.setText(data.service_date + "  " + data.service_time);
         orderDetailRemark.setText(data.remark);
@@ -183,7 +195,7 @@ public class OrderDetailActivity extends BaseActivity {
 
     private void initRv(List<ServiceEntity> service) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getCtx()));
-        adapter = new OrderDetailServiceAdapter(R.layout.item_order_detail_service_confirm,service);
+        adapter = new OrderDetailServiceAdapter(R.layout.item_order_detail_service_confirm, service);
         recyclerView.setAdapter(adapter);
     }
 

@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收款金额:"
-            android:textSize="@dimen/dimens_10sp" />
+            android:textSize="@dimen/dimens_15sp" />
 
         <TextView
             android:id="@+id/tv_proceeds_sum"
@@ -25,20 +25,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_text_margin"
             android:textColor="@color/red"
-            android:textSize="@dimen/dimens_10sp"
+            android:textSize="@dimen/dimens_15sp"
             tool:text="255" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="元"
-            android:textSize="@dimen/dimens_10sp" />
+            android:textSize="@dimen/dimens_15sp" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_proceeds_qr"
-        android:layout_width="112dp"
-        android:layout_height="112dp"
+        android:layout_width="168dp"
+        android:layout_height="168dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp" />
 
@@ -46,13 +46,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="请使用"
-            android:textSize="@dimen/dimens_10sp" />
+            android:textSize="@dimen/dimens_15sp" />
 
         <TextView
             android:id="@+id/tv_pay_type"
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_text_margin"
             android:textColor="@color/main_blue"
-            android:textSize="@dimen/dimens_10sp"
+            android:textSize="@dimen/dimens_15sp"
             tool:text="支付宝" />
 
         <TextView
@@ -68,6 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_text_margin"
             android:text="支付"
-            android:textSize="@dimen/dimens_10sp" />
+            android:textSize="@dimen/dimens_15sp" />
     </LinearLayout>
 </LinearLayout>

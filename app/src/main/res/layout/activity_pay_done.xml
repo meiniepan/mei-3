@@ -20,9 +20,9 @@
 
 
         <ImageView
-            android:background="@mipmap/default_pic"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:background="@mipmap/icon_done"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
              />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
             android:text="支付完成！"
-            android:textSize="@dimen/dimens_12sp" />
+            android:textSize="@dimen/dimens_18sp" />
     </LinearLayout>
     <Space
         android:layout_width="wrap_content"
@@ -45,24 +45,24 @@
 
         <TextView
             android:id="@+id/tv_check_order_detail"
-            android:layout_width="100dp"
-            android:layout_height="32dp"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
             android:background="@drawable/blue_border"
             android:text="查看订单详情"
             android:gravity="center"
             android:textColor="@color/main_blue"
-            android:textSize="@dimen/dimens_10sp" />
+            android:textSize="@dimen/dimens_15sp" />
 
         <TextView
             android:id="@+id/tv_back_home"
-            android:layout_width="100dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
             android:background="@drawable/bac_text_blue_shape"
             android:text="返回首页"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="@dimen/dimens_10sp" />
+            android:textSize="@dimen/dimens_15sp" />
 
     </LinearLayout>
     <Space

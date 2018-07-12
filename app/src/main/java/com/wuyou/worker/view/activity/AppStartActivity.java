@@ -17,6 +17,13 @@ import com.wuyou.worker.mvp.login.LoginActivity;
 
 public class AppStartActivity extends BaseActivity {
 
+    @Override
+    protected void bindView(Bundle savedInstanceState) {
+        disableFitSystemWindow();
+        setBarColor(R.color.transparent);
+        inits();
+    }
+
     private void inits() {
         new Handler().postDelayed(() -> {
             if (CarefreeApplication.getInstance().getUserInfo() != null) {
@@ -34,11 +41,6 @@ public class AppStartActivity extends BaseActivity {
     @Override
     protected int getContentLayout() {
         return R.layout.activity_start;
-    }
-
-    @Override
-    protected void bindView(Bundle savedInstanceState) {
-        inits();
     }
 
 

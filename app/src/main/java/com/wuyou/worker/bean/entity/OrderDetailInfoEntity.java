@@ -39,6 +39,7 @@ public class OrderDetailInfoEntity implements Parcelable {
     public String serial;
     public long pay_time;
     public long dispatch_at;
+    public long second_pay_time;
     public int service_time_is_changed;
     public ServeSpecificationEntity specification;
 
