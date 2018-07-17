@@ -14,7 +14,7 @@ public class OrderDetailInfoEntity implements Parcelable {
     public String order_id;
     public String category;
     public long created_at;
-    public List<ServiceEntity> service;
+    public List<ServiceEntity> services;
     public AddressEntity address;
     public String price;
     public String service_time;
@@ -52,7 +52,7 @@ public class OrderDetailInfoEntity implements Parcelable {
         order_id = in.readString();
         category = in.readString();
         created_at = in.readLong();
-        service = in.createTypedArrayList(ServiceEntity.CREATOR);
+        services = in.createTypedArrayList(ServiceEntity.CREATOR);
         address = in.readParcelable(AddressEntity.class.getClassLoader());
         price = in.readString();
         service_time = in.readString();
@@ -87,7 +87,7 @@ public class OrderDetailInfoEntity implements Parcelable {
         dest.writeString(order_id);
         dest.writeString(category);
         dest.writeLong(created_at);
-        dest.writeTypedList(service);
+        dest.writeTypedList(services);
         dest.writeParcelable(address, flags);
         dest.writeString(price);
         dest.writeString(service_time);

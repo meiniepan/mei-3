@@ -18,7 +18,6 @@ import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.OrderDetailServiceAdapter;
 import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.ServiceEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.network.CarefreeRetrofit;
@@ -27,6 +26,7 @@ import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.BaseActivity;
 import com.wuyou.worker.view.activity.FinishOrderActivity;
+import com.wuyou.worker.view.activity.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -69,24 +69,14 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDetailRemark;
     @BindView(R.id.order_detail_pay_time)
     TextView orderDetailPayTime;
-    @BindView(R.id.order_detail_second_payment)
-    TextView orderDetailSecondPayment;
     @BindView(R.id.order_detail_store_name)
     TextView orderDetailStoreName;
-    //    @BindView(R.id.order_detail_picture)
-//    ImageView orderDetailPicture;
-//    @BindView(R.id.order_detail_serve_name)
-//    TextView orderDetailServeName;
-//    @BindView(R.id.order_detail_goods_number)
-//    TextView orderDetailGoodsNumber;
     @BindView(R.id.order_detail_fee)
     TextView orderDetailFee;
     @BindView(R.id.order_detail_other_fee)
     TextView orderDetailOtherFee;
     @BindView(R.id.order_detail_amount)
     TextView orderDetailAmount;
-    //    @BindView(R.id.order_detail_specification)
-//    TextView orderDetailSpec;
     @BindView(R.id.order_detail_delivery_time)
     TextView orderDeliveryTime;
     @BindView(R.id.tv_second_time)
@@ -149,25 +139,14 @@ public class OrderDetailActivity extends BaseActivity {
             orderDetailWarn.setText("待支付附加金额 " + data.second_payment + "元");
         }
         if (data.status != 2 && data.second_payment != 0) {
-            findViewById(R.id.order_detail_second_payment_area).setVisibility(View.VISIBLE);
+
         }
-//        GlideUtils.loadImage(this, data.service.photo, orderDetailPicture);
         orderDetailStatus.setText(CommonUtil.getOrderStatusString(data.status));
         orderDetailStoreName.setText(data.shop.shop_name);
-//        orderDetailServeName.setText(data.service.title);
-        orderDetailSecondPayment.setText(CommonUtil.formatPrice(data.second_payment));
-//        orderDetailGoodsNumber.setText(data.number + "");
-        float price;
-        if (data.specification != null && data.specification.id != null) {
-            price = data.specification.price * data.number;
-//            orderDetailSpec.setText("规格：" + data.specification.name);
-        } else {
-//            price = data.service.price * data.number;
-        }
         float pureFee = 0f;
         float visitFee = 0;
         float total;
-        for (ServiceEntity e : data.service
+        for (ServiceEntity e : data.services
                 ) {
             pureFee = pureFee + e.amount;
             visitFee = visitFee + e.visiting_fee;
@@ -182,14 +161,15 @@ public class OrderDetailActivity extends BaseActivity {
 
         orderDetailCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
         orderDeliveryTime.setText(TribeDateUtils.dateFormat(new Date(data.dispatch_at * 1000)));
-        if (data.second_pay_time > 0) orderSecondTime.setText(TribeDateUtils.dateFormat(new Date(data.second_pay_time * 1000)));
+        if (data.second_pay_time > 0)
+            orderSecondTime.setText(TribeDateUtils.dateFormat(new Date(data.second_pay_time * 1000)));
         orderDetailNumber.setText(data.order_no);
         orderDetailServeTime.setText(data.service_date + "  " + data.service_time);
         orderDetailRemark.setText(data.remark);
         if (!TextUtils.isEmpty(data.serial)) orderDetailBillSerial.setText(data.serial);
         orderDetailPayMethod.setText(data.pay_type);
         orderDetailPayTime.setText(TribeDateUtils.dateFormat(new Date(data.pay_time * 1000)));
-        initRv(data.service);
+        initRv(data.services);
         setStatusUI(data);
     }
 
@@ -221,7 +201,20 @@ public class OrderDetailActivity extends BaseActivity {
                 intent.putExtra(Constant.ORDER_INFO, infoEntity);
                 startActivity(intent);
                 break;
+            case R.id.back:
+                jumpHome();
+                break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        jumpHome();
+    }
+
+    private void jumpHome() {
+        startActivity(new Intent(getCtx(), MainActivity.class));
     }
 
     private void confirmToGo() {

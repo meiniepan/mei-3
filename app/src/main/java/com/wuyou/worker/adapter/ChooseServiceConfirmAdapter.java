@@ -28,10 +28,16 @@ public class ChooseServiceConfirmAdapter extends BaseQuickAdapter<ChosenServiceE
     @Override
     protected void convert(BaseHolder helper, ChosenServiceEntity item) {
         ImageView imageView = helper.getView(R.id.iv_service_confirm);
-        GlideUtils.loadRoundCornerImageWithBitmap(mContext, item.photo, imageView);
-        helper.setText(R.id.tv_name2, item.title).setText(R.id.tv_service_confirm_num, "x "+item.number)
-                .setText(R.id.tv_service_confirm_sub_name, item.spec)
-                .setText(R.id.tv_service_confirm_price, CommonUtil.formatPrice(item.price));
+        GlideUtils.loadRoundCornerImageWithBitmap(mContext, item.image, imageView);
+        float price;
+        if (("0").equals(item.has_specification)) {
+            price = item.price;
+        } else {
+            price = item.specification.price;
+            helper.setText(R.id.tv_service_confirm_sub_name, item.specification.name);
+        }
+        helper.setText(R.id.tv_name2, item.service_name).setText(R.id.tv_service_confirm_num, "x "+item.number)
+                .setText(R.id.tv_service_confirm_price, CommonUtil.formatPrice(price));
 
     }
 

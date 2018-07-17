@@ -13,7 +13,7 @@ public class ServiceEntity implements Parcelable {
     public String image;
     public int number;
     public String has_specification;
-    public ChosenServiceEntity specification;
+    public ServeSpecificationEntity specification;
     public String title;
     public String stage;
     public float amount;

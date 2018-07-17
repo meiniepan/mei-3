@@ -23,9 +23,10 @@
         <!-- imlib config begin -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"
-            android:value="e0x9wycfe4g7q" />
-        <!--e0x9wycfe4g7q &#45;&#45;生产-->
-        <!--82hegw5u8ykox-->
+            android:value="tdrvipkstxal5" />
+        <!--e0x9wycfe4g7q 生产-->
+        <!--ik1qhw09ipznp 测试-->
+        <!--tdrvipkstxal5 开发-->
 
         <service
             android:name="io.rong.imlib.ipc.RongService"

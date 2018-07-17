@@ -561,7 +561,7 @@ public class CommonUtil {
             case 4:
                 return "已完成";
             case 5:
-                return "已取消";
+                return "进行中(待用户完成)";
         }
         return "";
     }

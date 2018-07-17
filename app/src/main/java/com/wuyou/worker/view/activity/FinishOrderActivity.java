@@ -73,7 +73,7 @@ public class FinishOrderActivity extends BaseActivity {
 
     public void finishOrder(View view) {
         if (mChecked) {
-            startActivity(new Intent(getCtx(), ExtraChooseServiceActivity.class));
+            startActivity(new Intent(getCtx(), ExtraChooseServiceActivity.class).putExtra(Constant.ORDER_ID,infoEntity.order_id));
         } else {
             finishCost();
         }

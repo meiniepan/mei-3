@@ -9,6 +9,7 @@ import com.gs.buluo.common.widget.recyclerHelper.BaseHolder;
 import com.gs.buluo.common.widget.recyclerHelper.BaseQuickAdapter;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.entity.ChosenServiceEntity;
+import com.wuyou.worker.bean.entity.ServeSpecificationEntity;
 import com.wuyou.worker.bean.entity.ServiceSort2;
 import com.wuyou.worker.bean.entity.ServiceSort2Spec;
 import com.wuyou.worker.mvp.order.AddReduceNumListener;
@@ -24,7 +25,7 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
 
     private final ServiceSort2 superItem;
     private AddReduceNumListener addReduceNumListener;
-    
+
 
     public ChooseService2SpecAdapter(ServiceSort2 item, int layoutResId, @Nullable List<ServiceSort2Spec> data) {
         super(layoutResId, data);
@@ -39,7 +40,7 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
         TextView num = helper.getView(R.id.tv_service_sub_num);
         TextView add = helper.getView(R.id.tv_service_sub_add);
         if (item.number > 0) {
-            showReduce(num, reduce,item.number);
+            showReduce(num, reduce, item.number);
 
         } else {
             hideReduce(num, reduce);
@@ -55,13 +56,16 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
             item.number = item.number + 1;
             num.setText(item.number + "");
             ChosenServiceEntity entity = new ChosenServiceEntity();
-            entity.id = superItem.id;
-            entity.subId = item.id;
+            ServeSpecificationEntity specEntity = new ServeSpecificationEntity();
+            entity.service_id = superItem.id;
+            entity.image = superItem.photo;
+            entity.service_name = superItem.title;
+            entity.has_specification = "1";
             entity.number = item.number;
-            entity.photo = superItem.photo;
-            entity.title = superItem.title;
-            entity.spec = item.name;
-            entity.price = item.price;
+            specEntity.id = item.id;
+            specEntity.name = item.name;
+            specEntity.price = item.price;
+            entity.specification = specEntity;
             addReduceNumListener.addNum(entity);
         });
         reduce.setOnClickListener(v ->
@@ -72,13 +76,16 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
             item.number = item.number - 1;
             num.setText(item.number + "");
             ChosenServiceEntity entity = new ChosenServiceEntity();
-            entity.id = superItem.id;
-            entity.subId = item.id;
+            ServeSpecificationEntity specEntity = new ServeSpecificationEntity();
+            entity.service_id = superItem.id;
+            entity.image = superItem.photo;
+            entity.service_name = superItem.title;
+            entity.has_specification = "1";
             entity.number = item.number;
-            entity.photo = superItem.photo;
-            entity.title = superItem.title;
-            entity.spec = item.name;
-            entity.price = item.price;
+            specEntity.id = item.id;
+            specEntity.name = item.name;
+            specEntity.price = item.price;
+            entity.specification = specEntity;
             addReduceNumListener.reduceNum(entity);
         });
     }
@@ -90,7 +97,7 @@ public class ChooseService2SpecAdapter extends BaseQuickAdapter<ServiceSort2Spec
     private void showReduce(TextView num, TextView reduce, int number) {
         num.setVisibility(View.VISIBLE);
         reduce.setVisibility(View.VISIBLE);
-        num.setText(number+"");
+        num.setText(number + "");
     }
 
     private void hideReduce(TextView num, TextView reduce) {

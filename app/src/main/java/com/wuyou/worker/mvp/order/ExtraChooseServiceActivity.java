@@ -69,6 +69,7 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
     private float totalSum;
     private String categoryId;
     private String loadMoreStartId = "0";
+    String orderId;
 
     @Override
     protected int getContentLayout() {
@@ -77,6 +78,7 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        orderId = getIntent().getStringExtra(Constant.ORDER_ID);
         setTitleText("选择服务");
         initLeftRv();
         initRightRv();
@@ -133,6 +135,7 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
 
     private void getSubData(String category_id) {
         if (cacheData.containsKey(category_id)) {
+//            adapterRight.loadMoreEnd(true);
             adapterRight.setNewData(cacheData.get(category_id));
         } else {
             getFromNet(category_id);
@@ -150,6 +153,10 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
                     public void onSuccess(BaseResponse<ServiceSort2Entity> response) {
                         dataRight = response.data.list;
                         if (dataRight.size() > 0) {
+//                            if (response.data.has_more.equals("0")) {
+//                                adapterRight.loadMoreEnd(true);
+//
+//                            }
                             statusLayout2.showContentView();
                             cacheData.put(category_id, dataRight);
                             adapterRight.setNewData(cacheData.get(category_id));
@@ -217,25 +224,37 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         if (chosenData.size() == 0) {
             setOnChosen();
             chosenData.add(entity);
-            totalSum = totalSum + entity.price;
+            float price;
+            if (("0").equals(entity.has_specification)) {
+                price = entity.price;
+            } else {
+                price = entity.specification.price;
+            }
+            totalSum = totalSum + price;
             tvExtraSum.setText("¥" + CommonUtil.formatPrice(totalSum));
             return;
         }
         boolean isHave = false;
         for (ChosenServiceEntity e : chosenData
                 ) {
-            if (entity.id.equals(e.id) && !TextUtils.isEmpty(entity.subId)) {
-                if (entity.subId.equals(e.subId)) {
+            if (entity.service_id.equals(e.service_id) && !TextUtils.isEmpty(entity.specification.id)) {
+                if (entity.specification.id.equals(e.specification.id)) {
                     e.number = entity.number;
                     isHave = true;
                 }
-            } else if (entity.id.equals(e.id) && TextUtils.isEmpty(entity.subId)) {
+            } else if (entity.service_id.equals(e.service_id) && TextUtils.isEmpty(entity.specification.id)) {
                 e.number = entity.number;
                 isHave = true;
             }
         }
         if (!isHave) chosenData.add(entity);
-        totalSum = totalSum + entity.price;
+        float price;
+        if (("0").equals(entity.has_specification)) {
+            price = entity.price;
+        } else {
+            price = entity.specification.price;
+        }
+        totalSum = totalSum + price;
         tvExtraSum.setText("¥" + CommonUtil.formatPrice(totalSum));
     }
 
@@ -245,10 +264,11 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
             ChosenServiceEntity ee = new ChosenServiceEntity();
             for (ChosenServiceEntity e : chosenData
                     ) {
-                if (TextUtils.isEmpty(entity.subId)) {
-                    if (entity.id == e.id) ee = e;
+                if (TextUtils.isEmpty(entity.specification.id)) {
+                    if (entity.service_id == e.service_id) ee = e;
                 } else {
-                    if (entity.id == e.id && entity.subId == e.subId) ee = e;
+                    if (entity.service_id == e.service_id && entity.specification.id == e.specification.id)
+                        ee = e;
                 }
             }
             chosenData.remove(ee);
@@ -259,16 +279,22 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         } else {
             for (ChosenServiceEntity e : chosenData
                     ) {
-                if (entity.id.equals(e.id) && !TextUtils.isEmpty(entity.subId)) {
-                    if (entity.subId.equals(e.subId)) {
+                if (entity.service_id.equals(e.service_id) && !TextUtils.isEmpty(entity.specification.id)) {
+                    if (entity.specification.id.equals(e.specification.id)) {
                         e.number = entity.number;
                     }
-                } else if (entity.id.equals(e.id) && TextUtils.isEmpty(entity.subId)) {
+                } else if (entity.service_id.equals(e.service_id) && TextUtils.isEmpty(entity.specification.id)) {
                     e.number = entity.number;
                 }
             }
         }
-        totalSum = totalSum - entity.price;
+        float price;
+        if (("0").equals(entity.has_specification)) {
+            price = entity.price;
+        } else {
+            price = entity.specification.price;
+        }
+        totalSum = totalSum - price;
         tvExtraSum.setText("¥" + CommonUtil.formatPrice(totalSum));
     }
 
@@ -276,6 +302,7 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
     public void onViewClicked() {
         Intent intent = new Intent(getCtx(), ExtraChooseServiceConfirmActivity.class);
         intent.putExtra(Constant.CHOSEN_SERVICE_TOTAL, totalSum);
+        intent.putExtra(Constant.ORDER_ID, orderId);
         intent.putParcelableArrayListExtra(Constant.CHOSEN_SERVICE, chosenData);
         startActivity(intent);
     }
