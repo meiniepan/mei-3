@@ -84,10 +84,10 @@ public class ExtraChooseServiceConfirmActivity extends BaseActivity {
             ChosenServicePostEntity entity = new ChosenServicePostEntity();
             if (("0").equals(e.has_specification)) {
                 entity.specification_id = 0;
-                entity.amount = e.price;
+                entity.amount = e.price*e.number;
             } else {
                 entity.specification_id = Integer.parseInt(e.specification.id);
-                entity.amount = e.specification.price;
+                entity.amount = e.specification.price*e.number;
             }
             entity.service_id = Integer.parseInt(e.service_id);
             entity.number = e.number;

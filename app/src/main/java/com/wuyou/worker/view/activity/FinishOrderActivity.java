@@ -16,7 +16,7 @@ import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
+import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.mvp.order.ExtraChooseServiceActivity;
 import com.wuyou.worker.network.CarefreeRetrofit;
@@ -45,7 +45,7 @@ public class FinishOrderActivity extends BaseActivity {
     LinearLayout finishOrderFeeArea;
     @BindView(R.id.btn_confirm_1)
     Button btnConfirm;
-    private OrderInfoEntity infoEntity;
+    private OrderDetailInfoEntity infoEntity;
     private boolean mChecked;
 
     @Override

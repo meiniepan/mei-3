@@ -8,7 +8,6 @@ import com.wuyou.worker.bean.ServeTimeBean;
 import com.wuyou.worker.bean.entity.ContractDetailEntity;
 import com.wuyou.worker.bean.entity.MerchantDetailEntity;
 import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.bean.entity.PartnerListEntity;
 import com.wuyou.worker.bean.entity.QrEntity;

@@ -8,5 +8,5 @@ import java.util.List;
 
 public class OrderInfoListEntity {
     public String has_more;
-    public List<OrderInfoEntity> list;
+    public List<OrderDetailInfoEntity> list;
 }

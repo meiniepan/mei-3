@@ -18,7 +18,6 @@ import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.OrderDetailServiceAdapter;
 import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.ServiceEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.network.CarefreeRetrofit;
@@ -144,13 +143,14 @@ public class OrderDetailActivity extends BaseActivity {
         }
         orderDetailStatus.setText(CommonUtil.getOrderStatusString(data.status));
         orderDetailStoreName.setText(data.shop.shop_name);
-        float pureFee = 0f;
+        float pureFee = data.amount+data.second_payment;
         float visitFee = 0;
         float total;
         for (ServiceEntity e : data.services
                 ) {
-            pureFee = pureFee + e.amount;
-            visitFee = visitFee + e.visiting_fee;
+           if (e.stage.equals("1")){
+               visitFee = e.visiting_fee;
+           }
         }
         total = pureFee + visitFee;
         orderDetailFee.setText(CommonUtil.formatPrice(pureFee));
@@ -198,11 +198,8 @@ public class OrderDetailActivity extends BaseActivity {
                 confirmToGo();
                 break;
             case R.id.order_detail_finish:
-                OrderInfoEntity entity = new OrderInfoEntity();
-                entity.order_id = infoEntity.order_id;
-                entity.amount = infoEntity.amount;
                 intent.setClass(getCtx(), FinishOrderActivity.class);
-                intent.putExtra(Constant.ORDER_INFO, entity);
+                intent.putExtra(Constant.ORDER_INFO, infoEntity);
                 startActivity(intent);
                 break;
             case R.id.back:

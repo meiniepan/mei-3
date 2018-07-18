@@ -16,6 +16,7 @@ public class OrderDetailInfoEntity implements Parcelable {
     public long created_at;
     public List<ServiceEntity> services;
     public AddressEntity address;
+    public ServiceEntity service;
     public String price;
     public String service_time;
     public int status;
@@ -54,6 +55,7 @@ public class OrderDetailInfoEntity implements Parcelable {
         created_at = in.readLong();
         services = in.createTypedArrayList(ServiceEntity.CREATOR);
         address = in.readParcelable(AddressEntity.class.getClassLoader());
+        service = in.readParcelable(ServiceEntity.class.getClassLoader());
         price = in.readString();
         service_time = in.readString();
         status = in.readInt();
@@ -77,6 +79,7 @@ public class OrderDetailInfoEntity implements Parcelable {
         serial = in.readString();
         pay_time = in.readLong();
         dispatch_at = in.readLong();
+        second_pay_time = in.readLong();
         service_time_is_changed = in.readInt();
         specification = in.readParcelable(ServeSpecificationEntity.class.getClassLoader());
     }
@@ -89,6 +92,7 @@ public class OrderDetailInfoEntity implements Parcelable {
         dest.writeLong(created_at);
         dest.writeTypedList(services);
         dest.writeParcelable(address, flags);
+        dest.writeParcelable(service, flags);
         dest.writeString(price);
         dest.writeString(service_time);
         dest.writeInt(status);
@@ -112,6 +116,7 @@ public class OrderDetailInfoEntity implements Parcelable {
         dest.writeString(serial);
         dest.writeLong(pay_time);
         dest.writeLong(dispatch_at);
+        dest.writeLong(second_pay_time);
         dest.writeInt(service_time_is_changed);
         dest.writeParcelable(specification, flags);
     }

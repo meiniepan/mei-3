@@ -113,21 +113,18 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         adapterLeft = new ChooseServiceAdapter(R.layout.item_service_sort, dataLeft);
         rvExtraChooseServiceL.setLayoutManager(new LinearLayoutManager(this));
         rvExtraChooseServiceL.setAdapter(adapterLeft);
-        adapterLeft.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                categoryId = adapterLeft.getItem(i).category_id;
-                for (int j = 0; j < dataLeft.size(); j++) {
+        adapterLeft.setOnItemClickListener((baseQuickAdapter, view, i) -> {
+            categoryId = adapterLeft.getItem(i).category_id;
+            for (int j = 0; j < dataLeft.size(); j++) {
 
-                    if (adapterLeft.getItem(j).category_id.equals(adapterLeft.getItem(i).category_id)) {
-                        adapterLeft.getItem(j).click = true;
-                    } else {
-                        adapterLeft.getItem(j).click = false;
-                    }
+                if (adapterLeft.getItem(j).category_id.equals(adapterLeft.getItem(i).category_id)) {
+                    adapterLeft.getItem(j).click = true;
+                } else {
+                    adapterLeft.getItem(j).click = false;
                 }
-                adapterLeft.notifyDataSetChanged();
-                getSubData(adapterLeft.getItem(i).category_id);
             }
+            adapterLeft.notifyDataSetChanged();
+            getSubData(adapterLeft.getItem(i).category_id);
         });
     }
 
