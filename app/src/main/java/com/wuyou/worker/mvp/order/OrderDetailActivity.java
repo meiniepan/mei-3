@@ -18,6 +18,7 @@ import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.OrderDetailServiceAdapter;
 import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
+import com.wuyou.worker.bean.entity.OrderInfoEntity;
 import com.wuyou.worker.bean.entity.ServiceEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.network.CarefreeRetrofit;
@@ -197,8 +198,11 @@ public class OrderDetailActivity extends BaseActivity {
                 confirmToGo();
                 break;
             case R.id.order_detail_finish:
+                OrderInfoEntity entity = new OrderInfoEntity();
+                entity.order_id = infoEntity.order_id;
+                entity.amount = infoEntity.amount;
                 intent.setClass(getCtx(), FinishOrderActivity.class);
-                intent.putExtra(Constant.ORDER_INFO, infoEntity);
+                intent.putExtra(Constant.ORDER_INFO, entity);
                 startActivity(intent);
                 break;
             case R.id.back:
