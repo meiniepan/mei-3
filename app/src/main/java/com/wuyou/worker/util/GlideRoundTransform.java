@@ -7,9 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.gs.buluo.common.utils.DensityUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -19,158 +21,60 @@ import java.security.MessageDigest;
  * Created by hjn on 2018/3/5.
  */
 
-public class GlideRoundTransform extends BitmapTransformation {
-    private float mRadius;
-    private CornerType mCornerType;
-    private static final int VERSION = 1;
-    private static final String ID = "GlideRoundedCornersTransform." + VERSION;
-    private static final byte[] ID_BYTES = ID.getBytes(CHARSET);
+public class GlideRoundTransform extends CenterCrop {
+    private static float radius = 10f;
+    private byte[] bitmap;
 
-
-    public enum CornerType {
-        ALL,
-        TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT,
-        TOP, BOTTOM, LEFT, RIGHT,
-        TOP_LEFT_BOTTOM_RIGHT,
-        TOP_RIGHT_BOTTOM_LEFT,
-        TOP_LEFT_TOP_RIGHT_BOTTOM_RIGHT,
-        TOP_RIGHT_BOTTOM_RIGHT_BOTTOM_LEFT,
+    public GlideRoundTransform(Context context) {
+        this(context, 10, ImageView.ScaleType.CENTER_CROP);
     }
 
-    public GlideRoundTransform(Context context, float radius, CornerType cornerType) {
+    public GlideRoundTransform(Context context, int dp, ImageView.ScaleType scaleType) {
         super();
-        mRadius = DensityUtils.dip2px(context, radius);//dp ->px
-        mCornerType = cornerType;
+        this.radius = DensityUtils.dip2px(context, dp);
     }
 
     @Override
     protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
-        return roundCrop(pool, toTransform);
+        //glide4.0+
+        Bitmap transform = super.transform(pool, toTransform, outWidth, outHeight);
+        return roundCrop(pool, transform);
+        //glide3.0
+        //return roundCrop(pool, toTransform);
     }
 
-    private Bitmap roundCrop(BitmapPool pool, Bitmap source) {
-        if (source == null) {
-            return null;
-        }
-        int width = source.getWidth();
-        int height = source.getHeight();
+    private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
+        if (source == null) return null;
+
         Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
-
-
         if (result == null) {
-            result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config
-                    .ARGB_8888);
+            result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
         }
+
         Canvas canvas = new Canvas(result);
         Paint paint = new Paint();
-        paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader
-                .TileMode.CLAMP));
+        paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
         paint.setAntiAlias(true);
-        Path path = new Path();
-        drawRoundRect(canvas, paint, path, width, height);
-        bitmap = getBytes(result);
+        RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
+        canvas.drawRoundRect(rectF, radius, radius, paint);
         return result;
     }
 
-    public byte[] getBytes(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        return baos.toByteArray();
+    public String getId() {
+        return getClass().getName() + Math.round(radius);
     }
 
-    byte[] bitmap;
+    @Override
+    public void updateDiskCacheKey(MessageDigest messageDigest) {
+
+    }
 
     public byte[] getBitmap() {
         return bitmap;
     }
 
-    private void drawRoundRect(Canvas canvas, Paint paint, Path path, int width, int height) {
-        float[] rids;
-        switch (mCornerType) {
-            case ALL:
-                rids = new float[]{mRadius, mRadius, mRadius, mRadius, mRadius, mRadius, mRadius, mRadius};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case TOP_LEFT:
-                rids = new float[]{mRadius, mRadius, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case TOP_RIGHT:
-                rids = new float[]{0.0f, 0.0f, mRadius, mRadius, 0.0f, 0.0f, 0.0f, 0.0f};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case BOTTOM_RIGHT:
-                rids = new float[]{0.0f, 0.0f, 0.0f, 0.0f, mRadius, mRadius, 0.0f, 0.0f};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case BOTTOM_LEFT:
-                rids = new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, mRadius, mRadius};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case TOP:
-                rids = new float[]{mRadius, mRadius, mRadius, mRadius, 0.0f, 0.0f, 0.0f, 0.0f};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case BOTTOM:
-                rids = new float[]{0.0f, 0.0f, 0.0f, 0.0f, mRadius, mRadius, mRadius, mRadius};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case LEFT:
-                rids = new float[]{mRadius, mRadius, 0.0f, 0.0f, 0.0f, 0.0f, mRadius, mRadius};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case RIGHT:
-                rids = new float[]{0.0f, 0.0f, mRadius, mRadius, mRadius, mRadius, 0.0f, 0.0f};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case TOP_LEFT_BOTTOM_RIGHT:
-                rids = new float[]{mRadius, mRadius, 0.0f, 0.0f, mRadius, mRadius, 0.0f, 0.0f};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case TOP_RIGHT_BOTTOM_LEFT:
-                rids = new float[]{0.0f, 0.0f, mRadius, mRadius, 0.0f, 0.0f, mRadius, mRadius};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case TOP_LEFT_TOP_RIGHT_BOTTOM_RIGHT:
-                rids = new float[]{mRadius, mRadius, mRadius, mRadius, mRadius, mRadius, 0.0f, 0.0f};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            case TOP_RIGHT_BOTTOM_RIGHT_BOTTOM_LEFT:
-                rids = new float[]{0.0f, 0.0f, mRadius, mRadius, mRadius, mRadius, mRadius, mRadius};
-                drawPath(rids, canvas, paint, path, width, height);
-                break;
-            default:
-                throw new RuntimeException("RoundedCorners type not belong to CornerType");
-
-
-        }
-    }
-
-
-    /**
-     * @param rids 圆角的半径，依次为左上角xy半径，右上角，右下角，左下角
-     */
-    private void drawPath(float[] rids, Canvas canvas, Paint paint, Path path, int width, int height) {
-        path.addRoundRect(new RectF(0, 0, width, height), rids, Path.Direction.CW);
-//        canvas.clipPath(path);
-        canvas.drawPath(path, paint);
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        return o instanceof GlideRoundTransform;
-    }
-
-
-    @Override
-    public int hashCode() {
-        return ID.hashCode();
-    }
-
-
-    @Override
-    public void updateDiskCacheKey(MessageDigest messageDigest) {
-        messageDigest.update(ID_BYTES);
+    public enum CornerType {
+        ;
+        public static final ImageView.ScaleType ALL = ImageView.ScaleType.CENTER;
     }
 }

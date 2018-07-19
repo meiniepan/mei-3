@@ -21,7 +21,6 @@
                 android:id="@+id/iv_service_confirm"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:scaleType="centerCrop"
                 android:src="@mipmap/default_pic" />
             <TextView
                 android:id="@+id/tv_tag1"

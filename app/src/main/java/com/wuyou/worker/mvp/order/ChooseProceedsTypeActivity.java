@@ -95,6 +95,7 @@ public class ChooseProceedsTypeActivity extends BaseActivity {
 
                         intent.putExtra(Constant.PROCEEDS_QR, qrString);
                         startActivity(intent);
+                        finish();
                     }
                 });
     }

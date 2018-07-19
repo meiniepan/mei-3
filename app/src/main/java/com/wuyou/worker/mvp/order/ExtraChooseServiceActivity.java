@@ -234,12 +234,12 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         boolean isHave = false;
         for (ChosenServiceEntity e : chosenData
                 ) {
-            if (entity.service_id.equals(e.service_id) && !TextUtils.isEmpty(entity.specification.id)) {
+            if (entity.service_id.equals(e.service_id) && !"0".equals(entity.has_specification)) {
                 if (entity.specification.id.equals(e.specification.id)) {
                     e.number = entity.number;
                     isHave = true;
                 }
-            } else if (entity.service_id.equals(e.service_id) && TextUtils.isEmpty(entity.specification.id)) {
+            } else if (entity.service_id.equals(e.service_id) ) {
                 e.number = entity.number;
                 isHave = true;
             }
@@ -261,7 +261,7 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
             ChosenServiceEntity ee = new ChosenServiceEntity();
             for (ChosenServiceEntity e : chosenData
                     ) {
-                if (TextUtils.isEmpty(entity.specification.id)) {
+                if ("0".equals(entity.has_specification)) {
                     if (entity.service_id == e.service_id) ee = e;
                 } else {
                     if (entity.service_id == e.service_id && entity.specification.id == e.specification.id)
@@ -276,11 +276,11 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
         } else {
             for (ChosenServiceEntity e : chosenData
                     ) {
-                if (entity.service_id.equals(e.service_id) && !TextUtils.isEmpty(entity.specification.id)) {
+                if (entity.service_id.equals(e.service_id) && !"0".equals(entity.has_specification)) {
                     if (entity.specification.id.equals(e.specification.id)) {
                         e.number = entity.number;
                     }
-                } else if (entity.service_id.equals(e.service_id) && TextUtils.isEmpty(entity.specification.id)) {
+                } else if (entity.service_id.equals(e.service_id)) {
                     e.number = entity.number;
                 }
             }

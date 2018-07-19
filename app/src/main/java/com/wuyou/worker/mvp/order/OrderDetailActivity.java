@@ -134,13 +134,13 @@ public class OrderDetailActivity extends BaseActivity {
     public void setData(OrderDetailInfoEntity data) {
         infoEntity = data;
         if (infoEntity.status == 1) orderDetailWarn.setVisibility(View.VISIBLE);
-        if (data.status == 2 && data.second_payment != 0) {
-            orderDetailWarn.setVisibility(View.VISIBLE);
-            orderDetailWarn.setText("待支付附加金额 " + data.second_payment + "元");
-        }
-        if (data.status != 2 && data.second_payment != 0) {
-
-        }
+//        if (data.status == 2 && data.second_payment != 0) {
+//            orderDetailWarn.setVisibility(View.VISIBLE);
+//            orderDetailWarn.setText("待支付附加金额 " + data.second_payment + "元");
+//        }
+//        if (data.status != 2 && data.second_payment != 0) {
+//
+//        }
         orderDetailStatus.setText(CommonUtil.getOrderStatusString(data.status));
         orderDetailStoreName.setText(data.shop.shop_name);
         float pureFee = data.amount+data.second_payment;
