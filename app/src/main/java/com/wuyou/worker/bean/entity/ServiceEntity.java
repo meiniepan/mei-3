@@ -10,7 +10,13 @@ import android.os.Parcelable;
 public class ServiceEntity implements Parcelable {
     public String service_id;
     public String service_name;
+    public String image;
+    public int number;
+    public String has_specification;
+    public ServeSpecificationEntity specification;
     public String title;
+    public String stage;
+    public float amount;
     public String photo;
     public float visiting_fee;
     public float price;

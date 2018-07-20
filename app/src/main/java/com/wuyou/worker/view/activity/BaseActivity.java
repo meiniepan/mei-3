@@ -226,6 +226,9 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
     public int getToolBarId() {
         return 0;
     }
+    protected void disableFitSystemWindow() {
+        findViewById(R.id.base_root).setFitsSystemWindows(false);
+    }
 }
 
 

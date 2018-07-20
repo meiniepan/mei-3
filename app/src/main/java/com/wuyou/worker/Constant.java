@@ -7,15 +7,19 @@ package com.wuyou.worker;
 public class Constant {
     //切环境时候注意融云ID变更
 //            public static String BASE_URL = "https://develop.api.iwantmei.com/worker/v1/";
-//    public static String BASE_URL = "https://stage.api.iwantmei.com/worker/v1/";
+//        public static String BASE_URL = "https://stage.api.iwantmei.com/worker/v1/";
     public static String BASE_URL = "https://api.iwantmei.com/worker/v1/";
     public static final String FACE_KEY = "8OJOJfkgYXW5muFp1Q80W9sDvD4JwOU6";
     public static final String FACE_SECRET = "r0pSk0cJNVPesAXn0IXixl_NN84qUAvt";
     public static final String INPUT_PHONE_FLAG = "input_phone_sign";
     public static final String ORDER_ID = "order_id";
+    public static final String PROCEEDS_QR = "proceeds_qr";
     public static final String MERCHANT_ID = "merchant_id";
     public static final String DIVIDE_ORDER_FROM = "divide_order_from";
+    public static final String CHOSEN_SERVICE_TOTAL = "chosen_service_total";
     public static final String PHONE = "phone";
+    public static final String EXTRA_PAY_WAY = "extra_pay_way";
+    public static final String CHOSEN_SERVICE = "chosen_service";
     public static final String CAPTCHA = "captcha";
     public static final String CONTRACT_ID = "contract_id";
     public static final String ORDER_INFO = "order_info";

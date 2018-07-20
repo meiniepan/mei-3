@@ -7,9 +7,13 @@ import com.gs.buluo.common.network.SortedTreeMap;
 import com.wuyou.worker.bean.ServeTimeBean;
 import com.wuyou.worker.bean.entity.ContractDetailEntity;
 import com.wuyou.worker.bean.entity.MerchantDetailEntity;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
+import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.bean.entity.PartnerListEntity;
+import com.wuyou.worker.bean.entity.QrEntity;
+import com.wuyou.worker.bean.entity.ResponseListEntity;
+import com.wuyou.worker.bean.entity.ServiceSort2Entity;
+import com.wuyou.worker.bean.entity.ServiceSortEntity;
 import com.wuyou.worker.bean.entity.WorkerListEntity;
 
 import java.util.List;
@@ -82,7 +86,7 @@ public interface OrderApis {
      * @return
      */
     @GET("order/{order_id}")
-    Observable<BaseResponse<OrderInfoEntity>> getOrdersDetail(
+    Observable<BaseResponse<OrderDetailInfoEntity>> getOrdersDetail(
             @Path("order_id") String order_id,
             @QueryMap SortedTreeMap<String, String> map);
 
@@ -180,4 +184,18 @@ public interface OrderApis {
 
     @PUT("service_time")
     Observable<BaseResponse> updateServeTime(@QueryMap SortedTreeMap<String, String> map);
+
+    @GET("shop/categories/{worker_id}")
+    Observable<BaseResponse<ResponseListEntity<ServiceSortEntity>>> getServiceSort(@Path("worker_id") String workerId, @QueryMap SortedTreeMap<String, String> map);
+
+    @GET("shop/services/{worker_id}")
+    Observable<BaseResponse<ServiceSort2Entity>> getServiceSubSort(@Path("worker_id") String workerId, @QueryMap SortedTreeMap<String, String> map);
+
+    @GET("order/additional_payment/{order_id}")
+    Observable<BaseResponse<QrEntity>> getExtraPayQr(@Path("order_id") String orderId, @QueryMap SortedTreeMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("order/additional_cost")
+    Observable<BaseResponse> additionalCost(@FieldMap SortedTreeMap<String, String> map);
 }
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <include layout="@layout/split_line" />
+
+    <com.gs.buluo.common.widget.StatusLayout
+        android:id="@+id/sl_extra_choose_service"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyDrawable="@mipmap/status_empty_service"
+        app:errorDrawable="@mipmap/net_error">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_extra_choose_service_l"
+                    android:layout_width="75dp"
+                    android:background="@color/white"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/tint_bg" />
+
+                <com.gs.buluo.common.widget.StatusLayout
+                    android:id="@+id/sl_extra_choose_service_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:emptyDrawable="@mipmap/status_empty_service"
+                    app:errorDrawable="@mipmap/net_error">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_extra_choose_service_r"
+                        android:background="@color/tint_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.gs.buluo.common.widget.StatusLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@color/main_blue"
+                android:gravity="center_vertical"
+                android:paddingEnd="@dimen/common_margin"
+                android:paddingStart="@dimen/common_margin">
+
+                <TextView
+                    android:id="@+id/tv_extra_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未选择服务"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimens_15sp" />
+
+                <TextView
+                    android:id="@+id/tv_extra_sum"
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_text_margin"
+                    android:layout_weight="1"
+                    tool:text="¥ 250.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimens_18sp" />
+
+                <TextView
+                    android:id="@+id/tv_extra_settle"
+                    android:layout_width="99dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/orange_round_bac"
+                    android:gravity="center"
+                    android:text="去结算"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimens_15sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.gs.buluo.common.widget.StatusLayout>
+
+
+</LinearLayout>

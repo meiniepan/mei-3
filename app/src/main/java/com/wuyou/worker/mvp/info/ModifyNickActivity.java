@@ -15,6 +15,7 @@ import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
+import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.UserApis;
 import com.wuyou.worker.view.activity.BaseActivity;
@@ -108,6 +109,9 @@ public class ModifyNickActivity extends BaseActivity {
                 .subscribe(new BaseSubscriber<BaseResponse>() {
                     @Override
                     public void onSuccess(BaseResponse baseResponse) {
+                        UserInfo userInfo = CarefreeDaoSession.getInstance().getUserInfo();
+                        userInfo.setName(value);
+                        CarefreeDaoSession.getInstance().updateUserInfo(userInfo);
                         setResult(RESULT_OK, new Intent().putExtra("info", editText.getText().toString()));
                         finish();
                     }

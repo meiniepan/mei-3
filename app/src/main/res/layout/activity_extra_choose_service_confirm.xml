@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/split_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/text_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所选服务金额:"
+            android:textSize="@dimen/dimens_15sp" />
+
+        <TextView
+            android:id="@+id/tv_service_confirm_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_margin"
+            android:textColor="@color/red"
+            android:textSize="@dimen/dimens_15sp"
+            tool:text="所选服务金额:" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:background="@color/tint_bg"
+        android:text="您已选择的服务"
+        android:textSize="@dimen/dimens_12sp"
+        android:paddingStart="@dimen/text_margin">
+    </TextView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_service_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/tint_bg"
+        />
+    <TextView
+        android:id="@+id/tv_generate_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@color/main_blue"
+        android:textColor="@color/white"
+        android:text="去生成收款码"
+        android:gravity="center"
+        android:textSize="@dimen/dimens_15sp"
+        />
+</LinearLayout>

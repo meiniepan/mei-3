@@ -15,16 +15,16 @@ import com.wuyou.worker.mvp.login.LoginActivity;
  * Created by Administrator on 2018\1\29 0029.
  */
 
-public class AppStartActivity extends AppCompatActivity {
+public class AppStartActivity extends BaseActivity {
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_start);
-        init();
+    protected void bindView(Bundle savedInstanceState) {
+        disableFitSystemWindow();
+        setBarColor(R.color.transparent);
+        inits();
     }
 
-    private void init() {
+    private void inits() {
         new Handler().postDelayed(() -> {
             if (CarefreeApplication.getInstance().getUserInfo() != null) {
                 startActivity(new Intent(this, MainActivity.class));
@@ -38,6 +38,10 @@ public class AppStartActivity extends AppCompatActivity {
         }, 1000);
     }
 
+    @Override
+    protected int getContentLayout() {
+        return R.layout.activity_start;
+    }
 
 
 }

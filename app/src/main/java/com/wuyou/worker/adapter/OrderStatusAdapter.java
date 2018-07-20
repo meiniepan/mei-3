@@ -15,7 +15,7 @@ import com.gs.buluo.common.widget.recyclerHelper.BaseQuickAdapter;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
+import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.mvp.order.OrderStatusFragment;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
@@ -30,18 +30,18 @@ import io.reactivex.schedulers.Schedulers;
  * Created by solang on 2018/2/5.
  */
 
-public class OrderStatusAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHolder> {
+public class OrderStatusAdapter extends BaseQuickAdapter<OrderDetailInfoEntity, BaseHolder> {
     private final MyRecyclerViewScrollListener scrollListener;
     private OrderStatusFragment fragment;
 
-    public OrderStatusAdapter(MyRecyclerViewScrollListener scrollListener, OrderStatusFragment fragment, int layoutResId, @Nullable List<OrderInfoEntity> data) {
+    public OrderStatusAdapter(MyRecyclerViewScrollListener scrollListener, OrderStatusFragment fragment, int layoutResId, @Nullable List<OrderDetailInfoEntity> data) {
         super(layoutResId, data);
         this.fragment = fragment;
         this.scrollListener = scrollListener;
     }
 
     @Override
-    protected void convert(BaseHolder helper, OrderInfoEntity item) {
+    protected void convert(BaseHolder helper, OrderDetailInfoEntity item) {
         String dispatch = TribeDateUtils.dateFormat(new Date(item.dispatched_at * 1000));
         helper.setText(R.id.order_status_state, getStatusText(item.status))
                 .setText(R.id.tv_create_time, item.order_no)
@@ -53,7 +53,7 @@ public class OrderStatusAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHo
         setUpWithButton(item, dispatchBt);
     }
 
-    private void setUpWithButton(OrderInfoEntity item, Button dispatchBt) {
+    private void setUpWithButton(OrderDetailInfoEntity item, Button dispatchBt) {
         if (item.status == 1) {
             dispatchBt.setText(R.string.confirm_go);
             dispatchBt.setVisibility(View.VISIBLE);
@@ -88,11 +88,13 @@ public class OrderStatusAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHo
                 return fragment.getString(R.string.wait_comment);
             case 4:
                 return fragment.getString(R.string.finished);
+            case 5:
+                return fragment.getString(R.string.ing);
         }
         return fragment.getString(R.string.finished);
     }
 
-    private void dealWithClick(OrderInfoEntity item) {
+    private void dealWithClick(OrderDetailInfoEntity item) {
         if (item.status == 1) {
             confirmToStart(item.order_id, getData().indexOf(item));
         } else if (item.status == 2) {
@@ -100,7 +102,7 @@ public class OrderStatusAdapter extends BaseQuickAdapter<OrderInfoEntity, BaseHo
         }
     }
 
-    private void confirmToFinish(OrderInfoEntity infoEntity) {
+    private void confirmToFinish(OrderDetailInfoEntity infoEntity) {
         Intent intent = new Intent(fragment.getActivity(), FinishOrderActivity.class);
         intent.putExtra(Constant.ORDER_INFO, infoEntity);
         fragment.getActivity().startActivity(intent);

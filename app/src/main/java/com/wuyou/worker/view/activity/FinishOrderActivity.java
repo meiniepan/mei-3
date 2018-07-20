@@ -1,7 +1,9 @@
 package com.wuyou.worker.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -14,8 +16,9 @@ import com.gs.buluo.common.utils.ToastUtils;
 import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
+import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
+import com.wuyou.worker.mvp.order.ExtraChooseServiceActivity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
 import com.wuyou.worker.util.CommonUtil;
@@ -40,7 +43,10 @@ public class FinishOrderActivity extends BaseActivity {
     EditText finishOrderExtraFee;
     @BindView(R.id.finish_order_fee_area)
     LinearLayout finishOrderFeeArea;
-    private OrderInfoEntity infoEntity;
+    @BindView(R.id.btn_confirm_1)
+    Button btnConfirm;
+    private OrderDetailInfoEntity infoEntity;
+    private boolean mChecked;
 
     @Override
     protected int getContentLayout() {
@@ -52,20 +58,29 @@ public class FinishOrderActivity extends BaseActivity {
         infoEntity = getIntent().getParcelableExtra(Constant.ORDER_INFO);
         finishOrderAccount.setText(CommonUtil.formatPrice(infoEntity.amount));
         finishOrderExtra.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            mChecked = isChecked;
             if (isChecked) {
-                finishOrderFeeArea.setVisibility(View.VISIBLE);
+
+                btnConfirm.setText("下一步");
+//                finishOrderFeeArea.setVisibility(View.VISIBLE);
             } else {
-                finishOrderFeeArea.setVisibility(View.GONE);
+                btnConfirm.setText("确定");
+//                finishOrderFeeArea.setVisibility(View.GONE);
             }
         });
         CommonUtil.setEdDecimal(finishOrderExtraFee, 2);
     }
 
     public void finishOrder(View view) {
-        if (finishOrderExtra.isChecked() && finishOrderExtraFee.length() == 0) {
-            ToastUtils.ToastMessage(getCtx(), "请填写附加金额");
-            return;
+        if (mChecked) {
+            startActivity(new Intent(getCtx(), ExtraChooseServiceActivity.class).putExtra(Constant.ORDER_ID,infoEntity.order_id));
+        } else {
+            finishCost();
         }
+
+    }
+
+    private void finishCost() {
         showLoadingDialog();
         CarefreeRetrofit.getInstance().createApi(OrderApis.class)
                 .finish(QueryMapBuilder.getIns().put("worker_id", CarefreeApplication.getInstance().getUserInfo().getWorker_id())

@@ -77,7 +77,7 @@ public class GlideUtils {
     public static void loadRoundCornerImage(Context context, String url, ImageView imageView) {
         if (url == null) return;
         RequestOptions options = new RequestOptions();
-        options.optionalTransform(new GlideRoundTransform(context, DensityUtils.dip2px(context, 4), GlideRoundTransform.CornerType.ALL));
+        options.optionalTransform(new GlideRoundTransform(context, 4, GlideRoundTransform.CornerType.ALL));
         Glide.with(context).load(url).apply(options).into(imageView);
     }
 

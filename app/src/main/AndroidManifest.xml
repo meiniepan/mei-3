@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme,android:allowBackup,android:name">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
         <activity
             android:name=".view.activity.AppStartActivity"
             android:screenOrientation="portrait"
@@ -82,21 +85,54 @@
         <activity
             android:name=".view.activity.SettingActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.wallet.WalletTransactionActivity" />
-        <activity android:name=".mvp.info.WorkerInfoActivity" />
-        <activity android:name=".view.activity.OrderStatisticsActivity" />
-        <activity android:name=".view.activity.IdentifyActivity" />
-        <activity android:name=".mvp.info.ModifyGenderActivity" />
+        <activity
+            android:name=".mvp.wallet.WalletTransactionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.info.WorkerInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.OrderStatisticsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.IdentifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.info.ModifyGenderActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.info.ModifyNickActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".mvp.order.OrderChangeTimeActivity" />
-        <activity android:name=".mvp.order.OrderDetailActivity" />
+        <activity
+            android:name=".mvp.order.OrderChangeTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.order.OrderDetailActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.info.ModifyPhoneActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".view.activity.WebActivity" />
-        <activity android:name=".view.activity.FeedbackActivity" />
+        <activity
+            android:name=".view.activity.WebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.order.ChooseProceedsTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.order.ExtraChooseServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.order.ExtraChooseServiceConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.order.ProceedsQrActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.order.PayDoneActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -107,6 +143,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/rc_file_path" />
         </provider>
+        <receiver
+            android:exported="true"
+            android:name=".receiver.ProceedsNotificationReceiver">
+            <intent-filter>
+                <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
+                <action android:name="io.rong.push.intent.MI_MESSAGE_ARRIVED" />
+                <action android:name="io.rong.push.intent.MESSAGE_CLICKED" />
+                <action android:name="io.rong.push.intent.MI_MESSAGE_CLICKED" />
+                <action android:name="io.rong.push.intent.THIRD_PARTY_PUSH_STATE" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
 

@@ -16,8 +16,10 @@
     <color name="white">#fafafa</color>
     <color name="white_alpha">#99fafafa</color>
     <color name="custom_orange">#ff7c3f</color>
+    <color name="custom_dark_orange">#9C88A5</color>
     <color name="divide_gray">#e5e5e5</color>
     <color name="main_blue">#3e81ff</color>
+    <color name="trans_blue">#803e81ff</color>
     <color name="tint_bg">#f5f5f5</color>
     <color name="store_home_title_bac">#777c91</color>
 

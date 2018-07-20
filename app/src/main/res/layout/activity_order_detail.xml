@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -96,64 +96,68 @@
 
             <include layout="@layout/split_line_margin" />
 
-            <RelativeLayout
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="92dp"-->
+            <!--android:paddingEnd="@dimen/activity_horizontal_margin"-->
+            <!--android:paddingStart="@dimen/activity_horizontal_margin">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/order_detail_picture"-->
+            <!--android:layout_width="72dp"-->
+            <!--android:layout_height="72dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:scaleType="centerCrop" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/order_detail_serve_name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="13dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:layout_toEndOf="@+id/order_detail_picture"-->
+            <!--android:ellipsize="end"-->
+            <!--android:maxLines="2" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/order_detail_goods_number"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginBottom="14dp"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:text="1" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/text_x"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignTop="@+id/order_detail_goods_number"-->
+            <!--android:layout_toStartOf="@+id/order_detail_goods_number"-->
+            <!--android:text="x" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignTop="@+id/order_detail_goods_number"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:layout_toStartOf="@+id/text_x"-->
+            <!--android:text="数量" />-->
+            <!--<TextView-->
+            <!--android:id="@+id/order_detail_specification"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignTop="@+id/order_detail_goods_number"-->
+            <!--android:layout_alignStart="@+id/order_detail_serve_name"-->
+            <!--tool:text="服务规格"/>-->
+
+            <!--</RelativeLayout>-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_service_detail"
                 android:layout_width="match_parent"
-                android:layout_height="92dp"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                android:paddingStart="@dimen/activity_horizontal_margin">
-
-                <ImageView
-                    android:id="@+id/order_detail_picture"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_centerVertical="true"
-                    android:scaleType="centerCrop" />
-
-                <TextView
-                    android:id="@+id/order_detail_serve_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="13dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_toEndOf="@+id/order_detail_picture"
-                    android:ellipsize="end"
-                    android:maxLines="2" />
-
-                <TextView
-                    android:id="@+id/order_detail_goods_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="14dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/text_x"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignTop="@+id/order_detail_goods_number"
-                    android:layout_toStartOf="@+id/order_detail_goods_number"
-                    android:text="x" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/order_detail_goods_number"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/text_x"
-                    android:text="数量" />
-                <TextView
-                    android:id="@+id/order_detail_specification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/order_detail_goods_number"
-                    android:layout_alignStart="@+id/order_detail_serve_name"
-                    tool:text="服务规格"/>
-
-            </RelativeLayout>
+                android:layout_height="wrap_content" />
 
             <include layout="@layout/split_line_margin" />
 
@@ -212,39 +216,6 @@
 
                 <TextView
                     android:id="@+id/order_detail_other_fee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0.00"
-                    android:textColor="@color/common_red" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/order_detail_second_payment_area"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/extra_fee"
-                    android:textColor="@color/common_gray" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="￥"
-                    android:textColor="@color/common_red" />
-
-                <TextView
-                    android:id="@+id/order_detail_second_payment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"
@@ -504,6 +475,30 @@
                     android:textColor="@color/common_gray" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_second_time"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="扫码支付时间"
+                    android:textColor="@color/common_gray" />
+
+                <TextView
+                    android:id="@+id/tv_second_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:textColor="@color/common_gray" />
+            </LinearLayout>
+
             <include layout="@layout/shadow_line" />
 
             <View
@@ -511,7 +506,7 @@
                 android:layout_height="40dp"
                 android:background="@color/tint_bg" />
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/order_detail_bottom"

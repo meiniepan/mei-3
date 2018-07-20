@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/split_line" />
+<Space
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="2"
+    />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        >
+
+
+        <ImageView
+            android:background="@mipmap/icon_done"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_margin"
+            android:text="支付完成！"
+            android:textSize="@dimen/dimens_18sp" />
+    </LinearLayout>
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tv_check_order_detail"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:background="@drawable/blue_border"
+            android:text="查看订单详情"
+            android:gravity="center"
+            android:textColor="@color/main_blue"
+            android:textSize="@dimen/dimens_15sp" />
+
+        <TextView
+            android:id="@+id/tv_back_home"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/bac_text_blue_shape"
+            android:text="返回首页"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimens_15sp" />
+
+    </LinearLayout>
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        />
+</LinearLayout>

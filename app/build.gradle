@@ -55,7 +55,7 @@ allprojects {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.github.ngreedy:tribe_lib:3.1.1'
+    compile 'com.github.ngreedy:tribe_lib:3.1.2'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.android.support:design:27.0.2'
@@ -70,4 +70,5 @@ dependencies {
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
     compile 'com.android.support:multidex:1.0.3'
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    compile 'com.google.zxing:core:3.2.1'
 }

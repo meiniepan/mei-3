@@ -10,7 +10,7 @@ import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.OrderStatusAdapter;
-import com.wuyou.worker.bean.entity.OrderInfoEntity;
+import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
 import com.wuyou.worker.event.OrderChangeEvent;
 import com.wuyou.worker.util.MyRecyclerViewScrollListener;
@@ -35,7 +35,7 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
     @BindView(R.id.rl_to_top)
     View toTop;
     OrderStatusAdapter adapter;
-    List<OrderInfoEntity> data = new ArrayList();
+    List<OrderDetailInfoEntity> data = new ArrayList();
     private int orderState;
 
     @Override
