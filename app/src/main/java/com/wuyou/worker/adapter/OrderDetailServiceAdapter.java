@@ -37,7 +37,7 @@ public class OrderDetailServiceAdapter extends BaseQuickAdapter<ServiceEntity, B
         GlideUtils.loadRoundCornerImage(mContext, item.image, imageView);
         helper.setText(R.id.tv_name2, item.service_name).setText(R.id.tv_service_confirm_num, "x " + item.number)
                 .setText(R.id.tv_service_confirm_price, CommonUtil.formatPrice(item.price));
-        if (item.has_specification.equals(1)) {
+        if (item.has_specification.equals("1")) {
             helper.setText(R.id.tv_service_confirm_sub_name, item.specification.name)
                     .setText(R.id.tv_service_confirm_price, CommonUtil.formatPrice(item.specification.price));
         }
