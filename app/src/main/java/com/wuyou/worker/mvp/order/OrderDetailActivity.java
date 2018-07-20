@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gs.buluo.common.network.ApiException;
@@ -81,6 +82,8 @@ public class OrderDetailActivity extends BaseActivity {
     TextView orderDeliveryTime;
     @BindView(R.id.tv_second_time)
     TextView orderSecondTime;
+    @BindView(R.id.ll_second_time)
+    LinearLayout llSecondTime;
     @BindView(R.id.order_detail_change)
     TextView orderDetailChange;
     @BindView(R.id.order_detail_go)
@@ -143,14 +146,14 @@ public class OrderDetailActivity extends BaseActivity {
 //        }
         orderDetailStatus.setText(CommonUtil.getOrderStatusString(data.status));
         orderDetailStoreName.setText(data.shop.shop_name);
-        float pureFee = data.amount+data.second_payment;
+        float pureFee = data.amount + data.second_payment;
         float visitFee = 0;
         float total;
         for (ServiceEntity e : data.services
                 ) {
-           if (e.stage.equals("1")){
-               visitFee = e.visiting_fee;
-           }
+            if (e.stage.equals("1")) {
+                visitFee = e.visiting_fee;
+            }
         }
         total = pureFee + visitFee;
         orderDetailFee.setText(CommonUtil.formatPrice(pureFee));
@@ -162,8 +165,10 @@ public class OrderDetailActivity extends BaseActivity {
 
         orderDetailCreateTime.setText(TribeDateUtils.dateFormat(new Date(data.created_at * 1000)));
         orderDeliveryTime.setText(TribeDateUtils.dateFormat(new Date(data.dispatch_at * 1000)));
-        if (data.second_pay_time > 0)
+        if (data.second_pay_time > 0) {
+            llSecondTime.setVisibility(View.VISIBLE);
             orderSecondTime.setText(TribeDateUtils.dateFormat(new Date(data.second_pay_time * 1000)));
+        }
         orderDetailNumber.setText(data.order_no);
         orderDetailServeTime.setText(data.service_date + "  " + data.service_time);
         orderDetailRemark.setText(data.remark);

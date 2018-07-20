@@ -455,7 +455,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
@@ -476,10 +476,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_second_time"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingStart="@dimen/activity_horizontal_margin">

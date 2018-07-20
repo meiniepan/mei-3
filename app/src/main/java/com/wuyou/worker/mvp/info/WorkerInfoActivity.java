@@ -19,6 +19,7 @@ import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
 import com.wuyou.worker.bean.UserInfo;
+import com.wuyou.worker.bean.entity.LogoEntity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.UserApis;
 import com.wuyou.worker.util.CommonUtil;
@@ -198,10 +199,12 @@ public class WorkerInfoActivity extends BaseActivity {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .subscribe(new BaseSubscriber<BaseResponse>() {
+                .subscribe(new BaseSubscriber<BaseResponse<LogoEntity>>() {
                     @Override
-                    public void onSuccess(BaseResponse baseResponse) {
-                        CarefreeDaoSession.tempAvatar = null;
+                    public void onSuccess(BaseResponse<LogoEntity> baseResponse) {
+                        UserInfo userInfo = CarefreeDaoSession.getInstance().getUserInfo();
+                        userInfo.setAvatar(baseResponse.data.avatar);
+                        CarefreeDaoSession.getInstance().updateUserInfo(userInfo);
                     }
 
                     @Override

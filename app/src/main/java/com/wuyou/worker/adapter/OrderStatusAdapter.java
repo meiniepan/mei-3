@@ -89,7 +89,7 @@ public class OrderStatusAdapter extends BaseQuickAdapter<OrderDetailInfoEntity, 
             case 4:
                 return fragment.getString(R.string.finished);
             case 5:
-                return "进行中(待用户完成)";
+                return fragment.getString(R.string.ing);
         }
         return fragment.getString(R.string.finished);
     }

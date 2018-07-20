@@ -99,6 +99,8 @@ public class ExtraChooseServiceActivity extends BaseActivity implements AddReduc
                         if (dataLeft.size() > 0) {
                             statusLayout.showContentView();
                             adapterLeft.setNewData(dataLeft);
+                            categoryId = dataLeft.get(0).category_id;
+                            getSubData(categoryId);
                         } else statusLayout.showEmptyView("暂无服务可选择");
                     }
 
