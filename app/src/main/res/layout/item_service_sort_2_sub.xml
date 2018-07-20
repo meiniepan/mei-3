@@ -44,13 +44,16 @@
         android:id="@+id/tv_service_sub_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimens_15sp" />
+        android:layout_marginStart="9dp"
+        android:gravity="center"
+        android:minWidth="15dp"
+        android:textSize="@dimen/dimens_12sp" />
 
     <TextView
         android:id="@+id/tv_service_sub_add"
         android:layout_width="21dp"
         android:layout_height="21dp"
-        android:layout_marginStart="@dimen/dimens_15sp"
+        android:layout_marginStart="9dp"
         android:background="@drawable/blue_circle_bac"
         android:gravity="center"
         android:text="＋"
