@@ -64,6 +64,7 @@ public class OrderChangeTimeActivity extends BaseActivity {
         orderChangeTimePhone.setText(addressEntity.mobile);
         getServeTime(orderId);
     }
+
     private void getServeTime(String orderId) {
         CarefreeRetrofit.getInstance().createApi(OrderApis.class).getAvailableServeTime(orderId, QueryMapBuilder.getIns().put("worker_id", CarefreeDaoSession.getInstance().getUserId()).buildGet())
                 .subscribeOn(Schedulers.io())
@@ -148,8 +149,8 @@ public class OrderChangeTimeActivity extends BaseActivity {
             @Override
             public void onPicked(String first, String second, String third) {
                 orderChangeTimeText.setText(first + "  " + second);
-                serveDate = first;
-                serveTime = second;
+                serveDate = first.replaceAll(" ", "");
+                serveTime = second.replaceAll(" ", "");
             }
         });
         picker.show();
