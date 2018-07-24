@@ -2,8 +2,6 @@ package com.wuyou.worker.mvp.order;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TimeUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +12,6 @@ import com.gs.buluo.common.network.QueryMapBuilder;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
-import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.bean.entity.IsPayedEntity;
 import com.wuyou.worker.network.CarefreeRetrofit;
 import com.wuyou.worker.network.apis.OrderApis;
@@ -80,7 +77,6 @@ public class ProceedsQrActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(BaseResponse<IsPayedEntity> response) {
-                        Log.e("请求中", "onSuccess: ");
                         if (response.data.is_paid.equals("1")) {
                             Intent intent = new Intent(getCtx(), PayDoneActivity.class);
                             intent.putExtra(Constant.ORDER_ID, orderId);
@@ -100,7 +96,6 @@ public class ProceedsQrActivity extends BaseActivity {
     protected void onDestroy() {
         if (mDisposable != null && !mDisposable.isDisposed()) {
             mDisposable.dispose();
-            Log.e("111", "====定时器取消======");
         }
         super.onDestroy();
     }
