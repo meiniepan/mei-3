@@ -72,7 +72,7 @@ public class ExtraChooseServiceConfirmActivity extends BaseActivity {
         setTitleText("结算确认");
         orderId = getIntent().getStringExtra(Constant.ORDER_ID);
         total = getIntent().getFloatExtra(Constant.CHOSEN_SERVICE_TOTAL, 0F);
-        tvServiceConfirmNum.setText(CommonUtil.formatPrice(total));
+        tvServiceConfirmNum.setText("¥" +CommonUtil.formatPrice(total));
         initRv();
     }
 

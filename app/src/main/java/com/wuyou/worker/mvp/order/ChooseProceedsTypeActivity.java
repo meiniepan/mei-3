@@ -94,6 +94,7 @@ public class ChooseProceedsTypeActivity extends BaseActivity {
                         }
 
                         intent.putExtra(Constant.PROCEEDS_QR, qrString);
+                        intent.putExtra(Constant.ORDER_ID, orderId);
                         startActivity(intent);
                         finish();
                     }

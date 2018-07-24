@@ -6,6 +6,7 @@ import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.SortedTreeMap;
 import com.wuyou.worker.bean.ServeTimeBean;
 import com.wuyou.worker.bean.entity.ContractDetailEntity;
+import com.wuyou.worker.bean.entity.IsPayedEntity;
 import com.wuyou.worker.bean.entity.MerchantDetailEntity;
 import com.wuyou.worker.bean.entity.OrderDetailInfoEntity;
 import com.wuyou.worker.bean.entity.OrderInfoListEntity;
@@ -197,5 +198,8 @@ public interface OrderApis {
     @FormUrlEncoded
     @POST("order/additional_cost")
     Observable<BaseResponse> additionalCost(@FieldMap SortedTreeMap<String, String> map);
+
+    @GET("order/additional_cost_is_paid/{order_id}")
+    Observable<BaseResponse<IsPayedEntity>> getIsPayed(@Path("order_id") String orderId, @QueryMap SortedTreeMap<String, String> map);
 }
 

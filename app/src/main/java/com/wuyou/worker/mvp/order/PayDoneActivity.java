@@ -4,13 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.gs.buluo.common.network.BaseResponse;
+import com.gs.buluo.common.network.BaseSubscriber;
+import com.gs.buluo.common.network.QueryMapBuilder;
+import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.Constant;
 import com.wuyou.worker.R;
+import com.wuyou.worker.bean.entity.IsPayedEntity;
+import com.wuyou.worker.bean.entity.QrEntity;
+import com.wuyou.worker.network.CarefreeRetrofit;
+import com.wuyou.worker.network.apis.OrderApis;
 import com.wuyou.worker.view.activity.BaseActivity;
 import com.wuyou.worker.view.activity.MainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Solang on 2018/7/10.

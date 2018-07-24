@@ -24,7 +24,7 @@ public class LoginPresenter extends LoginContract.Presenter {
         CarefreeRetrofit.getInstance().createApi(UserApis.class)
                 .doLogin(QueryMapBuilder.getIns().put("mobile", phone).put("captcha", captcha).buildPost())
                 .subscribeOn(Schedulers.io())
-                .flatMap(userInfoBaseResponse -> {
+                .flatMap((BaseResponse<UserInfo> userInfoBaseResponse) -> {
                     token = userInfoBaseResponse.data.getToken();
                     CarefreeDaoSession.getInstance().setUserInfo(userInfoBaseResponse.data);
                     return CarefreeRetrofit.getInstance().createApi(UserApis.class)
