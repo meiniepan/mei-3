@@ -71,4 +71,5 @@ dependencies {
     compile 'com.android.support:multidex:1.0.3'
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
     compile 'com.google.zxing:core:3.2.1'
+    implementation files('libs/SaaS_AppAnalytics_Android_SDK_V4.0.20.jar')
 }
