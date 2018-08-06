@@ -9,6 +9,9 @@ android {
         versionCode 2018022610
         versionName "2.8.28 Dev"
     }
+    lintOptions {
+        abortOnError false
+    }
     buildTypes {
         release {
             minifyEnabled false

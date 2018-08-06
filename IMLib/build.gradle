@@ -10,7 +10,9 @@ android {
         versionCode 2018022610
         versionName "2.8.28 Dev"
     }
-
+    lintOptions {
+        abortOnError false
+    }
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
