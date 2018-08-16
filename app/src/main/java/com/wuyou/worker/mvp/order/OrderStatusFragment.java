@@ -50,7 +50,7 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
-        recyclerView.getStatusLayout().setErrorAction(v -> {
+        recyclerView.getRecyclerView().setErrorAction(v -> {
             recyclerView.showProgressView();
             fetchDatas();
         });
