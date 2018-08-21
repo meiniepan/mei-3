@@ -47,9 +47,9 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        CarefreeApplication.getInstance().ManualCheckOnForceUpdate();
         setBarColor(R.color.tint_bg);
         findViewById(R.id.back_door).setOnClickListener(v -> showChangeEnvironment());
-        CarefreeApplication.getInstance().ManualCheckOnForceUpdate();
     }
 
     @Override

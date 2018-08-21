@@ -52,6 +52,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void bindView(Bundle savedInstanceState) {
+        CarefreeApplication.getInstance().ManualCheckOnForceUpdate();
         if (!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
@@ -63,7 +64,6 @@ public class MainActivity extends BaseActivity {
         bottomView.setViewPager(viewPager);
         bottomView.setTabCurrenItem(0);
         initRC();
-        CarefreeApplication.getInstance().ManualCheckOnForceUpdate();
     }
 
     private void initRC() {
