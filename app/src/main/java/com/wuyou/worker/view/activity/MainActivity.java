@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.gs.buluo.common.network.TokenEvent;
 import com.gs.buluo.common.utils.ToastUtils;
+import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.CarefreeDaoSession;
 import com.wuyou.worker.R;
 import com.wuyou.worker.adapter.MainPagerAdapter;
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity {
         bottomView.setViewPager(viewPager);
         bottomView.setTabCurrenItem(0);
         initRC();
+        CarefreeApplication.getInstance().ManualCheckOnForceUpdate();
     }
 
     private void initRC() {

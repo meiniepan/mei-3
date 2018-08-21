@@ -4,6 +4,7 @@ import com.gs.buluo.common.network.BaseResponse;
 import com.gs.buluo.common.network.SortedTreeMap;
 import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.bean.entity.LogoEntity;
+import com.wuyou.worker.bean.entity.UpdateEntity;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -60,4 +61,9 @@ public interface UserApis {
     @GET("mobile/captcha")
     Observable<BaseResponse> getCaptchaCode(
             @QueryMap SortedTreeMap<String, String> map);
+
+    @GET("client/update")
+    Observable<BaseResponse<UpdateEntity>> checkUpdate(
+            @QueryMap SortedTreeMap<String, String> map);
+
 }

@@ -1,11 +1,17 @@
 package com.wuyou.worker;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 
 import com.gs.buluo.common.BaseApplication;
+import com.gs.buluo.common.network.ApiException;
+import com.gs.buluo.common.network.BaseResponse;
+import com.gs.buluo.common.network.BaseSubscriber;
+import com.gs.buluo.common.network.QueryMapBuilder;
 import com.gs.buluo.common.utils.SharePreferenceManager;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
@@ -14,9 +20,18 @@ import com.wuyou.worker.bean.DaoMaster;
 import com.wuyou.worker.bean.DaoSession;
 import com.wuyou.worker.bean.UserInfo;
 import com.wuyou.worker.bean.UserInfoDao;
+import com.wuyou.worker.bean.entity.UpdateEntity;
+import com.wuyou.worker.bean.entity.WorkerListEntity;
 import com.wuyou.worker.mvp.login.LoginActivity;
+import com.wuyou.worker.network.CarefreeRetrofit;
+import com.wuyou.worker.network.apis.OrderApis;
+import com.wuyou.worker.network.apis.UserApis;
+import com.wuyou.worker.util.RxUtil;
 import com.wuyou.worker.view.activity.MainActivity;
 import com.wuyou.worker.view.activity.SettingActivity;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by hjn on 2016/11/1.
@@ -92,5 +107,38 @@ public class CarefreeApplication extends BaseApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+    public void ManualCheckOnForceUpdate(){
+        CarefreeRetrofit.getInstance().createApi(UserApis.class)
+                .checkUpdate(QueryMapBuilder.getIns().put("version",getVersionCode()+"" )
+                        .put("platform", "android")
+                        .buildGet())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<BaseResponse<UpdateEntity>>() {
+                    @Override
+                    public void onSuccess(BaseResponse<UpdateEntity> response) {
+                        if (0 == response.data.update){
+                            Beta.checkUpgrade(false,true);
+                        }
+                    }
+                    @Override
+                    protected void onFail(ApiException e) {
+                    }
+                });
+    }
+    public int getVersionCode() {
+        PackageManager manager;
+
+        PackageInfo info = null;
+
+        manager = this.getPackageManager();
+        try {
+            info = manager.getPackageInfo(this.getPackageName(), 0);
+            return info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

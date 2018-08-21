@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.gs.buluo.common.utils.ToastUtils;
+import com.wuyou.worker.CarefreeApplication;
 import com.wuyou.worker.R;
 import com.wuyou.worker.util.CommonUtil;
 import com.wuyou.worker.util.CounterDisposableObserver;
@@ -48,6 +49,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     protected void bindView(Bundle savedInstanceState) {
         setBarColor(R.color.tint_bg);
         findViewById(R.id.back_door).setOnClickListener(v -> showChangeEnvironment());
+        CarefreeApplication.getInstance().ManualCheckOnForceUpdate();
     }
 
     @Override

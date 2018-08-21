@@ -72,7 +72,6 @@ public class OrderStatusFragment extends BaseFragment<OrderContract.View, OrderC
         adapter.setOnLoadMoreListener(() -> mPresenter.loadMore(CarefreeApplication.getInstance().getUserInfo().getWorker_id(), orderState+""), recyclerView.getRecyclerView());
         recyclerView.setRefreshAction(() -> {
 //            scrollListener.setRefresh();
-            adapter.clearData();
             fetchDatas();
         });
 //        toTop.setOnClickListener(v -> recyclerView.getRecyclerView().smoothScrollToPosition(0));
