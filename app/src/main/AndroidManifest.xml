@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.GET_TASKS"  />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".CarefreeApplication"
@@ -26,6 +26,7 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
+
         <activity
             android:name=".view.activity.AppStartActivity"
             android:screenOrientation="portrait"
@@ -130,10 +131,12 @@
         <activity
             android:name=".mvp.order.ExtraChooseServiceConfirmActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.order.ProceedsQrActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".mvp.order.PayDoneActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mvp.order.ProceedsQrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.order.PayDoneActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -145,8 +148,8 @@
                 android:resource="@xml/rc_file_path" />
         </provider>
         <receiver
-            android:exported="true"
-            android:name=".receiver.ProceedsNotificationReceiver">
+            android:name=".receiver.ProceedsNotificationReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
                 <action android:name="io.rong.push.intent.MI_MESSAGE_ARRIVED" />
@@ -155,7 +158,8 @@
                 <action android:name="io.rong.push.intent.THIRD_PARTY_PUSH_STATE" />
             </intent-filter>
         </receiver>
-        <service android:name="com.talkingdata.sdk.TDAntiCheatingService"
+        <service
+            android:name="com.talkingdata.sdk.TDAntiCheatingService"
             android:process="com.talkingdata.sdk.TDAntiCheatingService">  <!--用户质量评估Service可以配置在主进程或者单独进程-->
             <intent-filter>
                 <action android:name="com.talkingdata.sdk.TDAntiCheatingService" />

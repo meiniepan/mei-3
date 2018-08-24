@@ -57,12 +57,16 @@ public class CarefreeApplication extends BaseApplication {
         // 渠道 ID: 是渠道标识符，可通过不同渠道单独追踪数据。
         TCAgent.init(this, "EE681B5DA2AE4DB3B56C5133C1D403BB", "android");
         // 如果已经在AndroidManifest.xml配置了App ID和渠道ID，调用TCAgent.init(this)即可；或与AndroidManifest.xml中的对应参数保持一致。
-        TCAgent.setReportUncaughtExceptions(true);
     }
 
     private void initUrl() {
         String baseUrl = SharePreferenceManager.getInstance(this).getStringValue(Constant.SP_BASE_URL);
         if (!TextUtils.isEmpty(baseUrl)) Constant.BASE_URL = baseUrl;
+        if (TextUtils.equals(baseUrl, Constant.ONLINE_BASE_URL)) {
+            TCAgent.setReportUncaughtExceptions(true);
+        } else {
+            TCAgent.setReportUncaughtExceptions(false);
+        }
     }
     private void initDB() {
         DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, "carefree.db", null);
