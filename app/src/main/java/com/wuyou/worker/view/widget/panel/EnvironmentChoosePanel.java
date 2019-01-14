@@ -59,13 +59,13 @@ public class EnvironmentChoosePanel extends Dialog {
     public void setEnv(int env) {
         switch (env) {
             case R.id.env_dev:
-                Constant.BASE_URL = "https://develop.api.iwantmei.com/worker/v1/";
+                Constant.BASE_URL = "https://develop.api.ulaidao.cn/worker/v1/";
                 break;
             case R.id.env_test:
-                Constant.BASE_URL = "https://stage.api.iwantmei.com/worker/v1/";
+                Constant.BASE_URL = "https://stage.api.ulaidao.cn/worker/v1/";
                 break;
             case R.id.env_online:
-                Constant.BASE_URL = "https://api.iwantmei.com/worker/v1/";
+                Constant.BASE_URL = "http://api.ulaidao.cn/worker/v1/";
                 break;
         }
         SharePreferenceManager.getInstance(getContext()).setValue(Constant.SP_BASE_URL, Constant.BASE_URL);

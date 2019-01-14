@@ -63,7 +63,7 @@ public class MineFragment extends BaseFragment {
     }
 
     private void getBalanceAndInfo() {
-        GlideUtils.loadImage(getContext(), CarefreeDaoSession.getInstance().getUserInfo().getAvatar(), imageView, true);
+        GlideUtils.loadImageNoHolder(getContext(), CarefreeDaoSession.getAvatar(CarefreeDaoSession.getInstance().getUserInfo()), imageView, true);
         mineName.setText(CarefreeDaoSession.getInstance().getUserInfo().getName());
         minePhone.setText(CommonUtil.getPhoneWithStar(CarefreeDaoSession.getInstance().getUserInfo().getMobile()));
         mineTotal.setText(CommonUtil.formatPrice(Float.valueOf(CarefreeDaoSession.getInstance().getUserInfo().getAmount())));

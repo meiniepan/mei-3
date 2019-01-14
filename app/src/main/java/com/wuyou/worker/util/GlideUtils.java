@@ -35,9 +35,7 @@ public class GlideUtils {
     public static void loadImageNoHolder(Context context, String url, final ImageView imageView, boolean isCircle) {
         if (url == null) return;
         if (isCircle) {
-            RequestOptions options = new RequestOptions();
-            options.apply(RequestOptions.circleCropTransform());
-            Glide.with(context).load(url).apply(options).into(imageView);
+            Glide.with(context).load(url).apply(new RequestOptions().apply(RequestOptions.circleCropTransform())).into(imageView);
         } else {
             loadImage(context, url, imageView);
         }
@@ -46,9 +44,7 @@ public class GlideUtils {
     public static void loadImage(Context context, String url, ImageView imageView, boolean isCircle) {
         if (url == null) return;
         if (isCircle) {
-            RequestOptions options = new RequestOptions();
-            options.placeholder(R.mipmap.default_pic).apply(RequestOptions.circleCropTransform());
-            Glide.with(context).load(url).apply(options).into(imageView);
+            Glide.with(context).load(url).apply(RequestOptions.placeholderOf(R.mipmap.default_pic).apply(RequestOptions.circleCropTransform())).into(imageView);
         } else {
             loadImage(context, url, imageView);
         }

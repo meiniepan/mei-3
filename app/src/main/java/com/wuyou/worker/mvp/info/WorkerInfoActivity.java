@@ -38,6 +38,7 @@ import butterknife.OnClick;
 import cn.qqtheme.framework.picker.DatePicker;
 import cn.qqtheme.framework.util.ConvertUtils;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -67,7 +68,6 @@ public class WorkerInfoActivity extends BaseActivity {
     @Override
     protected void bindView(Bundle savedInstanceState) {
         UserInfo userInfo = CarefreeDaoSession.getInstance().getUserInfo();
-        GlideUtils.loadImage(this, CarefreeDaoSession.getAvatar(userInfo), infoAvatar, true);
         infoMobile.setText(CommonUtil.getPhoneWithStar(userInfo.getMobile()));
         showLoadingDialog();
         CarefreeRetrofit.getInstance().createApi(UserApis.class)
@@ -161,7 +161,7 @@ public class WorkerInfoActivity extends BaseActivity {
                         path = localMedia.getPath();
                     }
                 }
-                GlideUtils.loadImage(getCtx(), path, infoAvatar, true);
+
                 uploadAvatar(path);
             } else if (requestCode == Constant.REQUEST_NICK) {
                 infoNickname.setText(data.getStringExtra("info"));
@@ -187,6 +187,7 @@ public class WorkerInfoActivity extends BaseActivity {
     private static final long MAX_NUM_PIXELS_THUMBNAIL = 64 * 64;
 
     private void uploadAvatar(final String path) {
+        showLoadingDialog();
         Observable.just(path)
                 .flatMap(imagePath -> {
                     Bitmap bitmap = ImageUtil.getBitmap(new File(imagePath));
@@ -198,13 +199,14 @@ public class WorkerInfoActivity extends BaseActivity {
                     return CarefreeRetrofit.getInstance().createApi(UserApis.class).updateAvatar(CarefreeDaoSession.getInstance().getUserId(), body, QueryMapBuilder.getIns().buildPost());
                 })
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<BaseResponse<LogoEntity>>() {
                     @Override
                     public void onSuccess(BaseResponse<LogoEntity> baseResponse) {
                         UserInfo userInfo = CarefreeDaoSession.getInstance().getUserInfo();
                         userInfo.setAvatar(baseResponse.data.avatar);
                         CarefreeDaoSession.getInstance().updateUserInfo(userInfo);
+                        GlideUtils.loadImage(getCtx(), path, infoAvatar, true);
                     }
 
                     @Override
@@ -221,6 +223,6 @@ public class WorkerInfoActivity extends BaseActivity {
             infoSex.setText(getGenderString(gender));
         }
         if (userInfo.getAvatar() != null)
-            GlideUtils.loadImage(this, CarefreeDaoSession.getAvatar(userInfo), infoAvatar, true);
+            GlideUtils.loadImageNoHolder(this, CarefreeDaoSession.getAvatar(userInfo), infoAvatar, true);
     }
 }
